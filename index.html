@@ -12,33 +12,31 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg)}
 .header{background:white;padding:16px 20px;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #EEF2F7}
-.logo{width:44px;height:44px;border-radius:14px;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center}
+.logo{width:44px;height:44px;border-radius:14px;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center;color:white;font-weight:900}
 .logo img{width:100%;height:100%;object-fit:cover}
 .input-box{background:white;margin:16px;border-radius:20px;padding:16px;border:1px solid #EEF2F7}
 .inp-main{width:100%;padding:14px 16px;border:1.5px solid #111;border-radius:14px;font-size:15px;font-weight:600;outline:none}
 .badge{display:inline-block;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;background:#E8F2FF;color:#108EE9;margin-top:10px}
 .tabs{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
 .tab{padding:10px 18px;border-radius:100px;border:1px solid #E6EAF1;background:white;font-size:13px;font-weight:600;cursor:pointer;color:#555}
-.tab.active{background:#111;color:white}
+.tab.active{background:#111;color:white;border-color:#111}
 .tab.disabled{opacity:.3;pointer-events:none}
 .grid{padding:0 16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .item{background:white;border-radius:20px;padding:16px;border:1px solid #EEF2F7;box-shadow:0 2px 12px rgba(0,0,0,.03)}
-.item b{font-size:12px;display:block;min-height:32px;line-height:1.3}
-.price{font-weight:800;margin-top:8px;font-size:14px}
-.detail-list{margin-top:8px;font-size:10px;color:#666;background:#F8F9FB;padding:8px 10px;border-radius:10px;line-height:1.5}
-.benefit{margin-top:6px;font-size:9px;color:#108EE9;background:#E8F2FF;padding:4px 8px;border-radius:100px;display:inline-block;font-weight:600}
+.item b{font-size:12px;line-height:1.3;display:block;min-height:34px}
+.price{font-weight:800;margin-top:8px;font-size:14px;color:#111}
+.detail-list{margin-top:8px;font-size:10px;color:#444;line-height:1.6;background:#F8F9FB;padding:10px;border-radius:12px;white-space:pre-line;max-height:120px;overflow-y:auto}
+.benefit{margin-top:8px;font-size:9px;color:#108EE9;background:#E8F2FF;padding:5px 9px;border-radius:100px;display:inline-block;font-weight:700}
 .btn{width:100%;background:#111;color:white;border:0;padding:11px;border-radius:12px;font-weight:700;margin-top:12px;cursor:pointer;font-size:12px}
 .card{background:white;border-radius:24px;padding:20px;margin:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .pay{border:1.5px solid #E5EAF1;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center;margin-top:10px;cursor:pointer}
 .pay.active{border-color:#111;background:#F8F9FB}
-
-/* FOOTER ESTETIK BALIK LAGI */
 .footer{background:#111;color:white;margin-top:40px;padding:32px 20px 100px;border-radius:32px 32px 0 0}
 .footer-top{margin-bottom:28px}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .footer h4{font-size:12px;letter-spacing:.5px;margin-bottom:12px;color:#FFF}
-.footer p, .footer a{font-size:11px;color:#999;line-height:1.8;text-decoration:none;display:block}
-.footer a{cursor:pointer}
+.footer p,.footer a{font-size:11px;color:#999;line-height:1.8;text-decoration:none;display:block;cursor:pointer}
 .footer a:hover{color:white}
 .trust{display:flex;gap:10px;margin-top:16px}
 .trust-item{background:#1E1E1E;border:1px solid #2A2A2A;border-radius:14px;padding:12px;flex:1;text-align:center}
@@ -47,84 +45,53 @@ body{background:var(--bg)}
 .footer-badge{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .badge-pay{background:#1E1E1E;border:1px solid #2A2A2A;padding:6px 10px;border-radius:8px;font-size:10px;color:#CCC}
 .copy{margin-top:28px;padding-top:18px;border-top:1px solid #1E1E1E;text-align:center;font-size:10px;color:#666}
-
-.wa{position:fixed;bottom:20px;right:20px;background:#111;color:white;padding:14px 20px;border-radius:100px;text-decoration:none;font-weight:700;font-size:13px;z-index:20;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.wa{position:fixed;bottom:20px;right:20px;background:#111;color:white;padding:14px 20px;border-radius:100px;text-decoration:none;font-weight:700;font-size:13px;z-index:20}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo"><img src="icon-192.png" alt="E-CELL" onerror="this.parentElement.innerHTML='E'"></div>
-<div><b style="font-size:16px">E-CELL</b><div style="font-size:11px;color:#888">Layanan Digital Instan • 24 Jam</div></div>
+<div class="logo"><img src="icon-192.png" alt="E-CELL" onerror="this.style.display='none';this.parentElement.innerHTML='E'"></div>
+<div><b style="font-size:16px">E-CELL</b><div style="font-size:11px;color:#888">All Operator Indonesia • 24 Jam</div></div>
 </div>
 
 <div class="input-box">
-<div style="font-weight:700;font-size:13px;margin-bottom:8px">Masukkan Nomor / ID Tujuan</div>
-<input id="phoneInput" class="inp-main" type="text" placeholder="08xx atau ID Game" oninput="detectProvider()">
+<div style="font-weight:700;font-size:13px;margin-bottom:8px">Masukkan Nomor / ID Game / E-Wallet Tujuan</div>
+<input id="phoneInput" class="inp-main" type="text" placeholder="08xx / ID MLBB / No DANA OVO" oninput="detectProvider()">
 <div id="providerInfo"></div>
-<div style="font-size:10px;color:#888;margin-top:8px">Pulsa & Data akan filter otomatis sesuai provider</div>
+<div style="font-size:10px;color:#888;margin-top:8px">Pulsa, Data & E-Wallet filter otomatis sesuai nomor</div>
 </div>
 
 <div class="tabs" id="tabs"></div>
-<div class="grid" id="grid"><div style="grid-column:1/3;text-align:center;padding:40px;color:#888">⏳ Memuat produk live...</div></div>
+<div class="grid" id="grid"><div style="grid-column:1/3;text-align:center;padding:40px;color:#888">⏳ Memuat produk live Digiflazz...</div></div>
 
 <div class="card" id="checkout" style="display:none">
 <h3 id="ctitle" style="font-size:15px"></h3><div id="detail" style="margin-top:8px"></div>
 <div style="margin-top:16px;font-weight:700;font-size:13px">Pembayaran</div>
-<div class="pay active" onclick="selPay(this,'qris')"><b>📱 QRIS</b><span style="font-size:11px;color:#888"> - Scan Sekali</span></div>
+<div class="pay active" onclick="selPay(this,'qris')"><b>📱 QRIS</b><span style="font-size:11px;color:#888"> - DANA Business</span></div>
 <div class="pay" onclick="selPay(this,'bank')"><b>🏦 Transfer Bank</b></div>
-<div id="boxQris" style="margin-top:16px;text-align:center;border:1px dashed #D0D7E3;border-radius:20px;padding:16px"><img src="qris-e-cell.jpg" style="width:100%;max-width:280px;border-radius:12px"></div>
+<div id="boxQris" style="margin-top:16px;text-align:center;border:1px dashed #D0D7E3;border-radius:20px;padding:16px"><img src="qris-e-cell.jpg" style="width:100%;max-width:280px;border-radius:12px"><div style="font-size:11px;color:#888;margin-top:6px">Scan untuk bayar</div></div>
 <div id="boxBank" style="display:none;margin-top:16px"></div>
+<div style="font-size:10px;color:#FF6B6B;background:#FFF0F0;padding:10px;border-radius:10px;margin-top:12px">⚠️ Transaksi ini akan memotong saldo Digiflazz kamu (modal). Pastikan saldo cukup!</div>
 <button class="btn" id="btnBayar" style="background:#108EE9;margin-top:16px;padding:14px" onclick="bayar()">Proses Sekarang</button>
 </div>
 
-<!-- FOOTER ESTETIK & FUNGSIONAL - BALIK LAGI -->
 <div class="footer">
 <div class="footer-top">
-<div style="display:flex;gap:12px;align-items:center">
-<div class="logo" style="width:36px;height:36px;border-radius:10px"><img src="icon-192.png" alt="E-CELL"></div>
-<b style="font-size:18px">E-CELL</b>
-</div>
-<p style="margin-top:10px;color:#AAA;max-width:320px">Topup game, pulsa, data, dan token listrik termurah, tercepat, dan terpercaya di Yogyakarta. Proses otomatis 24 jam non-stop.</p>
+<div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:36px;height:36px;border-radius:10px"><img src="icon-192.png" alt="E-CELL"></div><b style="font-size:18px">E-CELL</b></div>
+<p style="margin-top:10px;color:#AAA;max-width:340px">Topup game, pulsa all operator Indonesia, paket data, e-wallet (DANA OVO GoPay LinkAja ShopeePay), dan token PLN termurah. Proses otomatis 24 jam.</p>
 <div class="trust">
 <div class="trust-item">⚡<b>Proses Instan</b><span>< 1 Menit</span></div>
 <div class="trust-item">🛡️<b>100% Aman</b><span>Garansi Saldo</span></div>
-<div class="trust-item">🕐<b>24 Jam</b><span>Online Terus</span></div>
+<div class="trust-item">🕐<b>24 Jam</b><span>Non-stop</span></div>
 </div>
 </div>
-
 <div class="footer-grid">
-<div>
-<h4>LAYANAN</h4>
-<a onclick="setCat('Games')">Topup Game</a>
-<a onclick="setCat('Pulsa')">Pulsa All Operator</a>
-<a onclick="setCat('Data')">Paket Data</a>
-<a onclick="setCat('PLN')">Token PLN</a>
-<a onclick="setCat('E-Money')">Isi E-Wallet</a>
+<div><h4>LAYANAN</h4><a onclick="setCat('Games')">Topup Game</a><a onclick="setCat('Pulsa')">Pulsa All Operator</a><a onclick="setCat('Data')">Paket Data</a><a onclick="setCat('E-Money')">E-Wallet (DANA OVO dll)</a><a onclick="setCat('PLN')">Token Listrik PLN</a></div>
+<div><h4>BANTUAN</h4><a onclick="showFaq()">Cara Beli & Filter Provider</a><a onclick="checkOrder()">Cek Pesanan Saya</a><a href="https://wa.me/6283178084316" target="_blank">Chat Admin WA</a><a>Syarat & Ketentuan</a></div>
+<div><h4>PEMBAYARAN AMAN</h4><div class="footer-badge"><div class="badge-pay">QRIS</div><div class="badge-pay">DANA</div><div class="badge-pay">OVO</div><div class="badge-pay">GoPay</div><div class="badge-pay">LinkAja</div><div class="badge-pay">ShopeePay</div><div class="badge-pay">Mandiri</div></div><p style="margin-top:10px">QRIS E-CELL terverifikasi • Saldo Digiflazz terpotong otomatis saat transaksi</p></div>
+<div><h4>KONTAK & LOKASI</h4><p>Segoroyoso, Bantul<br>Special Region of Yogyakarta</p><p style="margin-top:8px;color:white;font-weight:600">0831-7808-4316</p><p id="apiStatus">● Menghubungkan Digiflazz...</p></div>
 </div>
-<div>
-<h4>BANTUAN PELANGGAN</h4>
-<a onclick="showFaq()">Cara Beli</a>
-<a onclick="checkOrder()">Cek Pesanan Saya</a>
-<a href="https://wa.me/6283178084316" target="_blank">Chat Admin WA</a>
-<a onclick="showFaq()">Syarat & Ketentuan</a>
-</div>
-<div>
-<h4>PEMBAYARAN AMAN</h4>
-<div class="footer-badge">
-<div class="badge-pay">QRIS</div><div class="badge-pay">DANA</div><div class="badge-pay">GoPay</div><div class="badge-pay">OVO</div><div class="badge-pay">Mandiri</div><div class="badge-pay">Superbank</div>
-</div>
-<p style="margin-top:10px">QRIS E-CELL terverifikasi DANA Business</p>
-</div>
-<div>
-<h4>KONTAK & LOKASI</h4>
-<p>Segoroyoso, Bantul<br>Special Region of Yogyakarta</p>
-<p style="margin-top:8px;color:white;font-weight:600">0831-7808-4316</p>
-<p>ecell.yogya@gmail.com</p>
-<p id="apiStatus" style="margin-top:8px;color:#108EE9">● Menghubungkan Digiflazz...</p>
-</div>
-</div>
-
-<div class="copy">© 2026 E-CELL Yogyakarta • Dibuat untuk gamer & pejuang kuota<br>Semua transaksi aman & tercatat otomatis</div>
+<div class="copy">© 2026 E-CELL Yogyakarta • All Operator Indonesia • E-Wallet Lengkap<br>Dibuat untuk gamer & pejuang kuota</div>
 </div>
 
 <a class="wa" href="https://wa.me/6283178084316">Bantuan WA</a>
@@ -135,49 +102,121 @@ const INTERNAL = {
  getPrice:m=>{m=parseInt(m);if(m<5000)return m;if(m>=5000&&m<=9999)return m+500;if(m>=10000&&m<=19999)return m+1500;return m+2000;}
 };
 let products=[],filtered=[],activeCat="Games",selected=null,payMethod="qris";
+
 function detectProvider(){
- let num=document.getElementById('phoneInput').value.replace(/[^0-9]/g,'');let op=null;
- if(/^08(11|12|13|21|22|23|52|53)/.test(num)) op="Telkomsel";
+ let raw = document.getElementById('phoneInput').value;
+ let num = raw.replace(/[^0-9]/g,'');
+ let op = null;
+ // ALL PROVIDER INDONESIA LENGKAP
+ if(/^08(11|12|13|21|22|23|52|53|51)/.test(num)) op="Telkomsel"; // Telkomsel + by.U
  else if(/^08(14|15|16|55|56|57|58)/.test(num)) op="Indosat";
- else if(/^08(17|18|19|59|77|78)/.test(num)) op="XL";
+ else if(/^08(17|18|19|59|77|78)/.test(num) || /^08(31|32|33|38)/.test(num)) op="XL"; // XL + AXIS
  else if(/^0895|^0896|^0897|^0898|^0899/.test(num)) op="Tri";
- else if(/^0881|^0882|^0883|^0884|^0885/.test(num)) op="Smartfren";
- window.currentProvider=op;
- document.getElementById('providerInfo').innerHTML=num.length>=4&&op?`<span class="badge">✓ ${op}</span>`:"";
- renderTabs();render();
+ else if(/^0881|^0882|^0883|^0884|^0885|^0886|^0887|^0888|^0889/.test(num)) op="Smartfren";
+ 
+ window.currentProvider = op;
+ window.currentNumber = num;
+ document.getElementById('providerInfo').innerHTML = num.length>=4 ? (op ? `<span class="badge">✓ ${op} - ${num} (All Indonesia)</span>` : `<span class="badge">✓ Nomor terdeteksi: ${num} - Cek Pulsa/Data/E-Wallet</span>`) : "";
+ renderTabs(); render();
 }
-function getCategories(){let cats=[...new Set(products.map(p=>p.cat))];let order=["Games","Pulsa","Data","E-Money","PLN","Voucher"];return cats.sort((a,b)=>order.indexOf(a)-order.indexOf(b));}
-function renderTabs(){const hasPhone=!!window.currentProvider;const cats=products.length?getCategories():["Games","Pulsa","Data","E-Money","PLN"];document.getElementById('tabs').innerHTML=cats.map(c=>{let dis=(c==="Pulsa"||c==="Data")&&!hasPhone;return `<div class="tab ${c===activeCat?'active':''} ${dis?'disabled':''}" onclick="${dis?'':'setCat(\''+c+'\')'}">${c} ${dis?'🔒':''}</div>`}).join('');}
-function setCat(c){activeCat=c;renderTabs();render();}
+
+function getCategories(){
+ let cats = [...new Set(products.map(p=>p.cat))];
+ let order = ["Games","Pulsa","Data","E-Money","PLN","Voucher","E-Wallet"];
+ // Normalisasi E-Money dan E-Wallet jadi satu
+ cats = cats.map(c => c.toLowerCase().includes('e-money') || c.toLowerCase().includes('e-wallet') || c.toLowerCase().includes('ewallet') ? 'E-Money' : c);
+ cats = [...new Set(cats)];
+ return cats.sort((a,b)=> {
+   let ia = order.indexOf(a); if(ia==-1) ia=99;
+   let ib = order.indexOf(b); if(ib==-1) ib=99;
+   return ia-ib;
+ });
+}
+function renderTabs(){
+ const hasPhone = !!window.currentNumber && window.currentNumber.length>=10;
+ const cats = products.length ? getCategories() : ["Games","Pulsa","Data","E-Money","PLN"];
+ document.getElementById('tabs').innerHTML = cats.map(c=>{
+  let lock = (c==="Pulsa"||c==="Data"||c==="E-Money") && !hasPhone;
+  return `<div class="tab ${c===activeCat?'active':''} ${lock?'disabled':''}" onclick="${lock?'':'setCat(\''+c+'\')'}">${c} ${lock?'🔒':''}</div>`;
+ }).join('');
+}
+function setCat(c){activeCat=c;renderTabs();render();window.scrollTo({top:200,behavior:'smooth'});}
+
 function render(){
- const g=document.getElementById('grid');let list=products.filter(p=>p.cat===activeCat);
- if(activeCat==="Pulsa"||activeCat==="Data"){if(!window.currentProvider){g.innerHTML=`<div style="grid-column:1/3;text-align:center;padding:30px;color:#888;font-size:13px">Masukkan nomor HP dulu untuk lihat ${activeCat}</div>`;return;}list=list.filter(p=>p.provider&&p.provider.toLowerCase().includes(window.currentProvider.toLowerCase()));}
- filtered=list;if(list.length===0){g.innerHTML=`<div style="grid-column:1/3;text-align:center;padding:30px;color:#888;font-size:13px">Belum ada produk ${activeCat}</div>`;return;}
- g.innerHTML=list.slice(0,100).map((p,i)=>`<div class="item"><b>${p.name}</b><div class="price">Rp ${INTERNAL.getPrice(p.modal).toLocaleString('id-ID')}</div><div class="detail-list">${p.details||''}</div><button class="btn" onclick="openCheckout(${i})">Pilih</button></div>`).join('');
+ const g=document.getElementById('grid');
+ let list = products.filter(p=>{
+   let cat = p.cat.toLowerCase();
+   if(activeCat==="E-Money") return cat.includes('e-money')||cat.includes('e-wallet')||cat.includes('ewallet')||cat.includes('emoney');
+   return p.cat===activeCat;
+ });
+
+ // FILTER KHUSUS PULSA / DATA / E-WALLET HARUS INPUT NOMOR DULU
+ if(["Pulsa","Data","E-Money"].includes(activeCat)){
+  if(!window.currentNumber || window.currentNumber.length<10){
+   g.innerHTML=`<div style="grid-column:1/3;text-align:center;padding:30px;color:#888;font-size:13px">🔒 Masukkan nomor HP / E-Wallet dulu Bos<br>untuk buka produk ${activeCat} (All Operator Indonesia)<br><br>DANA • OVO • GoPay • LinkAja • ShopeePay</div>`; return;
+  }
+  if(activeCat!=="E-Money" && window.currentProvider){
+   list = list.filter(p=>{
+    let b=(p.provider||'').toLowerCase();
+    let prov=window.currentProvider.toLowerCase();
+    if(prov==='telkomsel') return b.includes('telkomsel')||b.includes('by.u')||b.includes('byu')||b.includes('simpati');
+    if(prov==='xl') return b.includes('xl')||b.includes('axis')||b.includes('live.on');
+    if(prov==='indosat') return b.includes('indosat')||b.includes('im3')||b.includes('mentari');
+    return b.includes(prov);
+   });
+  }
+ }
+
+ filtered=list;
+ if(list.length===0){g.innerHTML=`<div style="grid-column:1/3;text-align:center;padding:30px;color:#888;font-size:13px">Belum ada produk ${activeCat} ${window.currentProvider||''}<br>Saldo Digiflazz mungkin tipis, coba cek /api/digiflazz</div>`; return;}
+ 
+ g.innerHTML = list.slice(0,150).map((p,i)=>{
+  let ben = '';
+  if(p.cat==='Games') ben = `<div class="benefit">🎮 ${p.provider} • ⚡ Instant • ${p.benefit||'Garansi'}</div>`;
+  else if(p.cat.toLowerCase().includes('data')) ben = `<div class="benefit">📶 ${p.provider} • ${p.type||''}</div>`;
+  else if(p.cat.toLowerCase().includes('e-money')) ben = `<div class="benefit">💳 E-Wallet • Proses <1 menit</div>`;
+  else ben = `<div class="benefit">📱 ${p.provider}</div>`;
+
+  return `<div class="item"><b>${p.name}</b>${ben}<div class="price">Rp ${INTERNAL.getPrice(p.modal).toLocaleString('id-ID')}</div><div class="detail-list">${(p.details||'').toString().substring(0,300)}</div><button class="btn" onclick="openCheckout(${i})">Pilih</button></div>`;
+ }).join('') + (list.length>150?`<div style="grid-column:1/3;text-align:center;padding:10px;font-size:11px;color:#888">+ ${list.length-150} produk lainnya (ketik nomor lebih lengkap untuk filter)</div>`:'');
 }
-function openCheckout(idx){const p=filtered[idx];selected=p;document.getElementById('ctitle').innerText=p.name;document.getElementById('detail').innerHTML=`<b>Rp ${INTERNAL.getPrice(p.modal).toLocaleString('id-ID')}</b><div style="font-size:11px;color:#888;margin-top:4px">SKU: ${p.sku} • Modal Rp ${parseInt(p.modal).toLocaleString('id-ID')}</div>`;document.getElementById('checkout').style.display='block';renderBank();}
+
+function openCheckout(idx){const p=filtered[idx];selected=p;document.getElementById('ctitle').innerText=p.name;document.getElementById('detail').innerHTML=`<b style="font-size:18px">Rp ${INTERNAL.getPrice(p.modal).toLocaleString('id-ID')}</b><div style="font-size:11px;color:#888;margin-top:4px">SKU: ${p.sku} • Provider: ${p.provider} • Modal Live Rp ${parseInt(p.modal).toLocaleString('id-ID')}</div><div style="margin-top:8px;font-size:11px;background:#F8F9FB;padding:10px;border-radius:12px;white-space:pre-line">${p.details||''}</div>`;document.getElementById('checkout').style.display='block';renderBank();document.getElementById('checkout').scrollIntoView({behavior:'smooth'});}
 function selPay(el,t){document.querySelectorAll('.pay').forEach(e=>e.classList.remove('active'));el.classList.add('active');payMethod=t;document.getElementById('boxQris').style.display=t==='qris'?'block':'none';document.getElementById('boxBank').style.display=t==='bank'?'block':'none';}
-function renderBank(){document.getElementById('boxBank').innerHTML=INTERNAL.banks.map(b=>`<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee"><div><b style="font-size:12px">${b.name}</b></div><button onclick="navigator.clipboard.writeText('${b.no}')" style="background:#111;color:white;border:0;padding:6px 12px;border-radius:8px">Salin</button></div>`).join('');}
+function renderBank(){document.getElementById('boxBank').innerHTML=INTERNAL.banks.map(b=>`<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee"><div><b style="font-size:12px">${b.name}</b><div style="font-size:10px;color:#888">${b.no}</div></div><button onclick="navigator.clipboard.writeText('${b.no}');this.innerText='Tersalin!'" style="background:#111;color:white;border:0;padding:6px 12px;border-radius:8px;font-size:11px">Salin</button></div>`).join('');}
 async function loadProducts(){
  try{
   const r=await fetch('/api/digiflazz?action=price-list');const j=await r.json();
-  products=j.data.filter(p=>p.buyer_product_status).map(p=>({cat:p.category,provider:p.brand,name:p.product_name,modal:p.price,sku:p.buyer_sku_code,details:p.desc}));
-  document.getElementById('apiStatus').innerText=`✓ Live ${products.length} produk`;
+  if(!j.data) throw new Error('No data');
+  products=j.data.filter(p=>p.buyer_product_status).map(p=>({cat:p.category,provider:p.brand,name:p.product_name,modal:p.price,sku:p.buyer_sku_code,details:p.desc,type:p.type,benefit:p.desc?.includes('Bonus')?'Bonus':''}));
+  document.getElementById('apiStatus').innerText=`✓ Live ${products.length} produk • Saldo kepotong saat transaksi`;
   renderTabs();render();
  }catch(e){
-  document.getElementById('apiStatus').innerText='Mode demo - hubungkan /api/digiflazz';
-  products=[{cat:"Games",provider:"Mobile Legends",name:"12 Diamond MLBB",modal:5000,sku:"ml12",details:"Instant"},{cat:"Games",provider:"Mobile Legends",name:"86 Diamond MLBB",modal:21000,sku:"ml86",details:"Bonus"},{cat:"Pulsa",provider:"Telkomsel",name:"Telkomsel 10K",modal:10000,sku:"tsel10",details:"Masa aktif"},{cat:"Data",provider:"Telkomsel",name:"Internet 2GB",modal:20000,sku:"tsel_data2",details:"1GB+1GB"}];
+  console.log(e);
+  document.getElementById('apiStatus').innerText='⚠️ Mode Demo (Saldo/api belum connect)';
+  products=[
+    {cat:"Games",provider:"Mobile Legends",name:"86 Diamond MLBB + Bonus 8",modal:21000,sku:"ml86",details:"ID + Server\nProses instant\nBonus 8 Diamond\nGaransi 100%"},
+    {cat:"Pulsa",provider:"Telkomsel",name:"Pulsa Telkomsel 10.000",modal:10000,sku:"tsel10",details:"Masa aktif 7 hari\nAll operator Indonesia"},
+    {cat:"Data",provider:"Telkomsel",name:"Internet 3GB 3 Hari",modal:20000,sku:"tsel_data3",details:"2GB Nasional + 1GB Lokal\nMasa aktif 3 hari\nSupport 4G/5G"},
+    {cat:"E-Money",provider:"DANA",name:"DANA 20.000",modal:20000,sku:"dana20",details:"Topup DANA\nMasuk <1 menit\nMin 10rb - Max 1jt"},
+    {cat:"E-Money",provider:"OVO",name:"OVO 20.000",modal:20000,sku:"ovo20",details:"Topup OVO\nInstant"},
+    {cat:"E-Money",provider:"GoPay",name:"GoPay Customer 20.000",modal:20000,sku:"gopay20",details:"GoPay Customer\nInstant"},
+    {cat:"PLN",provider:"PLN",name:"Token PLN 20.000",modal:20000,sku:"pln20",details:"Token listrik\n20rb = ~13kWh"},
+  ];
   renderTabs();render();
  }
 }
 function bayar(){
- const input=document.getElementById('phoneInput').value;if(!input||!selected)return alert('Lengkapi data');
+ const input=document.getElementById('phoneInput').value;if(!input||!selected)return alert('Isi nomor/ID dan pilih produk dulu Bos!');
  let h=JSON.parse(localStorage.getItem('ecell_history')||'[]');h.unshift({name:selected.name,phone:input,price:INTERNAL.getPrice(selected.modal),time:new Date().toLocaleString('id-ID')});localStorage.setItem('ecell_history',JSON.stringify(h.slice(0,20)));
- document.getElementById('btnBayar').innerText='Memproses...';
- fetch('/api/digiflazz?action=topup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:selected.sku,customer_no:input})}).then(r=>r.json()).then(j=>alert(j.data.message||'Pesanan diproses')).catch(()=>alert('Demo: '+selected.name+' untuk '+input+' diproses via '+payMethod)).finally(()=>document.getElementById('btnBayar').innerText='Proses Sekarang');
+ document.getElementById('btnBayar').innerText='Memproses & Potong Saldo Digiflazz...';
+ fetch('/api/digiflazz?action=topup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:selected.sku,customer_no:input})}).then(r=>r.json()).then(j=>{
+  if(j.data.status==='Sukses') alert('✅ SUKSES! SN: '+j.data.sn);
+  else alert('Status: '+(j.data.message||j.data.rc)+' - Ref: '+(j.data.ref_id||'')+'\nCek saldo Digiflazz kamu!');
+ }).catch(()=>alert('Mode Demo: '+selected.name+' untuk '+input+' via '+payMethod.toUpperCase()+'\n\nINGAT: Kalau mode live, ini akan potong saldo Digiflazz!')).finally(()=>document.getElementById('btnBayar').innerText='Proses Sekarang');
 }
-function checkOrder(){let h=JSON.parse(localStorage.getItem('ecell_history')||'[]');if(h.length===0)return alert('Belum ada riwayat di HP ini');alert('Riwayat:\n\n'+h.slice(0,5).map(x=>`${x.time} - ${x.name} (${x.phone})`).join('\n'));}
-function showFaq(){alert('CARA BELI:\n1. Masukkan No HP / ID Game\n2. Pilih Produk (Pulsa/Data auto filter)\n3. Bayar via QRIS / Transfer\n4. Pesanan otomatis masuk\n\nGaransi 100% - Chat WA jika >5 menit belum masuk');}
+function checkOrder(){let h=JSON.parse(localStorage.getItem('ecell_history')||'[]');if(h.length===0)return alert('Belum ada riwayat di HP ini');alert('Riwayat Pesanan (di HP ini):\n\n'+h.map(x=>`${x.time}\n${x.name} -> ${x.phone}\nRp ${x.price.toLocaleString()}`).join('\n\n'));}
+function showFaq(){alert('CARA BELI E-CELL:\n\n1. Masukkan Nomor HP / ID Game / No E-Wallet (DANA OVO GoPay dll)\n2. Sistem auto-detect provider Telkomsel/Indosat/XL/Axis/Tri/Smartfren/By.U\n3. Tab Pulsa, Data, E-Money akan kebuka otomatis\n4. Pilih produk, detail lengkap & benefit akan terlihat\n5. Bayar via QRIS/Bank\n6. Saldo Digiflazz kepotong modal, kamu dapat harga jual (modal+margin)\n\nAll operator Indonesia support!');}
 loadProducts();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 </script>
