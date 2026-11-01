@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-CELL - Topup Game & PPOB</title>
+<meta name="description" content="E-CELL Topup Game MLBB FF PUBG Valorant & PPOB Pulsa PLN PDAM BPJS - 7 Metode Bayar QRIS & Bank">
+<link rel="icon" href="logo-ecell.png">
+<style>
+:root{--blue:#0D3B8C;--orange:#FF6A00;--bg:#F4F7FF}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:var(--bg);padding-bottom:20px}
+.header{background:var(--blue);color:white;padding:14px;display:flex;gap:10px;position:sticky;top:0;z-index:20}
+.logo{width:40px;height:40px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--blue)}
+.tabs{display:flex;background:white;margin:12px;border-radius:14px;padding:5px;box-shadow:0 2px 10px rgba(0,0,0,.06);gap:4px}
+.tab{flex:1;padding:12px;text-align:center;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer}
+.tab.active{background:var(--orange);color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
+.card{background:white;border-radius:16px;padding:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #eef2ff}
+.price{font-weight:900;color:var(--blue);font-size:15px;margin-top:4px}
+.paybox{background:white;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.btn{background:var(--blue);color:white;border:0;padding:14px;width:100%;border-radius:12px;font-weight:800;margin-top:10px;cursor:pointer}
+.btn-orange{background:var(--orange)}
+.pay-method{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f2f5}
+.masked{font-family:monospace;font-weight:800;background:#f4f7ff;padding:4px 8px;border-radius:8px}
+.badge{font-size:10px;padding:3px 8px;border-radius:99px;font-weight:800}
+.badge-qris{background:#E8F5E9;color:#1B8B2A}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">E</div><div><b>E-CELL</b><div style="font-size:10px;opacity:.8">Topup Game & PPOB • 7 Metode Bayar</div></div><div style="margin-left:auto;background:#00E676;color:#003d12;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:900">ONLINE</div></div>
+<div class="tabs"><div class="tab active" id="t-game" onclick="showTab('game')">🎮 Game</div><div class="tab" id="t-ppob" onclick="showTab('ppob')">📱 PPOB</div><div class="tab" id="t-bayar" onclick="showTab('bayar')">💳 Bayar (7)</div></div>
+<div id="game"><div style="padding:0 14px 10px;font-size:11px;opacity:.6">Harga jual = Modal +1000 (5k-15k) & +2000 (>20k)</div><div class="grid" id="gameGrid"></div></div>
+<div id="ppob" style="display:none"><div class="grid"><div class="card">📱<b>Pulsa</b><div class="price">Mulai Rp6.000</div></div><div class="card">🌐<b>Data</b><div class="price">Mulai Rp11.000</div></div><div class="card">⚡<b>PLN</b><div class="price">Mulai Rp21.000</div></div><div class="card">💧<b>PDAM</b><div class="price">Mulai Rp2.000</div></div><div class="card">🛡️<b>BPJS</b><div class="price">Mulai Rp2.000</div></div><div class="card">📺<b>E-Wallet</b><div class="price">Mulai Rp12.000</div></div></div></div>
+<div id="bayar" style="display:none">
+<div class="paybox" style="border-left:5px solid #00BFA5"><div style="display:flex;justify-content:space-between"><h3>QRIS DANA Bisnis</h3><span class="badge badge-qris">QRIS 1</span></div><p style="font-size:12px;opacity:.7">E Cell • NMID: ID1026610661583 • A01</p><img src="qris-ecell.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"><button class="btn btn-orange">Scan QRIS DANA Bisnis</button></div>
+<div class="paybox" style="border-left:5px solid #00AED6"><div style="display:flex;justify-content:space-between"><h3>QRIS GoPay Merchant</h3><span class="badge badge-qris">QRIS 2</span></div><p style="font-size:12px;opacity:.7">WARJAYA • NMID: ID1026629373568 • A01</p><img src="qris-warjaya.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"><button class="btn" style="background:#00AED6">Scan QRIS GoPay Merchant</button></div>
+<div class="paybox"><h3>🏦 Transfer Bank</h3><div class="pay-method"><div><b>Neo Bank</b></div><div><span class="masked">•••• 87262</span><br><button onclick="copyNum('5859459406987262')" style="font-size:10px;padding:4px 8px;border-radius:6px;border:1px solid #0D3B8C;background:white;color:#0D3B8C;font-weight:700">Salin</button></div></div><div class="pay-method"><div><b>Mandiri</b></div><div><span class="masked">•••• 7966</span><br><button onclick="copyNum('1370022647966')" style="font-size:10px;padding:4px 8px;border-radius:6px;border:1px solid #0D3B8C;background:white;color:#0D3B8C;font-weight:700">Salin</button></div></div><div class="pay-method"><div><b>Superbank</b></div><div><span class="masked">•••• 9543</span><br><button onclick="copyNum('030018699543')" style="font-size:10px;padding:4px 8px;border-radius:6px;border:1px solid #0D3B8C;background:white;color:#0D3B8C;font-weight:700">Salin</button></div></div></div>
+</div>
+<script>
+const products=[{game:'MLBB',name:'12 Diamond',modal:5000},{game:'MLBB',name:'28 Diamond',modal:9000},{game:'MLBB',name:'50 Diamond',modal:14000},{game:'MLBB',name:'86 Diamond',modal:21000},{game:'MLBB',name:'172 Diamond',modal:43000},{game:'MLBB',name:'257 Diamond',modal:62000},{game:'FF',name:'70 Diamond',modal:10000},{game:'FF',name:'140 Diamond',modal:20000},{game:'FF',name:'355 Diamond',modal:50000},{game:'PUBG',name:'60 UC',modal:14000},{game:'Valorant',name:'125 VP',modal:14000},{game:'Roblox',name:'80 Robux',modal:14000},{game:'HOK',name:'80 Token',modal:14000}];
+function hitungJual(m){if(m>=5000&&m<=15000)return m+1000;if(m>=20000)return m+2000;return m+1500;}
+const grid=document.getElementById('gameGrid');products.forEach(p=>{const j=hitungJual(p.modal);grid.innerHTML+=`<div class='card'><div style='font-size:10px;color:#0D3B8C;opacity:.7;font-weight:800'>${p.game}</div><b>${p.name}</b><div class='price'>Rp ${j.toLocaleString('id-ID')}</div></div>`;});
+function showTab(id){document.getElementById('game').style.display=id=='game'?'block':'none';document.getElementById('ppob').style.display=id=='ppob'?'block':'none';document.getElementById('bayar').style.display=id=='bayar'?'block':'none';document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('t-'+id).classList.add('active');}
+function copyNum(num){navigator.clipboard.writeText(num);alert('Nomor '+num+' disalin!');}
+</script>
+</body>
+</html>
