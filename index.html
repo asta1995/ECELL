@@ -2,140 +2,92 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E CELL - DANA Business Merchant</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+<title>E CELL - DANA Business Verified Merchant</title>
 <style>
-:root{--dana:#108EE9;--dana-dark:#0A6EB5;--bg:#F0F7FF;--card:#FFFFFF}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui}
-body{background:var(--bg);color:#1a1a1a}
-.dana-header{background:linear-gradient(135deg,var(--dana),var(--dana-dark));color:white;padding:18px 16px;position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:12px}
-.dana-logo{width:48px;height:48px;background:white;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--dana);font-weight:900;font-size:22px}
-.badge{background:#FFD600;color:#1a1a1a;font-size:9px;font-weight:900;padding:3px 8px;border-radius:99px;margin-left:auto}
-.merchant-card{background:white;margin:-12px 16px 16px;border-radius:20px;padding:16px;box-shadow:0 8px 24px rgba(16,142,233,.15);display:flex;gap:14px;align-items:center;border:1px solid #E6F0FF}
-.tabs{display:flex;background:white;margin:0 16px;border-radius:14px;padding:4px;gap:4px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.tab{flex:1;padding:12px;text-align:center;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer;color:#666}
-.tab.active{background:var(--dana);color:white}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px}
-.card{background:var(--card);border-radius:18px;padding:14px;border:1px solid #E6F0FF;box-shadow:0 2px 12px rgba(0,0,0,.04);position:relative;overflow:hidden}
-.card:before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--dana)}
-.price{font-weight:900;color:var(--dana);margin-top:6px}
-.stock{font-size:10px;font-weight:800;padding:3px 6px;border-radius:6px;display:inline-block;margin-top:4px}
-.stock.ready{background:#E6FFEC;color:#0A8F2A} .stock.empty{background:#FFE6E6;color:#D00}
-.paybox{background:white;margin:12px 16px;border-radius:20px;padding:18px;border:1px solid #E6F0FF}
-.qris-box{border:2px dashed var(--dana);border-radius:16px;padding:12px;text-align:center;background:#F8FBFF}
-.btn-dana{width:100%;margin-top:10px;background:var(--dana);color:white;border:0;padding:12px;border-radius:12px;font-weight:900;font-size:13px;cursor:pointer}
-.btn-dana:disabled{background:#ccc}
-.inp{width:100%;padding:12px;border-radius:12px;border:1.8px solid #D6E8FF;margin-top:8px;font-weight:600}
-.cs-float{position:fixed;bottom:16px;right:16px;background:#25D366;color:white;padding:12px 18px;border-radius:99px;font-weight:900;font-size:12px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:100}
+:root{--dana:#108EE9;--bg:#F0F7FF}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:var(--bg)}
+.dana-header{background:linear-gradient(135deg,#108EE9,#0A6EB5);padding:16px;color:white;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:20}
+.logo-img{width:52px;height:52px;border-radius:14px;background:white;padding:4px}
+.tabs{display:flex;background:white;margin:12px;border-radius:14px;padding:4px;gap:4px}
+.tab{flex:1;padding:12px;text-align:center;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer}
+.tab.active{background:#108EE9;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.card{background:white;border-radius:18px;padding:14px;border:1px solid #E6F0FF;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.price{font-weight:900;color:#108EE9}
+.paybox{background:white;margin:12px;border-radius:18px;padding:16px}
+.btn{width:100%;background:#108EE9;color:white;border:0;padding:12px;border-radius:12px;font-weight:900;margin-top:8px}
+.inp{width:100%;padding:10px;border-radius:10px;border:1.5px solid #ddd;margin-top:6px}
+.cs{position:fixed;bottom:14px;right:14px;background:#25D366;color:white;padding:12px 16px;border-radius:99px;font-weight:900;text-decoration:none;font-size:12px;z-index:99}
 </style>
 </head>
 <body>
-
 <div class="dana-header">
-  <div class="dana-logo">D</div>
-  <div><div style="font-weight:900;font-size:16px">E CELL</div><div style="font-size:11px;opacity:.9">DANA Business Merchant • Verified</div></div>
-  <div class="badge">● AUTO</div>
+<img src="logo-ecell-verified.png" class="logo-img" onerror="this.src='https://via.placeholder.com/52'">
+<div><b>E CELL</b><div style="font-size:10px">DANA Business Verified • QRIS a/n E CELL • Rek a/n WARJAYA</div></div>
+<div style="margin-left:auto;background:#FFD600;color:#000;padding:4px 10px;border-radius:99px;font-size:10px;font-weight:900">AUTO</div>
 </div>
 
-<div class="merchant-card">
-  <img src="qris-ecell.jpg" style="width:56px;height:56px;border-radius:12px;object-fit:cover;border:2px solid var(--dana)">
-  <div style="flex:1"><b style="font-size:14px">E CELL - DANA Bisnis</b><div style="font-size:11px;color:#666">NMID: ID1026610661583 | QRIS 100% a/n E CELL</div><div style="font-size:10px;color:var(--dana);font-weight:800">✓ Modal & Stok dari DANA</div></div>
-  <div style="text-align:right"><div style="font-size:10px;color:#666">CS</div><b style="font-size:12px;color:#25D366">083178084316</b></div>
+<div style="background:white;margin:12px;border-radius:16px;padding:12px;display:flex;gap:10px;align-items:center;border:1px solid #E6F0FF">
+<img src="logo-ecell-verified.png" style="width:48px;height:48px;border-radius:12px" onerror="this.style.display='none'">
+<div><b style="font-size:13px">DANA BUSINESS VERIFIED MERCHANT</b><div style="font-size:10px;color:#108EE9;font-weight:800">✓ QRIS MERCHANT ID1026610661583 | CS 083178084316</div></div>
 </div>
 
 <div class="tabs">
-  <div class="tab active" id="t-game" onclick="showTab('game')">Game</div>
-  <div class="tab" id="t-dana" onclick="showTab('dana')">DANA & PPOB</div>
-  <div class="tab" id="t-bayar" onclick="showTab('bayar')">Bayar</div>
+<div class="tab active" id="t-game" onclick="showTab('game')">Game</div>
+<div class="tab" id="t-dana" onclick="showTab('dana')">DANA</div>
+<div class="tab" id="t-bayar" onclick="showTab('bayar')">Bayar</div>
 </div>
 
-<div id="game">
-  <div style="padding:12px 16px 0"><select id="gameDrop" onchange="filterGame()" style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--dana);font-weight:800"><option value="ALL">Semua Game - Stok dari DANA</option><option value="MLBB">Mobile Legends</option><option value="FF">Free Fire</option><option value="PUBG">PUBG Mobile</option></select></div>
-  <div class="grid" id="gameGrid"></div>
-</div>
-
+<div id="game"><div class="grid" id="gameGrid"></div></div>
 <div id="dana" style="display:none"><div class="grid" id="danaGrid"></div></div>
-
 <div id="bayar" style="display:none">
-  <div class="paybox">
-    <h3 style="color:var(--dana)">QRIS DANA Bisnis a/n E CELL</h3>
-    <div class="qris-box">
-      <img src="qris-ecell.jpg" style="width:100%;max-width:300px;border-radius:12px">
-      <div style="margin-top:8px;font-weight:800;font-size:12px">ID1026610661583 • E CELL</div>
-      <div style="font-size:10px;color:#666">Scan pakai DANA / GoPay / OVO / LinkAja</div>
-    </div>
-  </div>
-  <div class="paybox" style="border-left:5px solid #00BFA5">
-    <h3>QRIS GoPay a/n E CELL (Baru)</h3><p style="font-size:11px;color:#666">ID1026629373568 - Akan update otomatis</p>
-    <img src="qris-warjaya.jpg" style="width:100%;max-width:300px;margin:10px auto;display:block;border-radius:12px">
-  </div>
-  <div class="paybox"><h3 style="margin-bottom:8px">Rekening a/n WARJAYA (Jalur DANA)</h3><div id="bankList"></div><p style="font-size:10px;color:#999;margin-top:8px">Disensor anti bot - Klik salin</p></div>
+<div class="paybox"><h3 style="color:#108EE9">QRIS DANA Bisnis a/n E CELL</h3><img src="qris-ecell.jpg" style="width:100%;max-width:320px;display:block;margin:10px auto;border-radius:14px;border:2px dashed #108EE9"><p style="text-align:center;font-size:11px;font-weight:800">NMID ID1026610661583 - E CELL</p></div>
+<div class="paybox"><h3>QRIS GoPay a/n E CELL (Baru)</h3><img src="qris-warjaya.jpg" style="width:100%;max-width:320px;display:block;margin:10px auto;border-radius:14px"><p style="text-align:center;font-size:10px">ID1026629373568 - Menunggu terbit</p></div>
+<div class="paybox"><h3>Rek a/n WARJAYA - Jalur DANA</h3><div id="bankList"></div></div>
 </div>
 
-<a class="cs-float" href="https://wa.me/6283178084316?text=Halo%20E%20CELL%20saya%20mau%20topup" target="_blank">💬 CS 083178084316</a>
+<a class="cs" href="https://wa.me/6283178084316?text=Halo%20E%20CELL%20DANA%20Merchant" target="_blank">CS 083178084316</a>
 
 <script>
-const CONFIG = { 
-  BACKEND_URL: 'https://asta1995-ecell-backend.vercel.app',
-  CS_WA: '6283178084316'
-};
-// MODAL & STOK DARI DANA (sinkron Digiflazz yang source-nya DANA)
-const products = [
-  { id:'mlbb12', game:'MLBB', name:'12 Diamond', sku:'mlbb12', modal:5000, stok:true },
-  { id:'mlbb28', game:'MLBB', name:'28 Diamond', sku:'mlbb28', modal:9000, stok:true },
-  { id:'mlbb86', game:'MLBB', name:'86 Diamond', sku:'xl10000', modal:21000, stok:true },
-  { id:'ff70', game:'FF', name:'70 Diamond', sku:'freefire70', modal:10000, stok:true },
-  { id:'pubg60', game:'PUBG', name:'60 UC', sku:'pubg60', modal:14000, stok:false },
+const CONFIG={BACKEND_URL:'https://asta1995-ecell-backend.vercel.app',CS_WA:'6283178084316'};
+const products=[
+{id:'mlbb86',game:'MLBB',name:'86 Diamond',sku:'xl10000',modal:21000},
+{id:'mlbb12',game:'MLBB',name:'12 Diamond',sku:'mlbb12',modal:5000},
+{id:'ff70',game:'FF',name:'70 Diamond',sku:'freefire70',modal:10000},
+{id:'pubg60',game:'PUBG',name:'60 UC',sku:'pubg60',modal:14000},
 ];
-const danaProducts = [
-  { name:'DANA 10K', sku:'dana10k', modal:10000 }, { name:'DANA 20K', sku:'dana20k', modal:20000 },
-  { name:'Pulsa Telkomsel 10K', sku:'telkomsel10k', modal:10500 }, { name:'Pulsa XL 10K', sku:'xl10k', modal:10500 },
+const danaProducts=[
+{name:'DANA 10K',sku:'dana10k',modal:10000},{name:'DANA 20K',sku:'dana20k',modal:20000},
+{name:'Pulsa Telkomsel 10K',sku:'telkomsel10k',modal:10500},
 ];
-const banks = [
-  { name:'Neo Bank', no:'5859459406987262', owner:'WARJAYA' },
-  { name:'Mandiri', no:'1370022647966', owner:'WARJAYA' },
-  { name:'Superbank', no:'030018699543', owner:'WARJAYA' },
+const banks=[
+{name:'Neo Bank',no:'5859459406987262',owner:'WARJAYA'},
+{name:'Mandiri',no:'1370022647966',owner:'WARJAYA'},
+{name:'Superbank',no:'030018699543',owner:'WARJAYA'},
 ];
-function hitungJual(m){ return m<=15000?m+1000:m+2000; }
-function renderGame(f='ALL'){
-  const g=document.getElementById('gameGrid'); g.innerHTML='';
-  const list=f==='ALL'?products:products.filter(p=>p.game===f);
-  list.forEach(p=>{
-    const jual=hitungJual(p.modal);
-    g.innerHTML+=`<div class='card'><div style='font-size:10px;font-weight:800;color:var(--dana)'>${p.game} • DANA Source</div><b>${p.name}</b><div class='price'>Rp ${jual.toLocaleString('id-ID')}</div><div class='stock ${p.stok?'ready':'empty'}'>${p.stok?'Stok Ready':'Stok Kosong'}</div><input class='inp' id='id-${p.id}' placeholder='ID Game / No HP'><button class='btn-dana' ${!p.stok?'disabled':''} onclick="order('${p.id}')">${p.stok?'Beli via DANA':'Habis'}</button></div>`;
-  });
+function jual(m){return m<=15000?m+1000:m+2000;}
+function renderGame(){
+const g=document.getElementById('gameGrid');g.innerHTML='';
+products.forEach(p=>{
+g.innerHTML+=`<div class='card'><div style='font-size:9px;color:#108EE9;font-weight:800'>DANA Source • Ready</div><b>${p.name}</b><div class='price'>Rp ${jual(p.modal).toLocaleString('id-ID')}</div><input class='inp' id='id-${p.id}' placeholder='ID Game'><button class='btn' onclick="order('${p.id}')">BELI - Notif WA CS</button></div>`;
+});
 }
 function renderDana(){
-  const g=document.getElementById('danaGrid'); g.innerHTML='';
-  danaProducts.forEach(p=>{
-    const jual=hitungJual(p.modal);
-    g.innerHTML+=`<div class='card'><b>${p.name}</b><div style='font-size:10px;color:var(--dana)'>Source: DANA</div><div class='price'>Rp ${jual.toLocaleString('id-ID')}</div><input class='inp' id='id-${p.sku}' placeholder='No Tujuan'><button class='btn-dana' onclick="orderDana('${p.sku}','${p.name}')">Topup</button></div>`;
-  });
+const g=document.getElementById('danaGrid');g.innerHTML='';
+danaProducts.forEach(p=>{
+g.innerHTML+=`<div class='card'><b>${p.name}</b><div class='price'>Rp ${jual(p.modal).toLocaleString('id-ID')}</div><input class='inp' id='id-${p.sku}' placeholder='No HP'><button class='btn' onclick="orderDana('${p.sku}','${p.name}')">Topup</button></div>`;
+});
 }
 async function order(pid){
-  const p=products.find(x=>x.id===pid);
-  const cust=document.getElementById(`id-${pid}`).value; if(!cust) return alert('Isi ID dulu Bos');
-  const b=event.target; b.innerText='PROSES DANA...';
-  try{
-    const r=await fetch(`${CONFIG.BACKEND_URL}/api/order`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:p.sku,customer_no:cust,game:p.game,product_name:p.name,cs_wa:CONFIG.CS_WA})});
-    const d=await r.json();
-    if(d.ok){ alert(`✅ BERHASIL Ref ${d.ref_id} - Notif WA ke CS ${CONFIG.CS_WA} terkirim`); window.open(`https://wa.me/${CONFIG.CS_WA}?text=Order%20${p.name}%20ID%20${cust}%20Ref%20${d.ref_id}%20Sukses`,'_blank'); }
-    else alert(d.message);
-    b.innerText='Beli via DANA';
-  }catch(e){ alert('Error backend, cek ENV Vercel'); b.innerText='Beli via DANA'; }
+const p=products.find(x=>x.id===pid);
+const cust=document.getElementById(`id-${pid}`).value;if(!cust)return alert('Isi ID');
+const b=event.target;b.innerText='PROSES...';
+try{
+const r=await fetch(`${CONFIG.BACKEND_URL}/api/order`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:p.sku,customer_no:cust,game:p.game,product_name:p.name,cs_wa:CONFIG.CS_WA})});
+const d=await r.json();alert(d.message);b.innerText='BELI - Notif WA CS';
+}catch(e){alert('Error: '+e.message);b.innerText='BELI';}
 }
 async function orderDana(sku,name){
-  const cust=document.getElementById(`id-${sku}`).value; if(!cust) return alert('Isi nomor dulu');
-  const b=event.target; b.innerText='PROSES...';
-  try{
-    const r=await fetch(`${CONFIG.BACKEND_URL}/api/order`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku, customer_no:cust, game:'DANA', product_name:name, cs_wa:CONFIG.CS_WA})});
-    const d=await r.json(); alert(d.message); b.innerText='Topup';
-  }catch(e){ alert(e.message); b.innerText='Topup'; }
-}
-function filterGame(){ renderGame(document.getElementById('gameDrop').value); }
-function showTab(id){ ['game','dana','bayar'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none'); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.getElementById('t-'+id).classList.add('active'); }
-function renderBank(){ document.getElementById('bankList').innerHTML=banks.map(b=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee"><div><b>${b.name} a/n ${b.owner}</b><div style="font-size:11px">•••• ${b.no.slice(-4)} • Jalur DANA</div></div><button onclick="navigator.clipboard.writeText('${b.no}');alert('Disalin')" style="background:var(--dana);color:white;border:0;padding:6px 12px;border-radius:8px;font-weight:800">Salin</button></div>`).join(''); }
-document.addEventListener('DOMContentLoaded',()=>{ renderGame('ALL'); renderDana(); renderBank(); });
-</script>
-</body>
-</html>
+const cust=document.getElementById(`id-${sku}`).value;if(!cust)return alert('Isi no');
+const b=event.target;b.inner
