@@ -1,9 +1,4 @@
-const CACHE_NAME = 'toko-pulsa-v1';
-const urlsToCache = ['/', '/index.html', '/manifest.json'];
-
-self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
-});
-self.addEventListener('fetch', event => {
-  event.respondWith(caches.match(event.request).then(res => res || fetch(event.request)));
-});
+const CACHE_NAME='ecell-v1';
+const urlsToCache=['/','/index.html','/manifest.json','/icon-192.png','/icon-512.png','/qris-e-cell.jpg'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(urlsToCache)))});
+self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))});
