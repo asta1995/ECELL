@@ -1,136 +1,69 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#108EE9">
-<link rel="apple-touch-icon" href="icon-192.png">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Pulsa - Pembayaran QRIS</title>
+<title>E-CELL - Topup Game & Pulsa</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#108EE9">
 <style>
-:root{--blue:#108EE9;--bg:#F6F8FB}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
-body{background:var(--bg);color:#1a1a1a}
-.header{background:white;padding:16px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:10}
-.logo{width:44px;height:44px;border-radius:12px;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:900}
-.hero{padding:20px}
-.card{background:white;border-radius:20px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid #EEF2F7}
-.grid{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.item{background:white;border-radius:16px;padding:14px;border:1px solid #EEF2F7;transition:.2s}
-.item:active{transform:scale(.98)}
-.price{font-weight:900;margin-top:4px}
-.btn{width:100%;background:#1a1a1a;color:white;border:0;padding:12px;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
-.btn-pay{background:var(--blue)}
+:root{--blue:#108EE9;--bg:#F7F9FC}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{background:var(--bg);padding-bottom:80px}
+.header{background:white;padding:14px 18px;display:flex;gap:12px;align-items:center;box-shadow:0 1px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:10}
+.logo{width:42px;height:42px;border-radius:12px;background:#108EE9;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:20px}
+.card{background:white;border-radius:20px;padding:16px;margin:16px;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid #EEF2F7}
+.grid{padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:white;border-radius:16px;padding:14px;border:1px solid #EEF2F7}
+.price{font-weight:900;margin-top:4px;color:#111}
+.btn{width:100%;background:#111;color:white;border:0;padding:12px;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
+.btn-blue{background:#108EE9}
 .inp{width:100%;padding:12px;border:1px solid #E5EAF1;border-radius:12px;margin-top:8px}
-.pay-method{border:1px solid #E5EAF1;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;margin-top:10px;cursor:pointer}
-.pay-method.active{border-color:var(--blue);background:#F0F7FF}
+.pay{border:1.5px solid #E5EAF1;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;margin-top:10px;cursor:pointer}
+.pay.active{border-color:#108EE9;background:#F0F7FF}
 .wa{position:fixed;bottom:16px;right:16px;background:#25D366;color:white;padding:12px 18px;border-radius:99px;text-decoration:none;font-weight:800;font-size:13px;z-index:20}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <div class="logo">T</div>
-  <div><b>TOKO PULSA</b><div style="font-size:11px;color:#666">Layanan Digital 24 Jam</div></div>
-</div>
-
-<div class="hero">
-  <div class="card">
-    <div style="font-size:12px;color:#666">Saldo & Produk Digital</div>
-    <h3 style="margin-top:6px">Topup Game, Pulsa, E-Wallet</h3>
-    <p style="font-size:12px;color:#666;margin-top:4px">Pilih produk, masukkan ID tujuan, dan bayar via QRIS atau Transfer Bank.</p>
-  </div>
-</div>
-
-<div style="padding:0 16px"><select id="cat" onchange="render()" style="width:100%;padding:12px;border-radius:12px;border:1px solid #E5EAF1;font-weight:700"><option value="ALL">Semua Produk</option><option value="GAME">Game</option><option value="PULSA">Pulsa</option><option value="EWALLET">E-Wallet</option></select></div>
-
+<div class="header"><div class="logo">E</div><div><b>E-CELL</b><div style="font-size:11px;color:#666">Layanan Digital 24 Jam • QRIS DANA Business</div></div></div>
+<div class="card"><b>Topup Cepat & Aman</b><p style="font-size:12px;color:#666;margin-top:4px">Pilih produk, masukkan ID tujuan, bayar via QRIS atau Transfer Bank.</p></div>
 <div class="grid" id="grid"></div>
-
-<div style="background:white;margin:16px;border-radius:20px;padding:20px;display:none" id="checkout">
-  <h3>Pembayaran</h3>
-  <div style="margin-top:12px;font-size:12px;color:#666">Detail Pesanan</div>
-  <div id="orderDetail" style="font-weight:700;margin-top:4px"></div>
-  <input class="inp" id="custNo" placeholder="Masukkan ID Game / No HP Tujuan">
-  
-  <div style="margin-top:16px;font-weight:700;font-size:13px">Pilih Metode Pembayaran</div>
-  <div class="pay-method active" onclick="selectPay(this,'qris')"><img src="qris.png" style="width:40px"><div><b>QRIS</b><div style="font-size:11px;color:#666">Scan pakai DANA, GoPay, OVO, dll</div></div></div>
-  <div class="pay-method" onclick="selectPay(this,'bank')"><div style="width:40px;height:40px;background:#F0F0F0;border-radius:10px;display:flex;align-items:center;justify-content:center">🏦</div><div><b>Transfer Bank</b><div style="font-size:11px;color:#666">BCA, Mandiri, Neo, dll - Klik untuk lihat nomor</div></div></div>
-
-  <div id="qrisBox" style="margin-top:14px;text-align:center;border:1px dashed #108EE9;border-radius:16px;padding:16px;display:block">
-    <img src="qris.png" style="width:100%;max-width:280px;border-radius:12px">
-    <div style="font-size:11px;color:#666;margin-top:6px">QRIS akan tampil setelah klik Bayar. Berlaku 30 menit.</div>
-  </div>
-  <div id="bankBox" style="margin-top:14px;display:none">
-    <div style="font-size:12px;color:#666">Rekening tersedia (klik salin):</div>
-    <div id="bankList"></div>
-  </div>
-
-  <button class="btn btn-pay" onclick="pay()">Bayar Sekarang</button>
-  <button class="btn" style="background:#F2F4F7;color:#333" onclick="closeCheckout()">Batal</button>
+<div class="card" id="checkout" style="display:none">
+<h3>Pembayaran</h3><div id="detail" style="font-weight:700;margin-top:8px"></div>
+<input class="inp" id="custId" placeholder="Masukkan ID Game / No HP">
+<div style="margin-top:16px;font-weight:700;font-size:13px">Metode Pembayaran</div>
+<div class="pay active" onclick="selPay(this,'qris')"><div style="width:40px;height:40px;background:#E6F2FF;border-radius:10px;display:flex;align-items:center;justify-content:center">📱</div><div><b>QRIS</b><div style="font-size:11px;color:#666">DANA, GoPay, OVO, LinkAja</div></div></div>
+<div class="pay" onclick="selPay(this,'bank')"><div style="width:40px;height:40px;background:#F0F0F0;border-radius:10px;display:flex;align-items:center;justify-content:center">🏦</div><div><b>Transfer Bank</b><div style="font-size:11px;color:#666">Mandiri, Superbank, Neo</div></div></div>
+<div id="boxQris" style="margin-top:14px;text-align:center;border:1px dashed #108EE9;border-radius:16px;padding:16px"><img src="qris-e-cell.jpg" style="width:100%;max-width:300px;border-radius:12px"><div style="font-size:11px;color:#666;margin-top:8px">Scan QR untuk bayar. QR berlaku otomatis.</div></div>
+<div id="boxBank" style="margin-top:14px;display:none"></div>
+<button class="btn btn-blue" onclick="bayar()">Bayar Sekarang</button>
+<button class="btn" style="background:#F2F4F7;color:#333" onclick="document.getElementById('checkout').style.display='none'">Batal</button>
 </div>
-
-<a class="wa" href="https://wa.me/628xxxxxxxxxx" target="_blank">Chat CS</a>
-
+<a class="wa" href="https://wa.me/6283178084316" target="_blank">Bantuan WA</a>
 <script>
-// === SETTING INTERNAL - TIDAK TAMPIL DI UI PELANGGAN ===
-const SETTINGS = {
-  backendUrl: "https://api-toko-kamu.vercel.app",
-  qrisImage: "qris.png",
+const INTERNAL = {
   banks: [
-    { name: "Bank Neo", no: "5859459406987262" },
-    { name: "Mandiri", no: "1370022647966" },
+    {name:"Mandiri", no:"1370022647966"},
+    {name:"Superbank", no:"030018699543"},
+    {name:"Neo Bank", no:"5859459406987262"},
   ],
-  marginRule: (modal) => modal <= 15000 ? modal + 1000 : modal + 2000,
-  waCS: "628xxxxxxxxxx"
+  getPrice: (modal) => modal <= 15000 ? modal + 1000 : modal + 2000
 };
-
-// === DATA PRODUK - MODAL DISINI, HARGA JUAL OTOMATIS ===
 const products = [
-  { id:1, cat:'GAME', name:'12 Diamonds', modal:5000 },
-  { id:2, cat:'GAME', name:'86 Diamonds', modal:21000 },
-  { id:3, cat:'PULSA', name:'Pulsa 10rb', modal:10500 },
-  { id:4, cat:'EWALLET', name:'DANA 20rb', modal:20000 },
+  {id:1, cat:'GAME', name:'12 Diamond MLBB', modal:5000},
+  {id:2, cat:'GAME', name:'86 Diamond MLBB', modal:21000},
+  {id:3, cat:'GAME', name:'70 Diamond FF', modal:10000},
+  {id:4, cat:'GAME', name:'140 Diamond MLBB', modal:40000},
+  {id:5, cat:'EWALLET', name:'DANA 20K', modal:20000},
+  {id:6, cat:'PULSA', name:'Pulsa Telkomsel 25K', modal:25000},
 ];
-
-let selectedProduct = null;
-let selectedPay = 'qris';
-
-function render(){
-  const cat = document.getElementById('cat').value;
-  const g = document.getElementById('grid'); g.innerHTML='';
-  const list = cat==='ALL'?products:products.filter(p=>p.cat===cat);
-  list.forEach(p=>{
-    const jual = SETTINGS.marginRule(p.modal);
-    g.innerHTML+=`<div class='item'><div style='font-size:10px;color:#666'>${p.cat}</div><b>${p.name}</b><div class='price'>Rp ${jual.toLocaleString('id-ID')}</div><button class='btn' onclick='openCheckout(${p.id})'>Pilih</button></div>`;
-  });
-}
-function openCheckout(id){
-  selectedProduct = products.find(p=>p.id===id);
-  document.getElementById('orderDetail').innerText = `${selectedProduct.name} - Rp ${SETTINGS.marginRule(selectedProduct.modal).toLocaleString('id-ID')}`;
-  document.getElementById('checkout').style.display='block';
-  window.scrollTo(0,document.body.scrollHeight);
-  renderBanks();
-}
-function closeCheckout(){ document.getElementById('checkout').style.display='none'; }
-function selectPay(el,type){
-  document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('active'));
-  el.classList.add('active'); selectedPay=type;
-  document.getElementById('qrisBox').style.display=type==='qris'?'block':'none';
-  document.getElementById('bankBox').style.display=type==='bank'?'block':'none';
-}
-function renderBanks(){
-  document.getElementById('bankList').innerHTML = SETTINGS.banks.map(b=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee"><div><b>${b.name}</b><div style="font-size:11px;color:#666">•••• ${b.no.slice(-4)}</div></div><button onclick="navigator.clipboard.writeText('${b.no}');alert('Nomor disalin')" style="background:#108EE9;color:white;border:0;padding:6px 12px;border-radius:8px">Salin</button></div>`).join('');
-}
-async function pay(){
-  const cust = document.getElementById('custNo').value;
-  if(!cust) return alert('Isi nomor tujuan');
-  // Kirim ke backend - pelanggan cuma lihat "Diproses"
-  alert(`Pesanan ${selectedProduct.name} untuk ${cust} diproses. Silakan selesaikan pembayaran via ${selectedPay.toUpperCase()}.`);
-  // fetch(SETTINGS.backendUrl + '/api/order', {method:'POST', body: JSON.stringify({...})})
-}
-document.addEventListener('DOMContentLoaded', render);
+let selected=null, payMethod='qris';
+function render(){const g=document.getElementById('grid');g.innerHTML='';products.forEach(p=>{g.innerHTML+=`<div class='item'><div style='font-size:10px;color:#666'>${p.cat}</div><b>${p.name}</b><div class='price'>Rp ${INTERNAL.getPrice(p.modal).toLocaleString('id-ID')}</div><button class='btn' onclick='openCheckout(${p.id})'>Pilih</button></div>`;});}
+function openCheckout(id){selected=products.find(x=>x.id===id);document.getElementById('detail').innerText=`${selected.name} - Rp ${INTERNAL.getPrice(selected.modal).toLocaleString('id-ID')}`;document.getElementById('checkout').style.display='block';renderBank();window.scrollTo(0,document.body.scrollHeight);}
+function selPay(el,t){document.querySelectorAll('.pay').forEach(e=>e.classList.remove('active'));el.classList.add('active');payMethod=t;document.getElementById('boxQris').style.display=t==='qris'?'block':'none';document.getElementById('boxBank').style.display=t==='bank'?'block':'none';}
+function renderBank(){document.getElementById('boxBank').innerHTML=INTERNAL.banks.map(b=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee"><div><b>${b.name}</b><div style="font-size:11px;color:#666">•••• ${b.no.slice(-4)}</div></div><button onclick="navigator.clipboard.writeText('${b.no}');alert('Nomor ${b.name} disalin')" style="background:#108EE9;color:white;border:0;padding:8px 14px;border-radius:10px;font-weight:700">Salin</button></div>`).join('');}
+function bayar(){const cust=document.getElementById('custId').value;if(!cust)return alert('Isi ID tujuan');alert(`Pesanan ${selected.name} untuk ${cust} diproses via ${payMethod.toUpperCase()}.`);}
+document.addEventListener('DOMContentLoaded',render);
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 </script>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#108EE9">
-<link rel="apple-touch-icon" href="icon-192.png">
 </body>
-</html>
+                                                                                                                          </html>
