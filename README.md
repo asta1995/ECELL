@@ -1,28 +1,22 @@
-# E-CELL - Topup Game & PPOB
+# E-CELL - Digital Pulsa Store Pro
 
-![License](https://img.shields.io/badge/License-Proprietary-red)
-![Status](https://img.shields.io/badge/Status-Online-brightgreen)
-![QRIS](https://img.shields.io/badge/QRIS-2%20Aktif-blue)
+Toko pulsa otomatis dengan Bot WA Multifungsi & Live Saldo Digiflazz.
 
-Website topup game & PPOB 5 metode bayar
-Live: `https://asta1995.github.io/ECELL/`
+## 🔥 Fitur Terbaru (Update Nov 2026)
 
-## Pembayaran 5 Metode
-1. QRIS DANA Bisnis - ID1026610661583
-2. QRIS GoPay Merchant - ID1026629373568
-3. Neo Bank - Sensor •••• 87262
-4. Mandiri - Sensor •••• 7966
-5. Superbank - Sensor •••• 9543
-6-7. E-Wallet via QRIS
+### 1. Bot WA Multifungsi (Fonnte)
+- **BOT #1 - Invoice Pembeli:** Setelah upload bukti transfer, otomatis kirim WA ke pembeli: "Pembayaran diterima, mohon bersabar menunggu max 5 menit"
+- **BOT #2 - Konfirmasi Admin:** Setiap ada order baru, otomatis kirim WA ke Admin `083178084316` dengan detail Ref, Produk, Tujuan + Link Eksekusi
+- **BOT #3 - Warning Saldo:** Jika saldo Digiflazz < Rp 50.000, otomatis kirim warning ke Admin tiap 30 detik + header berkedip merah
 
-## File Repo
-- index.html (wajib)
-- script.js (wajib - dropdown + sensor)
-- qris-ecell.jpg (wajib)
-- qris-warjaya.jpg (wajib)
-- LICENSE (proprietary)
-- README.md
-- .gitignore
+### 2. Header Live Saldo
+- Tampil di header sticky, auto refresh tiap 30 detik
+- Hijau = Aman, Merah Berkedip + Pulse = Kritis < 50rb
+- Endpoint: `/api/cek-saldo` -> Digiflazz API `cek-saldo`
 
-## Deploy
-Settings → Pages → Branch: main / root → Save
+### 3. Alur Order
+`Pilih Produk -> Input No Tujuan -> Bayar QRIS/Rek -> Upload Bukti -> BOT WA -> Admin Konfirmasi 1 Klik -> Tembak Digiflazz -> Pulsa Masuk`
+
+## ⚙️ Setup Environment Variables di Vercel
+
+Wajib pasang di Vercel -> Settings -> Environment Variables:
