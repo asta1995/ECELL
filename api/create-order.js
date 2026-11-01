@@ -1,4 +1,4 @@
-// File: /api/create-order.js - E CELL - BERSIH FINAL - NAMA CUMA E CELL
+// File: /api/create-order.js - E CELL - 100% ENV VERCEL - FINAL
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -14,11 +14,12 @@ export default async function handler(req, res) {
     if (waRaw.startsWith('0')) wa62 = '62' + waRaw.slice(1);
     else if (!waRaw.startsWith('62')) wa62 = '62' + waRaw;
 
-    const FONNTE_TOKEN = (process.env.FONNTE_TOKEN || 'MPy4LpPbAhGQCprjn2iS').trim();
-    const CS1_WA = '6283178084316';
-    const BASE_URL = 'https://ecell-theta-ten.vercel.app';
+    const FONNTE_TOKEN = process.env.FONNTE_TOKEN;
+    if (!FONNTE_TOKEN) return res.status(500).json({error: 'FONNTE_TOKEN belum set di ENV Vercel'});
+    
+    const CS1_WA = process.env.CS1_WA || '6283178084316';
+    const BASE_URL = process.env.BASE_URL || 'https://ecell-theta-ten.vercel.app';
 
-    // INVOICE - NAMA CUMA E CELL
     const invoicePelanggan = `*INVOICE E-CELL*
 Ref: ${ref_id}
 Tujuan: ${noTujuan} ${server?`| Server: ${server}`:''}
@@ -38,78 +39,55 @@ Status: Menunggu Cek Admin
 Terima kasih sudah order di E-CELL Yogyakarta 24 Jam 🙏
 CS: 083178084316`;
 
-    let invoiceResponse = null;
     let invoiceSent = false;
     try {
       const formData = new URLSearchParams();
       formData.append('target', wa62);
       formData.append('message', invoicePelanggan);
       formData.append('countryCode', '62');
-      const fonnteRes = await fetch('https://api.fonnte.com/send', {
+      const r = await fetch('https://api.fonnte.com/send', {
         method: 'POST',
-        headers: { 'Authorization': FONNTE_TOKEN },
+        headers: { 'Authorization': FONNTE_TOKEN.trim() },
         body: formData
       });
-      const text = await fonnteRes.text();
-      try { invoiceResponse = JSON.parse(text); } catch { invoiceResponse = { raw: text }; }
-      invoiceSent = text.toLowerCase().includes('success') || invoiceResponse.status === true;
-    } catch (e) {
-      invoiceResponse = { error: e.message };
-    }
+      const t = await r.text();
+      invoiceSent = t.toLowerCase().includes('success');
+    } catch {}
 
-    // NOTIF EKSEKUSI CS1 - NAMA CUMA E CELL
     const skuCode = produk?.sku || produk?.name || 'axis5';
-    const linkEksekusi = `${BASE_URL}/api/eksekusi?ref=${ref_id}&key=WARJAYA123&sku=${encodeURIComponent(skuCode)}&tujuan=${encodeURIComponent(noTujuan)}&server=${encodeURIComponent(server||'')}&total=${total}`;
+    const linkEksekusi = `${BASE_URL}/api/eksekusi?ref=${ref_id}&key=${process.env.EKSEKUSI_KEY||'WARJAYA123'}&sku=${encodeURIComponent(skuCode)}&tujuan=${encodeURIComponent(noTujuan)}&server=${encodeURIComponent(server||'')}&total=${total}`;
 
     const notifCS1 = `*ORDER BARU E-CELL - EKSEKUSI DIGIFLAZZ*
 Ref: ${ref_id}
 Tujuan: ${noTujuan} ${server?`| Server: ${server}`:''}
-Produk: ${skuCode} - ${produk?.name||''} - ${(produk?.game||'').toUpperCase()}
+Produk: ${skuCode} - ${produk?.name||''}
 Total: Rp ${Number(total||0).toLocaleString()}
 Via: ${payMethod.toUpperCase()} A/N WARJAYA
 WA Pembeli: ${nomorPembeli} (${wa62})
-Waktu: ${new Date().toLocaleString('id-ID')}
+Invoice: ${invoiceSent ? 'Terkirim ✅' : 'Gagal ❌'}
 
-Invoice ke pembeli: ${invoiceSent ? 'Terkirim ✅' : 'Gagal ❌'}
-
-Cek mutasi A/N WARJAYA:
-Neo 5859459406987262 / Superbank 030018699543 / Mandiri 1370022647966
-
-Jika uang sudah masuk, klik eksekusi:
+Cek mutasi A/N WARJAYA
+Jika uang masuk, klik:
 ${linkEksekusi}
 
 E-CELL Yogyakarta`;
 
-    let cs1Response = null;
-    let cs1Sent = false;
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 2000));
     try {
       const form2 = new URLSearchParams();
       form2.append('target', CS1_WA);
       form2.append('message', notifCS1);
       form2.append('countryCode', '62');
-      form2.append('delay', '5');
-      const r2 = await fetch('https://api.fonnte.com/send', {
+      await fetch('https://api.fonnte.com/send', {
         method: 'POST',
-        headers: { 'Authorization': FONNTE_TOKEN },
+        headers: { 'Authorization': FONNTE_TOKEN.trim() },
         body: form2
       });
-      const t2 = await r2.text();
-      try { cs1Response = JSON.parse(t2); } catch { cs1Response = { raw: t2 }; }
-      cs1Sent = t2.toLowerCase().includes('success') || cs1Response.status === true;
-    } catch (e) {
-      cs1Response = { error: e.message };
-    }
+    } catch {}
 
-    return res.status(200).json({
-      success: true,
-      ref_id,
-      waPembeli: wa62,
-      invoice: { sent: invoiceSent, response: invoiceResponse },
-      cs1: { sent: cs1Sent, response: cs1Response, link: linkEksekusi }
-    });
+    return res.status(200).json({ success: true, ref_id, waPembeli: wa62, link: linkEksekusi });
 
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
-  }
+}
