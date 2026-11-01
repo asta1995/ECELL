@@ -1,35 +1,29 @@
-# E-CELL PRO - Toko Pulsa Otomatis + Bot WA Multifungsi
+# E-CELL - Toko Pulsa & PPOB Segoroyoso
 
-Toko pulsa digital auto dengan sistem Bot WA 4-in-1 & Live Monitoring Saldo Digiflazz. Dibuat untuk E-CELL, Segoroyoso, Yogyakarta.
+Website resmi E-CELL - Jual Pulsa, Paket Data, Token Listrik, Topup Game Murah.  
+Live: https://asta1995.github.io/ECELL/  
+Admin Panel (Vercel): https://e-cell.vercel.app/admin
 
-Live Demo: https://e-cell.vercel.app
+## 🔥 UPDATE BESAR - 1 Nov 2026 - BOT WA MULTIFUNGSI
 
-## 🔥 FITUR TERBARU (Update 1 Nov 2026)
+Sekarang E-CELL sudah support Bot WA Otomatis 4-in-1 pakai Fonnte!
 
-### 1. Bot WA Multifungsi (Fonnte)
-Bot aktif 24 jam menggunakan API Fonnte (Token: `MPy4Lp...`)
+### Bot yang Aktif:
+1. **BOT Invoice Pembeli (Otomatis):** Setelah pembeli transfer & klik "Saya Sudah Transfer", bot otomatis kirim WA:
+   > "✅ Pembayaran diterima! Invoice ECELLxxx - Mohon bersabar menunggu max 5 menit"
 
-- **BOT #1 - Invoice Pembeli:** Setelah user klik `SAYA SUDAH TRANSFER`, otomatis kirim WA ke pembeli:
-  > "✅ Pembayaran diterima! Ref: ECELL... Mohon bersabar menunggu max 5 menit 🙏"
+2. **BOT Konfirmasi Admin (083178084316):** Setiap ada order masuk, bot kirim WA ke Admin:
+   > "🔔 ORDER BARU! Produk: AXIS 10rb - Tujuan: 0838xxx - Ref: ECELLxxx - Cek di /admin"
 
-- **BOT #2 - Konfirmasi Admin:** Setiap ada order baru, otomatis kirim WA ke Admin `083178084316` (6283178084316):
-  > "🔔 ORDER BARU! Ref: ECELL... Produk: AXIS 10rb Tujuan: 0838... Segera eksekusi di /admin"
+3. **BOT Warning Saldo < 50rb:** Header website tampilkan saldo Digiflazz LIVE. Jika < 50rb:
+   - Header jadi MERAH BERKEDIP
+   - Bot otomatis warning ke Admin: "⚠️ SALDO KRITIS! Segera Topup!"
 
-- **BOT #3 - Warning Saldo Kritis:** System cek saldo tiap 30 detik via `/api/cek-saldo`. Jika saldo < Rp 50.000, otomatis:
-    - Header berkedip merah + `animate-pulse`
-    - Kirim WA warning ke Admin `083178084316`
+4. **BOT Sukses Transaksi:** Setelah Admin klik KIRIM di /admin, bot kirim WA sukses + SN ke pembeli.
 
-- **BOT #4 - Sukses Transaksi:** Setelah Admin klik `KIRIM KE DIGIFLAZZ` di `/admin`, otomatis kirim WA sukses + SN ke pembeli.
+### Tampilan Saldo di Header:
+- Lokasi: Header sticky top (E-CELL PRO)
+- Auto refresh tiap 30 detik via `/api/cek-saldo`
+- Hijau = Aman, Merah Pulse = Kritis
 
-### 2. Header Live Saldo Digiflazz
-- Komponen `HeaderSaldo()` di `app/page.jsx`
-- Sticky top, auto refresh 30 detik
-- Warna: `bg-green-600` = Aman, `bg-red-600 animate-pulse` = Kritis < 50rb
-- Endpoint: `/api/cek-saldo` -> `https://api.digiflazz.com/v1/cek-saldo`
-
-### 3. Admin Panel 1-Klik (`/admin`)
-- List order pending (dari memory / Vercel KV)
-- Tombol `🚀 KIRIM KE DIGIFLAZZ + WA SUKSES`
-- 1 klik = Tembak Digiflazz API + Kirim WA sukses ke pembeli + Update saldo
-
-## 📁 STRUKTUR PROJECT FINAL
+## 📁 File Penting
