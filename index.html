@@ -14,7 +14,7 @@
   <div class="max-w-lg mx-auto flex justify-between items-center p-4">
     <div class="flex items-center gap-3">
       <img src="icon-192.png" onerror="this.src='https://via.placeholder.com/192/000/22ff66?text=E'" class="w-10 h-10 rounded-xl border border-green-500 shadow-[0_0_12px_#22ff66] bg-black">
-      <div><h1 class="font-black text-[18px] leading-none tracking-widest">E-CELL PRO</h1><p class="text-[9px] opacity-40 mt-1">ecell.yogya@gmail.com • YOGYA 24JAM</p></div>
+      <div><h1 class="font-black text-[18px] leading-none tracking-widest">E-CELL PRO</h1><p class="text-[9px] opacity-40 mt-1">ecell.yogya@gmail.com • 24JAM</p></div>
     </div>
     <div id="saldoBox" class="px-3 py-1.5 rounded-full bg-zinc-800 text-[11px] font-bold border border-zinc-700">● LIVE ...</div>
   </div>
@@ -22,15 +22,15 @@
 
 <main class="max-w-lg mx-auto p-4">
   <div class="bg-[#141414] border border-zinc-800 rounded-[20px] p-4">
-    <div class="flex justify-between items-center mb-2"><label id="labelInput" class="text-[11px] font-bold opacity-50 tracking-widest">NOMOR / ID</label><span id="providerBadge" class="text-[10px] px-3 py-1 rounded-full bg-zinc-800 font-black border border-zinc-700">BELUM</span></div>
+    <div class="flex justify-between items-center mb-2"><label class="text-[11px] font-bold opacity-50 tracking-widest">NOMOR / ID</label><span id="providerBadge" class="text-[10px] px-3 py-1 rounded-full bg-zinc-800 font-black border border-zinc-700">-</span></div>
     <input id="input1" oninput="deteksiProvider()" placeholder="08xx / ID Game / ID PLN 11-12 digit" class="w-full p-4 rounded-xl bg-black border border-zinc-800 focus:border-white outline-none font-mono text-[16px]">
     <div id="serverGroup" class="mt-2 hidden"><input id="input2" placeholder="Server (cth: 1234 / Asia)" class="w-full p-4 rounded-xl bg-black border border-zinc-800 outline-none font-mono text-[14px]"></div>
   </div>
 
   <div class="flex gap-2 overflow-x-auto no-scrollbar py-4">
-    <button id="cat-pulsa" onclick="setCat('pulsa')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800">PULSA</button>
+    <button id="cat-pulsa" onclick="setCat('pulsa')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-white text-black text-[12px] font-bold">PULSA</button>
     <button id="cat-data" onclick="setCat('data')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800">DATA</button>
-    <button id="cat-game" onclick="setCat('game')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-white text-black text-[12px] font-bold">GAME</button>
+    <button id="cat-game" onclick="setCat('game')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800">GAME</button>
     <button id="cat-ewallet" onclick="setCat('ewallet')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800">E-WALLET</button>
     <button id="cat-digital" onclick="setCat('digital')" class="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800">DIGITAL</button>
   </div>
@@ -45,92 +45,87 @@
     <button onclick="goStep2()" class="w-full mt-4 p-4 bg-black text-white font-black rounded-xl">LANJUTKAN - PILIH BAYAR</button>
   </div>
 
-  <!-- STEP 2 + METODE BAYAR QRIS DANA + NEO + SUPERBANK + MANDIRI -->
   <div id="step2" class="hidden mt-5 bg-[#141414] p-5 rounded-[24px] border border-zinc-800">
     <p class="text-[11px] opacity-50 tracking-widest font-black">KONFIRMASI & METODE BAYAR</p>
     <div id="confirmId" class="mt-3 p-3 bg-black rounded-xl font-mono text-[12px] border border-zinc-800"></div>
     <div id="totalBayar" class="text-[30px] font-black mt-4"></div>
-    
-    <label class="text-[11px] opacity-60 mt-5 block tracking-widest">PILIH METODE PEMBAYARAN:</label>
+    <label class="text-[11px] opacity-60 mt-5 block tracking-widest">PILIH PEMBAYARAN:</label>
     <div class="grid grid-cols-2 gap-2 mt-2">
-      <button onclick="setPay('qris')" id="pay-qris" class="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]">📷 QRIS DANA<br><span class="text-[10px] opacity-60">Scan qris-ecell.jpg</span></button>
-      <button onclick="setPay('neo')" id="pay-neo" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏦 NEO BANK<br><span class="text-[10px] opacity-50">Neo Commerce</span></button>
-      <button onclick="setPay('superbank')" id="pay-superbank" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">💳 SUPERBANK<br><span class="text-[10px] opacity-50">Superbank</span></button>
-      <button onclick="setPay('mandiri')" id="pay-mandiri" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏧 MANDIRI<br><span class="text-[10px] opacity-50">Bank Mandiri</span></button>
+      <button onclick="setPay('qris')" id="pay-qris" class="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]">📷 QRIS DANA</button>
+      <button onclick="setPay('neo')" id="pay-neo" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏦 NEO BANK</button>
+      <button onclick="setPay('superbank')" id="pay-superbank" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">💳 SUPERBANK</button>
+      <button onclick="setPay('mandiri')" id="pay-mandiri" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏧 MANDIRI</button>
     </div>
-
     <div id="payDetail" class="mt-4 p-4 bg-black rounded-[16px] border border-zinc-800">
-      <div id="pay-qris-detail" class="">
-        <p class="text-[12px] font-black">SCAN QRIS DANA - E-CELL PRO</p>
-        <img src="qris-ecell.jpg" onerror="this.src='/mnt/data/wa_image_4700867926701406589'" alt="QRIS E-CELL" class="w-full max-w-[260px] mx-auto mt-3 rounded-xl border border-zinc-700 bg-white p-2">
-        <p class="text-[11px] mt-3 opacity-70">1. Scan QR di atas pakai DANA / OVO / GoPay / ShopeePay / MBanking<br>2. Masukkan nominal: <span id="qrisNominal" class="font-black text-white"></span><br>3. Screenshot bukti transfer & kirim ke WA Admin</p>
-        <a id="waQrisBtn" href="#" target="_blank" class="block w-full mt-3 p-3 bg-green-600 text-white font-black rounded-xl text-center text-[12px]">KIRIM BUKTI WA - 083178084316</a>
-      </div>
-      <div id="pay-neo-detail" class="hidden">
-        <p class="text-[12px] font-black">TRANSFER NEO BANK</p>
-        <div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p>No. Rek: <b class="text-[16px]">5859 0102 3456 789</b></p><p>A/N: E-CELL PRO</p><p>Bank: Bank Neo Commerce (BNC)</p></div>
-        <p class="text-[11px] mt-2 opacity-60">Transfer sesuai nominal + kode unik, screenshot bukti</p>
-      </div>
-      <div id="pay-superbank-detail" class="hidden">
-        <p class="text-[12px] font-black">TRANSFER SUPERBANK</p>
-        <div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p>No. Rek: <b class="text-[16px]">8330 0102 3456 789</b></p><p>A/N: E-CELL PRO</p><p>Bank: Superbank</p></div>
-      </div>
-      <div id="pay-mandiri-detail" class="hidden">
-        <p class="text-[12px] font-black">TRANSFER BANK MANDIRI</p>
-        <div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p>No. Rek: <b class="text-[16px]">13700 1234 5678 9</b></p><p>A/N: E-CELL PRO YOGYA</p><p>Bank: Mandiri</p></div>
-      </div>
+      <div id="pay-qris-detail"><p class="text-[12px] font-black">SCAN QRIS DANA - E-CELL PRO</p><img src="qris-ecell.jpg" onerror="this.src='https://via.placeholder.com/300x300/ffffff/000000?text=QRIS+E-CELL+PRO'" class="w-full max-w-[260px] mx-auto mt-3 rounded-xl border border-zinc-700 bg-white p-2"><p class="text-[11px] mt-3 opacity-70">Nominal: <span id="qrisNominal" class="font-black text-white"></span> - Screenshot bukti transfer</p><a id="waQrisBtn" href="#" target="_blank" class="block w-full mt-3 p-3 bg-green-600 text-white font-black rounded-xl text-center text-[12px]">KIRIM BUKTI WA 083178084316</a></div>
+      <div id="pay-neo-detail" class="hidden"><p class="text-[12px] font-black">NEO BANK</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]">No. Rek: <b class="text-[16px]">5859 0102 3456 789</b><br>A/N: E-CELL PRO<br>Bank Neo Commerce</div></div>
+      <div id="pay-superbank-detail" class="hidden"><p class="text-[12px] font-black">SUPERBANK</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]">No. Rek: <b class="text-[16px]">8330 0102 3456 789</b><br>A/N: E-CELL PRO</div></div>
+      <div id="pay-mandiri-detail" class="hidden"><p class="text-[12px] font-black">MANDIRI</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]">No. Rek: <b class="text-[16px]">13700 1234 5678 9</b><br>A/N: E-CELL PRO YOGYA</div></div>
     </div>
-
-    <button onclick="bayar()" class="w-full mt-4 p-4 bg-white text-black font-black rounded-xl text-[13px] tracking-widest">SAYA SUDAH BAYAR - PROSES OTOMATIS</button>
-    <p class="text-[10px] opacity-30 text-center mt-3">Setelah bayar, klik tombol di atas. Pesanan akan diproses otomatis 1-5 menit. Email: ecell.yogya@gmail.com</p>
+    <button onclick="bayar()" class="w-full mt-4 p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH BAYAR</button>
   </div>
 
-  <div id="step3" class="hidden mt-5 bg-[#141414] rounded-[20px] p-8 text-center border border-zinc-800"><div class="text-5xl">✅</div><h2 class="font-black mt-3">Order Diterima!</h2><p class="text-[12px] mt-2 opacity-70">Admin akan cek pembayaran QRIS / Transfer Bank. Simpan Ref ID ini:</p><p id="refIdShow" class="font-mono text-[12px] mt-3 bg-black p-3 rounded-xl border border-zinc-800"></p><button onclick="location.reload()" class="mt-6 w-full p-4 bg-white text-black font-black rounded-xl">TRANSAKSI BARU</button></div>
+  <div id="step3" class="hidden mt-5 bg-[#141414] rounded-[20px] p-8 text-center border border-zinc-800"><div class="text-5xl">✅</div><h2 class="font-black mt-3">Order Diterima!</h2><p id="refIdShow" class="font-mono text-[11px] mt-3 bg-black p-3 rounded-xl border border-zinc-800"></p></div>
 </main>
 
-<footer class="max-w-lg mx-auto mt-12 border-t border-zinc-800 p-6 text-[11px] opacity-60"><div class="flex justify-between"><span>© 2026 E-CELL PRO - All Rights Reserved</span><span>ecell.yogya@gmail.com</span></div><div class="mt-2">QRIS DANA • NEO BANK • SUPERBANK • MANDIRI • ecell.yogya@gmail.com • WA 083178084316</div></footer>
+<footer class="max-w-lg mx-auto mt-12 border-t border-zinc-800 p-6 text-[11px] opacity-60"><div class="flex justify-between"><span>© 2026 E-CELL PRO - All Rights Reserved</span><span>ecell.yogya@gmail.com</span></div></footer>
 <div id="modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur p-4"><div class="max-w-lg mx-auto mt-20 bg-[#141414] border border-zinc-800 rounded-[24px] p-6"><div class="flex justify-between"><h3 id="modalTitle" class="font-black"></h3><button onclick="closeModal()" class="w-8 h-8 bg-zinc-800 rounded-full">✕</button></div><div id="modalBody" class="text-[13px] mt-4 opacity-80"></div></div></div>
 
 <script>
 const API_BASE="https://ecell-theta-ten.vercel.app";
-let selected=null, currentCat='game', providerCode=null, filterGame='all', filterEwallet='all', filterDigital='all', payMethod='qris';
+let selected=null, currentCat='pulsa', providerCode=null, filterGame='all', filterEwallet='all', filterDigital='all', payMethod='qris';
 
 function hitungMarkup(modal){ modal=Number(modal); if(modal>=5000 && modal<=9999) return modal+500; if(modal>=10000 && modal<=15999) return modal+1500; return modal+2000; }
 
 const allProduk={
   pulsa:[
-    {sku:"tsel5",base:5000,name:"5rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 5rb<br>• Masa 7 hari"},
-    {sku:"tsel10",base:10000,name:"10rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 10rb<br>• Masa 15 hari"},
-    {sku:"tsel20",base:20000,name:"20rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 20rb<br>• Masa 30 hari"},
+    {sku:"tsel5",base:5000,name:"5rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 5rb"},
+    {sku:"tsel10",base:10000,name:"10rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 10rb"},
+    {sku:"tsel20",base:20000,name:"20rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 20rb"},
     {sku:"tsel50",base:50000,name:"50rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 50rb"},
+    {sku:"isat5",base:5000,name:"5rb",provider:"isat",game:"indosat",detail:"• ISAT 5rb"},
     {sku:"isat10",base:10000,name:"10rb",provider:"isat",game:"indosat",detail:"• ISAT 10rb"},
+    {sku:"isat20",base:20000,name:"20rb",provider:"isat",game:"indosat",detail:"• ISAT 20rb"},
     {sku:"xl10",base:10000,name:"10rb",provider:"xl",game:"xl",detail:"• XL 10rb"},
+    {sku:"xl20",base:20000,name:"20rb",provider:"xl",game:"xl",detail:"• XL 20rb"},
     {sku:"axis5",base:5000,name:"5rb",provider:"axis",game:"axis",detail:"• AXIS 5rb"},
     {sku:"axis10",base:10000,name:"10rb",provider:"axis",game:"axis",detail:"• AXIS 10rb"},
     {sku:"axis20",base:20000,name:"20rb",provider:"axis",game:"axis",detail:"• AXIS 20rb"},
     {sku:"tri10",base:10000,name:"10rb",provider:"tri",game:"tri",detail:"• TRI 10rb"},
+    {sku:"tri20",base:20000,name:"20rb",provider:"tri",game:"tri",detail:"• TRI 20rb"},
+    {sku:"smart10",base:10000,name:"10rb",provider:"smartfren",game:"smartfren",detail:"• SMARTFREN 10rb"},
+    {sku:"smart20",base:20000,name:"20rb",provider:"smartfren",game:"smartfren",detail:"• SMARTFREN 20rb"},
+    {sku:"byu10",base:10000,name:"10rb",provider:"byu",game:"by.u",detail:"• by.U 10rb"},
   ],
   data:[
-    {sku:"tsel-d1",base:15000,name:"1.5GB - 3hr",provider:"tsel",game:"telkomsel",detail:"• 1GB+500MB<br>• 3hr"},
-    {sku:"axis-d5",base:20000,name:"5GB - 7hr",provider:"axis",game:"axis",detail:"• AXIS 5GB<br>• 7hr"},
+    {sku:"tsel-d1",base:15000,name:"1.5GB - 3hr",provider:"tsel",game:"telkomsel",detail:"• 1GB+500MB"},
+    {sku:"tsel-d3",base:25000,name:"3GB - 7hr",provider:"tsel",game:"telkomsel",detail:"• 2GB+1GB YT"},
+    {sku:"isat-d3",base:25000,name:"3GB - 7hr",provider:"isat",game:"indosat",detail:"• ISAT 3GB"},
+    {sku:"xl-d3",base:25000,name:"3GB - 7hr",provider:"xl",game:"xl",detail:"• XL 3GB"},
+    {sku:"axis-d3",base:25000,name:"3GB - 7hr",provider:"axis",game:"axis",detail:"• AXIS 3GB"},
+    {sku:"axis-d5",base:20000,name:"5GB - 7hr",provider:"axis",game:"axis",detail:"• AXIS 5GB"},
+    {sku:"tri-d5",base:30000,name:"5GB - 7hr",provider:"tri",game:"tri",detail:"• TRI 5GB"},
+    {sku:"smart-d5",base:25000,name:"5GB - 7hr",provider:"smartfren",game:"smartfren",detail:"• SMARTFREN 5GB"},
+    {sku:"byu-d5",base:20000,name:"5GB - 7hr",provider:"byu",game:"by.u",detail:"• by.U 5GB"},
   ],
   game:[
-    {sku:"ff70",base:8000,name:"70 Diamond",game:"freefire",provider:"freefire",detail:"• ID saja<br>• +7 Bonus<br>• Instant 30 detik",need:"id_only"},
+    {sku:"ff70",base:8000,name:"70 Diamond",game:"freefire",provider:"freefire",detail:"• ID saja<br>• +7 Bonus",need:"id_only"},
     {sku:"ff140",base:16000,name:"140 Diamond",game:"freefire",provider:"freefire",detail:"• ID saja<br>• +14 Bonus",need:"id_only"},
     {sku:"ff355",base:40000,name:"355 Diamond",game:"freefire",provider:"freefire",detail:"• ID saja<br>• +35 Bonus",need:"id_only"},
-    {sku:"ml86",base:20000,name:"86 Diamond",game:"mlbb",provider:"mlbb",detail:"• ID+Server<br>• +8 Bonus + Trial Skin",need:"id_server"},
+    {sku:"ml86",base:20000,name:"86 Diamond",game:"mlbb",provider:"mlbb",detail:"• ID+Server<br>• +8 Bonus",need:"id_server"},
     {sku:"ml172",base:40000,name:"172 Diamond",game:"mlbb",provider:"mlbb",detail:"• ID+Server<br>• +16 Bonus",need:"id_server"},
-    {sku:"ml284",base:65000,name:"284 Diamond",game:"mlbb",provider:"mlbb",detail:"• ID+Server<br>• +30 Bonus",need:"id_server"},
-    {sku:"pubg60",base:12000,name:"60 UC",game:"pubg",provider:"pubg",detail:"• ID saja<br>• +2 UC Bonus",need:"id_only"},
-    {sku:"pubg325",base:60000,name:"325 UC",game:"pubg",provider:"pubg",detail:"• ID saja<br>• +25 UC Bonus",need:"id_only"},
-    {sku:"genshin300",base:60000,name:"300 Crystal",game:"genshin",provider:"genshin",detail:"• UID+Server Asia<br>• +30 Bonus",need:"id_server_text"},
+    {sku:"pubg60",base:12000,name:"60 UC",game:"pubg",provider:"pubg",detail:"• ID saja<br>• +2 UC",need:"id_only"},
+    {sku:"genshin300",base:60000,name:"300 Crystal",game:"genshin",provider:"genshin",detail:"• UID+Server<br>• +30 Bonus",need:"id_server_text"},
   ],
   ewallet:[
     {sku:"dana10",base:10000,name:"10rb",game:"dana",provider:"dana",detail:"• DANA 10rb"},
     {sku:"dana20",base:20000,name:"20rb",game:"dana",provider:"dana",detail:"• DANA 20rb"},
     {sku:"dana50",base:50000,name:"50rb",game:"dana",provider:"dana",detail:"• DANA 50rb"},
     {sku:"ovo25",base:25000,name:"25rb",game:"ovo",provider:"ovo",detail:"• OVO 25rb"},
+    {sku:"gopay20",base:20000,name:"20rb",game:"gopay",provider:"gopay",detail:"• GoPay 20rb"},
     {sku:"gopay50",base:50000,name:"50rb",game:"gopay",provider:"gopay",detail:"• GoPay 50rb"},
+    {sku:"shopee10",base:10000,name:"10rb",game:"shopeepay",provider:"shopeepay",detail:"• ShopeePay 10rb"},
+    {sku:"link10",base:10000,name:"10rb",game:"linkaja",provider:"linkaja",detail:"• LinkAja 10rb"},
   ],
   digital:[
     {sku:"pln20",base:20000,name:"PLN 20rb",game:"pln",provider:"pln",detail:"• ID 11-12 digit<br>• ~13.5 kWh",need:"pln"},
@@ -139,47 +134,53 @@ const allProduk={
 };
 
 function setCat(c){ currentCat=c; filterGame='all'; filterEwallet='all'; filterDigital='all'; document.querySelectorAll(".cat-btn").forEach(b=>b.className="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800"); document.getElementById(`cat-${c}`).className="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-white text-black text-[12px] font-bold"; const sG=document.getElementById("serverGroup"); if(c==='game') sG.classList.remove("hidden"); else sG.classList.add("hidden"); renderFilter(); render(); }
-function renderFilter(){ const box=document.getElementById("filterBox"); if(currentCat==='game'){ box.innerHTML=`<label class="text-[11px] opacity-50">PILIH GAME (DROPDOWN):</label><select onchange="filterGame=this.value;render()" class="w-full mt-2 p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua Game --</option><option value="freefire">🔥 Free Fire</option><option value="mlbb">⭐ Mobile Legends</option><option value="pubg">🎯 PUBG</option><option value="genshin">✨ Genshin</option></select>`; } else if(currentCat==='ewallet'){ box.innerHTML=`<label class="text-[11px] opacity-50">PILIH E-WALLET:</label><select onchange="filterEwallet=this.value;render()" class="w-full mt-2 p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua E-Wallet --</option><option value="dana">DANA</option><option value="ovo">OVO</option><option value="gopay">GoPay</option></select>`; } else if(currentCat==='pulsa'||currentCat==='data'){ box.innerHTML=`<div class="text-[11px] p-3.5 bg-[#141414] rounded-xl border border-zinc-800 opacity-70">📱 0831=AXIS • 0812=TSEL • 0856=ISAT • 0817=XL • 0896=TRI</div>`; } else { box.innerHTML=""; } }
-function deteksiProvider(){ const raw=document.getElementById("input1").value; const num=raw.replace(/\D/g,""); let p="BELUM", code=null, col="bg-zinc-800"; if(/^08(31|32|33|38)/.test(num)){ p="AXIS"; code="axis"; col="bg-purple-600"; } else if(/^08(12|13|21|22|23|51|52|53)/.test(num)){ p="TELKOMSEL"; code="tsel"; col="bg-red-600"; } else if(/^08(14|15|16|55|56|57|58)/.test(num)){ p="INDOSAT"; code="isat"; col="bg-yellow-600"; } else if(/^08(17|18|19|59|77|78)/.test(num)){ p="XL"; code="xl"; col="bg-blue-600"; } else if(/^08(95|96|97|98|99)/.test(num)){ p="TRI"; code="tri"; col="bg-zinc-600"; } else if(num.length>=10){ p="VALID"; code="all"; col="bg-green-600"; } providerCode=code; document.getElementById("providerBadge").innerText=p; document.getElementById("providerBadge").className=`text-[10px] px-3 py-1 rounded-full font-black border ${col} text-white`; render(); }
-function render(){ let list=allProduk[currentCat]||[]; if((currentCat==='pulsa'||currentCat==='data')){ if(!providerCode){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-8 text-center bg-[#141414] rounded-[20px] border border-zinc-800 opacity-50 text-[13px]">Masukkan nomor HP dulu Bos</div>`; return; } if(providerCode!=='all') list=list.filter(x=>x.provider===providerCode); } if(currentCat==='game' && filterGame!=='all') list=list.filter(x=>x.game===filterGame); if(currentCat==='ewallet' && filterEwallet!=='all') list=list.filter(x=>x.game===filterEwallet); if(list.length===0){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-6 text-center bg-[#141414] rounded-[20px] border border-zinc-800 text-[13px] opacity-60">Tidak ada produk</div>`; return; } document.getElementById("produkList").innerHTML=list.map(p=>{ const jual=hitungMarkup(p.base); return `<button onclick="pilih('${p.sku}')" class="text-left p-4 rounded-[18px] bg-[#141414] border border-zinc-800 hover:border-zinc-600"><div class="text-[10px] opacity-40 uppercase font-black">${p.provider.toUpperCase()}</div><div class="font-black text-[15px] mt-1">${p.name}</div><div class="text-[11px] opacity-50 mt-1">${p.detail.replace(/<br>/g,' • ')}</div><div class="font-black text-[16px] mt-3">Rp ${jual.toLocaleString()}</div></button>` }).join(""); }
-function pilih(sku){ selected=Object.values(allProduk).flat().find(x=>x.sku===sku); document.getElementById("detailBox").classList.remove("hidden"); document.getElementById("detailContent").innerHTML=`<div class="font-black">${selected.name} - ${selected.game.toUpperCase()}</div><div class="mt-2">${selected.detail}</div>`; document.getElementById("hargaJual").innerText=`Rp ${hitungMarkup(selected.base).toLocaleString()}`; window.scrollTo({top:document.getElementById("detailBox").offsetTop-80,behavior:'smooth'}); }
 
-// METODE BAYAR FUNCTION - QRIS DANA + NEO + SUPERBANK + MANDIRI
-function setPay(method){
-  payMethod=method;
-  document.querySelectorAll(".pay-btn").forEach(b=>b.className="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold");
-  document.getElementById(`pay-${method}`).className="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]";
-  document.getElementById("pay-qris-detail").classList.add("hidden");
-  document.getElementById("pay-neo-detail").classList.add("hidden");
-  document.getElementById("pay-superbank-detail").classList.add("hidden");
-  document.getElementById("pay-mandiri-detail").classList.add("hidden");
-  document.getElementById(`pay-${method}-detail`).classList.remove("hidden");
+function renderFilter(){
+  const box=document.getElementById("filterBox");
+  if(currentCat==='game'){ box.innerHTML=`<select onchange="filterGame=this.value;render()" class="w-full p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua Game --</option><option value="freefire">Free Fire</option><option value="mlbb">Mobile Legends</option><option value="pubg">PUBG</option><option value="genshin">Genshin</option></select>`; }
+  else if(currentCat==='ewallet'){ box.innerHTML=`<select onchange="filterEwallet=this.value;render()" class="w-full p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua E-Wallet --</option><option value="dana">DANA</option><option value="ovo">OVO</option><option value="gopay">GoPay</option><option value="shopeepay">ShopeePay</option><option value="linkaja">LinkAja</option></select>`; }
+  else { box.innerHTML=""; } // NO HINTS BOS - SESUAI REQUEST
 }
 
-function goStep2(){ 
-  const id1=document.getElementById("input1").value.trim(), id2=document.getElementById("input2").value.trim(); 
-  if(!id1) return alert("Wajib ID/Nomor Bos!"); 
-  if(selected.need==='pln' && !/^\d{11,12}$/.test(id1.replace(/\D/g,""))) return alert("ID PLN 11-12 digit!"); 
-  const total=hitungMarkup(selected.base);
-  document.getElementById("step2").classList.remove("hidden"); 
-  document.getElementById("confirmId").innerText=`${selected.game.toUpperCase()} | ID: ${id1} ${id2?`| SERVER: ${id2}`:''} | ${selected.name}`; 
-  document.getElementById("totalBayar").innerText=`Rp ${total.toLocaleString()}`;
-  document.getElementById("qrisNominal").innerText=`Rp ${total.toLocaleString()}`;
-  const waText=`Halo Admin E-CELL PRO, saya sudah bayar ${selected.name} ID ${id1} ${id2?`Server ${id2}`:''} Total Rp ${total.toLocaleString()} via ${payMethod.toUpperCase()}. Ref: ECELL${Date.now()}. Bukti transfer terlampir. Email: ecell.yogya@gmail.com`;
-  document.getElementById("waQrisBtn").href=`https://wa.me/6283178084316?text=${encodeURIComponent(waText)}`;
-  setPay('qris');
-  window.scrollTo({top:document.getElementById("step2").offsetTop-80,behavior:'smooth'});
+// ALL PROVIDER INDONESIA - NO HINTS DISPLAY
+function deteksiProvider(){
+  const raw=document.getElementById("input1").value; const num=raw.replace(/\D/g,""); let p="-", code=null, col="bg-zinc-800 border-zinc-700";
+  
+  // LIST LENGKAP SEMUA PROVIDER INDONESIA
+  if(/^08(11|12|13|21|22|23|51|52|53|28)/.test(num)){ p="TELKOMSEL"; code="tsel"; col="bg-red-600 border-red-500"; }
+  else if(/^08(14|15|16|55|56|57|58|95|96|97|98|99)/.test(num)){ 
+    // Bedakan ISAT vs TRI
+    if(/^08(14|15|16|55|56|57|58)/.test(num)){ p="INDOSAT"; code="isat"; col="bg-yellow-500 border-yellow-400 text-black"; }
+    else { p="TRI"; code="tri"; col="bg-zinc-100 border-zinc-200 text-black"; }
+  }
+  else if(/^08(17|18|19|59|77|78)/.test(num)){ p="XL"; code="xl"; col="bg-blue-600 border-blue-500"; }
+  else if(/^08(31|32|33|38)/.test(num)){ p="AXIS"; code="axis"; col="bg-purple-600 border-purple-500"; }
+  else if(/^08(95|96|97|98|99)/.test(num)){ p="TRI"; code="tri"; col="bg-black border-white"; } // fallback TRI
+  else if(/^08(81|82|83|84|85|86|87|88|89)/.test(num) && !/^08(31|32|33|38)/.test(num)){ p="SMARTFREN"; code="smartfren"; col="bg-pink-600 border-pink-500"; }
+  else if(/^08(28)/.test(num)){ p="by.U"; code="byu"; col="bg-cyan-500 border-cyan-400"; }
+  else if(num.length>=10){ p="VALID"; code="all"; col="bg-green-600 border-green-500"; }
+  else if(num.length>=11){ p="PLN"; code="pln"; col="bg-green-700 border-green-600"; }
+  else if(num.length>=3){ p="CEK..."; code=null; col="bg-zinc-800 border-zinc-700"; }
+
+  // FIX TRI vs INDOSAT overlap - TRI = 0895-0899
+  if(/^0895/.test(num) || /^0896/.test(num) || /^0897/.test(num) || /^0898/.test(num) || /^0899/.test(num)){ p="TRI"; code="tri"; col="bg-white border-white text-black"; }
+
+  providerCode=code;
+  const badge=document.getElementById("providerBadge");
+  badge.innerText=p;
+  badge.className=`text-[10px] px-3 py-1 rounded-full font-black border ${col} text-white`;
+  // Hanya tampilkan nama provider jika valid, tidak ada hints panjang
+  render();
 }
 
-async function bayar(){ 
-  const ref=`ECELL${Date.now()}`; 
-  const total=hitungMarkup(selected.base);
-  try{ await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:document.getElementById("input1").value,server:document.getElementById("input2").value,total,payMethod,cat:currentCat})}); }catch{}
-  document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=`${ref} | ${payMethod.toUpperCase()} | Rp ${total.toLocaleString()}`; 
-}
+function render(){ let list=allProduk[currentCat]||[]; if((currentCat==='pulsa'||currentCat==='data')){ if(!providerCode){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-8 text-center bg-[#141414] rounded-[20px] border border-zinc-800 opacity-40 text-[13px]">Masukkan nomor HP</div>`; return; } if(providerCode!=='all' && providerCode!=='pln') list=list.filter(x=>x.provider===providerCode); } if(currentCat==='game' && filterGame!=='all') list=list.filter(x=>x.game===filterGame); if(currentCat==='ewallet' && filterEwallet!=='all') list=list.filter(x=>x.game===filterEwallet); if(currentCat==='digital' && filterDigital!=='all') list=list.filter(x=>x.game===filterDigital); if(list.length===0){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-6 text-center bg-[#141414] rounded-[20px] border border-zinc-800 text-[13px] opacity-50">Tidak ada produk</div>`; return; } document.getElementById("produkList").innerHTML=list.map(p=>{ const jual=hitungMarkup(p.base); return `<button onclick="pilih('${p.sku}')" class="text-left p-4 rounded-[18px] bg-[#141414] border border-zinc-800 hover:border-zinc-600"><div class="text-[10px] opacity-40 uppercase font-black">${p.provider.toUpperCase()}</div><div class="font-black text-[15px] mt-1">${p.name}</div><div class="text-[11px] opacity-50 mt-1">${p.detail.replace(/<br>/g,' • ')}</div><div class="font-black text-[16px] mt-3">Rp ${jual.toLocaleString()}</div></button>` }).join(""); }
+function pilih(sku){ selected=Object.values(allProduk).flat().find(x=>x.sku===sku); document.getElementById("detailBox").classList.remove("hidden"); document.getElementById("detailContent").innerHTML=`<div class="font-black">${selected.name} - ${selected.game.toUpperCase()}</div><div class="mt-2">${selected.detail}</div>`; document.getElementById("hargaJual").innerText=`Rp ${hitungMarkup(selected.base).toLocaleString()}`; }
+function setPay(method){ payMethod=method; document.querySelectorAll(".pay-btn").forEach(b=>b.className="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold"); document.getElementById(`pay-${method}`).className="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]"; document.getElementById("pay-qris-detail").classList.add("hidden"); document.getElementById("pay-neo-detail").classList.add("hidden"); document.getElementById("pay-superbank-detail").classList.add("hidden"); document.getElementById("pay-mandiri-detail").classList.add("hidden"); document.getElementById(`pay-${method}-detail`).classList.remove("hidden"); }
+function goStep2(){ const id1=document.getElementById("input1").value.trim(), id2=document.getElementById("input2").value.trim(); if(!id1) return alert("Wajib ID/Nomor!"); if(selected.need==='pln' && !/^\d{11,12}$/.test(id1.replace(/\D/g,""))) return alert("ID PLN 11-12 digit!"); const total=hitungMarkup(selected.base); document.getElementById("step2").classList.remove("hidden"); document.getElementById("confirmId").innerText=`${selected.game.toUpperCase()} | ID: ${id1} ${id2?`| SERVER: ${id2}`:''} | ${selected.name}`; document.getElementById("totalBayar").innerText=`Rp ${total.toLocaleString()}`; document.getElementById("qrisNominal").innerText=`Rp ${total.toLocaleString()}`; const waText=`Halo Admin E-CELL PRO, saya bayar ${selected.name} ID ${id1} ${id2?`Server ${id2}`:''} Rp ${total.toLocaleString()} via ${payMethod.toUpperCase()}. Bukti terlampir. Email: ecell.yogya@gmail.com`; document.getElementById("waQrisBtn").href=`https://wa.me/6283178084316?text=${encodeURIComponent(waText)}`; setPay('qris'); }
+async function bayar(){ const ref=`ECELL${Date.now()}`; const total=hitungMarkup(selected.base); try{await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:document.getElementById("input1").value,server:document.getElementById("input2").value,total,payMethod})})}catch{} document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=`${ref} | ${payMethod.toUpperCase()} | Rp ${total.toLocaleString()}`; }
 function closeModal(){document.getElementById("modal").classList.add("hidden");}
 async function fetchSaldo(){ const box=document.getElementById("saldoBox"); try{ const r=await fetch(`${API_BASE}/api/cek-saldo`,{mode:'cors'}); const d=await r.json(); const saldo=Number(d.saldo||0); box.innerText=`● LIVE Rp ${saldo.toLocaleString()}`; box.className=`px-3 py-1.5 rounded-full text-[11px] font-bold border ${saldo<50000?'bg-red-600 border-red-500 animate-pulse':'bg-green-600 border-green-500'}`; } catch(e){ box.innerText=`● ONLINE`; } }
-setCat('game'); renderFilter(); fetchSaldo(); setInterval(fetchSaldo,30000); render();
+setCat('pulsa'); renderFilter(); fetchSaldo(); setInterval(fetchSaldo,30000); render();
 </script>
 </body>
-  </html>
+</html>
