@@ -3,48 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-CELL PRO</title>
+<title>E-CELL PRO - ID Valid</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#0a0a0a] text-white min-h-screen">
+<body class="bg-[#080808] text-white">
 <header class="sticky top-0 z-50 flex justify-between items-center p-4 bg-black border-b border-zinc-800">
-  <h1 class="font-black text-xl">E-CELL PRO</h1>
-  <div id="saldoBox" class="px-4 py-1.5 rounded-full font-bold text-xs bg-zinc-800">CEK SALDO...</div>
+  <div><h1 class="font-black text-xl">E-CELL PRO</h1><p class="text-[10px] opacity-30">ID VALID SYSTEM</p></div>
+  <div id="saldoBox" class="px-4 py-1.5 rounded-full font-bold text-[11px] bg-zinc-800">LIVE...</div>
 </header>
-<main class="max-w-md mx-auto p-4">
-  <div class="my-3 p-3 bg-yellow-900/30 border border-yellow-800 rounded-xl text-[11px]">Saldo LIVE - Jika merah &lt;50rb, Bot WA warning ke 083178084316</div>
-  <div id="step1">
-    <input id="noTujuan" placeholder="Nomor Tujuan 08xx" class="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-800 mb-4 outline-none">
-    <div class="grid grid-cols-2 gap-3" id="produkList"></div>
-    <button onclick="goStep2()" class="w-full mt-6 p-4 bg-white text-black font-black rounded-xl">LANJUT BAYAR</button>
+
+<main class="max-w-lg mx-auto p-4">
+  <!-- KATEGORI -->
+  <div class="flex gap-2 overflow-x-auto pb-2 mb-4">
+    <button id="cat-pulsa" onclick="setCat('pulsa')" class="cat-btn opacity-30 pointer-events-none px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700">PULSA</button>
+    <button id="cat-data" onclick="setCat('data')" class="cat-btn opacity-30 pointer-events-none px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700">DATA</button>
+    <button id="cat-game" onclick="setCat('game')" class="cat-btn px-4 py-2 rounded-full bg-white text-black text-xs font-bold">GAME</button>
+    <button id="cat-ewallet" onclick="setCat('ewallet')" class="cat-btn px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700">E-WALLET</button>
+    <button id="cat-digital" onclick="setCat('digital')" class="cat-btn px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700">DIGITAL</button>
   </div>
-  <div id="step2" class="hidden bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
-    <h2 class="font-black mb-3">Transfer ke:</h2>
-    <div class="bg-black p-4 rounded-xl mb-4 border border-zinc-800"><div class="text-xs opacity-60">QRIS / BCA 1234567890 a/n E-CELL</div></div>
-    <div class="flex justify-between mb-6"><span>Total:</span><span id="totalBayar" class="font-black"></span></div>
-    <button id="btnBayar" onclick="bayar()" class="w-full p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH TRANSFER</button>
-    <button onclick="location.reload()" class="w-full mt-3 p-2 text-zinc-400 text-sm">Kembali</button>
-  </div>
-  <div id="step3" class="hidden text-center py-10 bg-zinc-900 rounded-2xl border border-zinc-800 p-6">
-    <div class="text-6xl mb-4">✅</div><h2 class="font-black text-xl">Pembayaran Diterima!</h2>
-    <p id="refIdShow" class="font-mono text-xs bg-black border border-zinc-800 p-3 rounded-xl mt-4"></p>
-    <div class="text-left mt-6 space-y-2 text-xs bg-black p-4 rounded-xl border border-zinc-800">
-      <p>✅ Bot #1: Invoice ke pembeli</p><p>✅ Bot #2: Konfirmasi ke 083178084316</p><p>✅ Bot #3: Cek saldo &lt;50rb</p>
+
+  <!-- FORM DYNAMIC WAJIB ID -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 mb-4">
+    <label id="labelInput" class="text-xs font-black opacity-60">ID GAME + SERVER</label>
+    <div id="inputGroup" class="mt-2 space-y-2">
+      <input id="input1" oninput="deteksiProvider()" placeholder="ID Game (cth: 12345678)" class="w-full p-4 rounded-xl bg-black border border-zinc-700 outline-none focus:border-white font-mono">
+      <div id="serverGroup" class="flex gap-2">
+        <input id="input2" placeholder="Server (cth: 1234)" class="flex-1 p-4 rounded-xl bg-black border border-zinc-700 outline-none focus:border-white font-mono">
+        <div id="providerBadge" class="px-3 py-4 rounded-xl bg-zinc-800 text-xs font-black">GAME</div>
+      </div>
     </div>
-    <button onclick="location.reload()" class="mt-8 w-full p-4 bg-white text-black font-black rounded-xl">BELI LAGI</button>
-    <a href="https://ecell-theta-ten.vercel.app/admin" class="block mt-3 text-xs opacity-40 underline">Admin Panel</a>
+    <p id="providerInfo" class="text-[11px] mt-2 opacity-40">Wajib ID + Server untuk Mobile Legends / Free Fire ID wajib angka</p>
   </div>
+
+  <div id="produkList" class="grid grid-cols-1 gap-3"></div>
+  <div id="detailBox" class="hidden mt-4 p-4 bg-black border border-green-800 rounded-xl text-xs">
+    <h3 class="font-black mb-2 text-green-400">DETAIL & VALIDASI ID:</h3>
+    <div id="detailContent" class="space-y-1 opacity-80"></div>
+    <div class="mt-3 flex justify-between items-center border-t border-zinc-800 pt-3">
+      <span>Harga Jual (Markup):</span><span id="hargaJual" class="font-black text-lg text-green-400"></span>
+    </div>
+    <button onclick="goStep2()" class="w-full mt-3 p-4 bg-white text-black font-black rounded-xl">BELI - VALIDASI ID</button>
+  </div>
+
+  <div id="step2" class="hidden mt-6 bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
+    <h2 class="font-black">Konfirmasi ID Pelanggan:</h2>
+    <div id="confirmId" class="my-3 p-3 bg-black rounded-xl font-mono text-xs border border-zinc-800"></div>
+    <div id="totalBayar" class="text-2xl font-black mb-4"></div>
+    <button id="btnBayar" onclick="bayar()" class="w-full p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH TRANSFER</button>
+  </div>
+  <div id="step3" class="hidden mt-6 text-center bg-zinc-900 rounded-2xl border border-zinc-800 p-6"><div class="text-5xl">✅</div><h2 class="font-black mt-2">ID Terkirim!</h2><p id="refIdShow" class="font-mono text-xs mt-3 bg-black p-2 rounded border border-zinc-800"></p></div>
 </main>
+
+<footer class="max-w-lg mx-auto mt-10 p-6 border-t border-zinc-800 text-[11px] opacity-70">
+  <div class="grid grid-cols-2 gap-4">
+    <div><h4 class="font-black mb-2">E-CELL YOGYA</h4><p>Email: ecell.yogya@gmail.com<br>WA: 083178084316<br>Segoroyoso, Bantul 24JAM</p></div>
+    <div><h4 class="font-black mb-2">VALIDASI WAJIB</h4><p>✅ Game: ID + Server wajib</p><p>✅ PLN: 11-12 digit ID Pelanggan</p><p>✅ Pulsa: 10-13 digit HP</p><p>✅ E-Wallet: 10-13 digit HP</p></div>
+  </div>
+</footer>
+
 <script>
 const API_BASE="https://ecell-theta-ten.vercel.app";
-const produk=[{id:"ax10",name:"AXIS 10rb",price:11000,sku:"ax10"},{id:"ax25",name:"AXIS 25rb",price:26000,sku:"ax25"},{id:"xl10",name:"XL 10rb",price:11200,sku:"xld10"},{id:"ts10",name:"Telkomsel 10rb",price:11300,sku:"tsel10"}];
-let selected=null;
-function renderProduk(){document.getElementById("produkList").innerHTML=produk.map(p=>`<button onclick="pilih('${p.id}')" id="prod-${p.id}" class="p-4 rounded-xl border bg-zinc-900 border-zinc-800 text-left"><div class="font-bold">${p.name}</div><div class="text-xs opacity-60">Rp ${p.price.toLocaleString()}</div></button>`).join("")}
-function pilih(id){selected=produk.find(p=>p.id===id);document.querySelectorAll('[id^="prod-"]').forEach(el=>el.className="p-4 rounded-xl border bg-zinc-900 border-zinc-800 text-left");document.getElementById(`prod-${id}`).className="p-4 rounded-xl border bg-white text-black border-white text-left"}
-function goStep2(){if(!document.getElementById("noTujuan").value||!selected)return alert("Isi nomor & pilih produk!");document.getElementById("step1").classList.add("hidden");document.getElementById("step2").classList.remove("hidden");document.getElementById("totalBayar").innerText=`Rp ${selected.price.toLocaleString()}`}
-async function bayar(){const no=document.getElementById("noTujuan").value;const btn=document.getElementById("btnBayar");btn.innerText="MENGIRIM BOT WA...";const ref=`ECELL${Date.now()}`;try{await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:no,noPembeli:no})})}catch(e){}document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=ref}
-async function fetchSaldo(){try{const r=await fetch(`${API_BASE}/api/cek-saldo`);const d=await r.json();const b=document.getElementById("saldoBox");if(d.saldo<50000){b.className="px-4 py-1.5 rounded-full font-bold text-xs bg-red-600 animate-pulse";b.innerText=`Rp ${d.saldo.toLocaleString()} ⚠️`}else{b.className="px-4 py-1.5 rounded-full font-bold text-xs bg-green-600";b.innerText=`Rp ${d.saldo.toLocaleString()} LIVE`}}catch{b=document.getElementById("saldoBox");b.innerText="OFFLINE"}}
-renderProduk();fetchSaldo();setInterval(fetchSaldo,30000);
+let selected=null, currentCat='game', provider="GAME";
+
+const allProduk={
+  pulsa:[
+    {sku:"t5",base:5000,name:"Pulsa 5rb",detail:"Masa aktif 7 hari"},
+    {sku:"t10",base:10000,name:"Pulsa 10rb",detail:"Masa aktif 15 hari + 1GB Youtube"},
+    {sku:"t20",base:20000,name:"Pulsa 20rb",detail:"Masa aktif 30 hari"},
+  ],
+  data:[
+    {sku:"data1",base:15000,name:"Data 1.5GB 3hr",detail:"1GB Utama + 500MB Malam | 3 Hari | Benefit: Full 4G + Gratis Tiktok 1GB"},
+    {sku:"data8",base:50000,name:"Data 8GB 30hr",detail:"5GB Utama + 3GB Sosmed | 30 Hari | Benefit: Unlimited WA + Vidio + Nelpon"},
+  ],
+  game:[
+    {sku:"ff70",base:10000,name:"Free Fire 70 Diamond",detail:"WAJIB ID SAJA (Tanpa Server) | Benefit: +7 Diamond | Instant <30 detik", need:"id_only"},
+    {sku:"ml86",base:22000,name:"ML 86 Diamond",detail:"WAJIB ID + SERVER (cth: 12345678 (1234)) | Benefit: +8 Bonus + Trial Skin | Double Event", need:"id_server"},
+    {sku:"pubg60",base:15000,name:"PUBG 60 UC",detail:"WAJIB ID SAJA | Bonus 2 UC + Silver 50 | Anti Banned", need:"id_only"},
+    {sku:"genshin300",base:65000,name:"Genshin 300 Crystal",detail:"WAJIB UID + Server (Asia/America/Europe) | Bonus 30 Crystal | Top Up Resmi", need:"id_server_text"},
+  ],
+  ewallet:[
+    {sku:"dana10",base:10000,name:"DANA 10rb",detail:"No HP DANA wajib 10-13 digit"},
+  ],
+  digital:[
+    {sku:"pln20",base:20000,name:"PLN Token 20rb",detail:"WAJIB ID PELANGGAN PLN 11-12 DIGIT (cth: 51234567890) | kWh ~13.5 | Token via WA", need:"pln"},
+    {sku:"pln50",base:50000,name:"PLN Token 50rb",detail:"WAJIB ID PELANGGAN 11-12 DIGIT | kWh ~33.8 | Garansi Token Valid", need:"pln"},
+    {sku:"netflix1",base:35000,name:"Netflix 1 Bulan",detail:"Email tidak perlu, akun jadi dari kami | Private 1 Profil | 4K UHD | Garansi 30 Hari", need:"no_id"},
+  ]
+};
+
+function hitungMarkup(b){if(b<=9999)return b+500;if(b<=19999)return b+1500;return b+2000;}
+
+function setCat(c){
+  currentCat=c;
+  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("bg-white","text-black"));
+  document.getElementById(`cat-${c}`).classList.add("bg-white","text-black");
+  const l=document.getElementById("labelInput"), i1=document.getElementById("input1"), i2=document.getElementById("input2"), sg=document.getElementById("serverGroup"), info=document.getElementById("providerInfo");
+  if(c==='game'){ l.innerText="ID GAME + SERVER (WAJIB)"; i1.placeholder="ID Game - cth: 12345678"; i2.placeholder="Server - cth: 1234 / Asia"; sg.classList.remove("hidden"); info.innerText="Contoh ML: 12345678 (1234) | FF: ID saja | Genshin: UID + Server Asia"; provider="GAME"; }
+  else if(c==='digital' || c==='pln'){ l.innerText="ID PELANGGAN PLN / TOKEN"; i1.placeholder="ID Pelanggan PLN 11-12 digit - cth: 51234567890"; sg.classList.add("hidden"); info.innerText="WAJIB 11-12 digit - Cek di meteran / struk PLN"; provider="PLN"; }
+  else if(c==='pulsa' || c==='data' || c==='ewallet'){ l.innerText="NOMOR HP / E-WALLET"; i1.placeholder="08xx - 10-13 digit"; sg.classList.add("hidden"); info.innerText="Masukkan HP untuk deteksi provider TSEL/ISAT/XL/TRI"; provider="-"; }
+  render(); deteksiProvider();
+}
+
+function deteksiProvider(){
+  const no=document.getElementById("input1").value.replace(/\D/g,"");
+  let prov=provider, warna="bg-zinc-800";
+  if(currentCat==='pulsa' || currentCat==='data'){
+    if(/^08(12|13|21|22|23|52|53)/.test(no)){prov="TELKOMSEL"; warna="bg-red-600";}
+    else if(/^08(14|15|16|55|56|57|58)/.test(no)){prov="INDOSAT"; warna="bg-yellow-600";}
+    else if(/^08(17|18|19|59|77|78)/.test(no)){prov="XL/AXIS"; warna="bg-blue-600";}
+    else if(no.length>=10){prov="VALID"; warna="bg-green-600";}
+    document.getElementById("cat-pulsa").className=no.length>=10?"cat-btn px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700":"cat-btn opacity-30 pointer-events-none px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700";
+    document.getElementById("cat-data").className=no.length>=10?"cat-btn px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700":"cat-btn opacity-30 pointer-events-none px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold border border-zinc-700";
+  }
+  document.getElementById("providerBadge").innerText=prov;
+  document.getElementById("providerBadge").className=`px-3 py-4 rounded-xl text-xs font-black text-white ${warna}`;
+}
+
+function render(){
+  const list=allProduk[currentCat]||[];
+  document.getElementById("produkList").innerHTML=list.map(p=>{
+    const jual=hitungMarkup(p.base);
+    return `<button onclick="pilih('${p.sku}')" class="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-800 text-left"><div class="flex justify-between"><div class="font-black text-sm">${p.name}</div><div class="font-bold text-green-400">Rp ${jual.toLocaleString()}</div></div><div class="text-[11px] opacity-60 mt-1">${p.detail}</div><div class="text-[10px] mt-1 ${p.need?'text-yellow-400 font-bold':''}">${p.need?`⚠️ ${p.need.toUpperCase()}`:''} - Base Rp ${p.base.toLocaleString()} + Markup = Rp ${jual.toLocaleString()}</div></button>`
+  }).join("");
+}
+
+function pilih(sku){
+  selected=Object.values(allProduk).flat().find(x=>x.sku===sku);
+  document.getElementById("detailBox").classList.remove("hidden");
+  document.getElementById("detailContent").innerHTML=`<p><b>Produk:</b> ${selected.name}</p><p><b>Detail:</b> ${selected.detail}</p><p class="text-yellow-400"><b>Validasi:</b> ${selected.need||'Nomor HP 10-13 digit'}</p><p><b>ID Input:</b> ${document.getElementById("input1").value} ${document.getElementById("input2").value?`(${document.getElementById("input2").value})`:''}</p>`;
+  document.getElementById("hargaJual").innerText=`Rp ${hitungMarkup(selected.base).toLocaleString()}`;
+}
+
+function goStep2(){
+  const id1=document.getElementById("input1").value.trim();
+  const id2=document.getElementById("input2").value.trim();
+  // VALIDASI WAJIB BOS
+  if(currentCat==='game'){
+    if(!id1) return alert("WAJIB ISI ID GAME BOS!");
+    if(selected?.need==='id_server' && !id2) return alert("WAJIB ISI SERVER GAME BOS! Contoh: 1234");
+    if(selected?.need==='id_server_text' && !id2) return alert("WAJIB ISI SERVER (Asia/America/Europe) BOS!");
+  }
+  if(currentCat==='digital' && selected?.sku?.includes('pln')){
+    if(!/^\d{11,12}$/.test(id1.replace(/\D/g,""))) return alert("ID PELANGGAN PLN WAJIB 11-12 DIGIT ANGKA BOS! Cek di meteran.");
+  }
+  if(currentCat==='pulsa' || currentCat==='data' || currentCat==='ewallet'){
+    if(!/^\d{10,13}$/.test(id1.replace(/\D/g,""))) return alert("NOMOR HP WAJIB 10-13 DIGIT BOS!");
+  }
+  document.getElementById("step2").classList.remove("hidden");
+  document.getElementById("confirmId").innerText=`ID: ${id1} ${id2?`SERVER: ${id2}`:''} | Produk: ${selected.name} | ${provider}`;
+  document.getElementById("totalBayar").innerText=`Rp ${hitungMarkup(selected.base).toLocaleString()}`;
+}
+
+async function bayar(){
+  const ref=`ECELL${Date.now()}`;
+  const id1=document.getElementById("input1").value, id2=document.getElementById("input2").value;
+  try{await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:id1,server:id2,cat:currentCat,markup:hitungMarkup(selected.base)})})}catch{}
+  document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=`${ref} | ID: ${id1} ${id2}`;
+}
+
+function fetchSaldo(){fetch(`${API_BASE}/api/cek-saldo`).then(r=>r.json()).then(d=>{const b=document.getElementById("saldoBox");b.innerText=`Rp ${d.saldo.toLocaleString()} ${d.saldo<50000?'⚠️':'LIVE'}`;b.className=`px-4 py-1.5 rounded-full font-bold text-[11px] ${d.saldo<50000?'bg-red-600':'bg-green-600'}`}).catch(()=>{})}
+setCat('game');fetchSaldo();
 </script>
 </body>
-</html>
+  </html>
