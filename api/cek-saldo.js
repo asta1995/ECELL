@@ -1,17 +1,29 @@
+import { NextResponse } from "next/server";
 import md5 from "md5";
-export default async function handler(req, res) {
-  const sign = md5(process.env.DIGIFLAZZ_USER + process.env.DIGIFLAZZ_APIKEY + "depo");
-  const r = await fetch("https://api.digiflazz.com/v1/cek-saldo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ cmd: "deposit", username: process.env.DIGIFLAZZ_USER, sign }),
-  });
-  const data = await r.json();
-  const saldo = data?.data?.deposit || 0;
-  // Auto warning jika < 50rb
-  if (saldo < 50000) {
-    const { botWarningSaldo } = await import("../../lib/wa.js");
-    await botWarningSaldo(saldo);
+import { botWarningSaldo } from "@/lib/wa.js";
+
+export async function POST() { return GET(); }
+
+export async function GET() {
+  try {
+    const user = process.env.DIGIFLAZZ_USER;
+    const apiKey = process.env.DIGIFLAZZ_APIKEY;
+    const sign = md5(user + apiKey + "depo");
+    
+    const r = await fetch("https://api.digiflazz.com/v1/cek-saldo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cmd: "deposit", username: user, sign }),
+    });
+    const data = await r.json();
+    const saldo = data?.data?.deposit || 0;
+
+    if (saldo < 50000 && saldo > 0) {
+      await botWarningSaldo(saldo);
+    }
+
+    return NextResponse.json({ saldo, raw: data });
+  } catch (e) {
+    return NextResponse.json({ saldo: 0, error: e.message }, { status: 500 });
   }
-  res.json({ saldo });
-}
+      }
