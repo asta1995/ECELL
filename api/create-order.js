@@ -1,4 +1,4 @@
-// File: /api/create-order.js - FIX INVOICE TIDAK TERKIRIM - KUNCI FINAL
+// File: /api/create-order.js - E CELL - BERSIH FINAL - NAMA CUMA E CELL
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -18,8 +18,8 @@ export default async function handler(req, res) {
     const CS1_WA = '6283178084316';
     const BASE_URL = 'https://ecell-theta-ten.vercel.app';
 
-    // INVOICE KUNCI
-    const invoicePelanggan = `*INVOICE E-CELL PRO - WARJAYA*
+    // INVOICE - NAMA CUMA E CELL
+    const invoicePelanggan = `*INVOICE E-CELL*
 Ref: ${ref_id}
 Tujuan: ${noTujuan} ${server?`| Server: ${server}`:''}
 Produk: ${produk?.name||produk} - ${(produk?.game||'').toUpperCase()}
@@ -27,65 +27,68 @@ Total: Rp ${Number(total||0).toLocaleString()}
 Via: ${payMethod.toUpperCase()} A/N WARJAYA
 WA Pembeli: ${nomorPembeli}
 Waktu: ${new Date().toLocaleString('id-ID')}
-Rek: Mandiri 1370022647966 / Superbank 030018699543 / Neo 5859459406987262 A/N WARJAYA
-Status: Menunggu Cek Admin - KUNCI`;
 
-    console.log('KIRIM INVOICE KE:', wa62, 'TOKEN:', FONNTE_TOKEN.substring(0,4)+'****');
+*Rekening Resmi A/N WARJAYA:*
+- Mandiri: 1370022647966
+- Superbank: 030018699543
+- Neo: 5859459406987262
+
+Status: Menunggu Cek Admin
+
+Terima kasih sudah order di E-CELL Yogyakarta 24 Jam 🙏
+CS: 083178084316`;
 
     let invoiceResponse = null;
     let invoiceSent = false;
-
     try {
-      // FIX FORMAT FONNTE - HARUS PAKAI FORM-DATA + AUTHORIZATION
       const formData = new URLSearchParams();
       formData.append('target', wa62);
       formData.append('message', invoicePelanggan);
       formData.append('countryCode', '62');
-
       const fonnteRes = await fetch('https://api.fonnte.com/send', {
         method: 'POST',
-        headers: {
-          'Authorization': FONNTE_TOKEN
-        },
+        headers: { 'Authorization': FONNTE_TOKEN },
         body: formData
       });
-      
       const text = await fonnteRes.text();
-      console.log('FONNTE RESPONSE:', text);
-      
       try { invoiceResponse = JSON.parse(text); } catch { invoiceResponse = { raw: text }; }
-      
-      invoiceSent = invoiceResponse.status === true || invoiceResponse.status === 'true' || invoiceResponse.reason === 'success' || invoiceResponse.detail?.toLowerCase().includes('success');
-      
+      invoiceSent = text.toLowerCase().includes('success') || invoiceResponse.status === true;
     } catch (e) {
-      console.log('FONNTE ERROR:', e.message);
       invoiceResponse = { error: e.message };
     }
 
-    // LINK EKSEKUSI CS1 - MODE B
-    const skuCode = produk?.sku || 'CEK_MANUAL';
-    const linkEksekusi = `${BASE_URL}/api/eksekusi?ref=${ref_id}&key=WARJAYA123&sku=${encodeURIComponent(skuCode)}&tujuan=${encodeURIComponent(noTujuan)}`;
+    // NOTIF EKSEKUSI CS1 - NAMA CUMA E CELL
+    const skuCode = produk?.sku || produk?.name || 'axis5';
+    const linkEksekusi = `${BASE_URL}/api/eksekusi?ref=${ref_id}&key=WARJAYA123&sku=${encodeURIComponent(skuCode)}&tujuan=${encodeURIComponent(noTujuan)}&server=${encodeURIComponent(server||'')}&total=${total}`;
 
-    const notifCS1 = `*ORDER BARU MODE B*
+    const notifCS1 = `*ORDER BARU E-CELL - EKSEKUSI DIGIFLAZZ*
 Ref: ${ref_id}
-Tujuan: ${noTujuan}
-SKU: ${skuCode}
+Tujuan: ${noTujuan} ${server?`| Server: ${server}`:''}
+Produk: ${skuCode} - ${produk?.name||''} - ${(produk?.game||'').toUpperCase()}
 Total: Rp ${Number(total||0).toLocaleString()}
+Via: ${payMethod.toUpperCase()} A/N WARJAYA
 WA Pembeli: ${nomorPembeli} (${wa62})
-Invoice ke pembeli: ${invoiceSent ? '✅ TERKIRIM' : '❌ GAGAL - '+JSON.stringify(invoiceResponse).substring(0,100)}
-Via: ${payMethod.toUpperCase()}
+Waktu: ${new Date().toLocaleString('id-ID')}
 
-KLIK EKSEKUSI:
-${linkEksekusi}`;
+Invoice ke pembeli: ${invoiceSent ? 'Terkirim ✅' : 'Gagal ❌'}
+
+Cek mutasi A/N WARJAYA:
+Neo 5859459406987262 / Superbank 030018699543 / Mandiri 1370022647966
+
+Jika uang sudah masuk, klik eksekusi:
+${linkEksekusi}
+
+E-CELL Yogyakarta`;
 
     let cs1Response = null;
     let cs1Sent = false;
+    await new Promise(r => setTimeout(r, 3000));
     try {
       const form2 = new URLSearchParams();
       form2.append('target', CS1_WA);
       form2.append('message', notifCS1);
       form2.append('countryCode', '62');
-      
+      form2.append('delay', '5');
       const r2 = await fetch('https://api.fonnte.com/send', {
         method: 'POST',
         headers: { 'Authorization': FONNTE_TOKEN },
@@ -93,7 +96,7 @@ ${linkEksekusi}`;
       });
       const t2 = await r2.text();
       try { cs1Response = JSON.parse(t2); } catch { cs1Response = { raw: t2 }; }
-      cs1Sent = cs1Response.status === true || cs1Response.reason === 'success';
+      cs1Sent = t2.toLowerCase().includes('success') || cs1Response.status === true;
     } catch (e) {
       cs1Response = { error: e.message };
     }
@@ -102,14 +105,11 @@ ${linkEksekusi}`;
       success: true,
       ref_id,
       waPembeli: wa62,
-      tokenUsed: FONNTE_TOKEN.substring(0,4)+'****',
       invoice: { sent: invoiceSent, response: invoiceResponse },
-      cs1: { sent: cs1Sent, response: cs1Response, link: linkEksekusi },
-      debug: 'Cek Vercel Logs untuk detail Fonnte response'
+      cs1: { sent: cs1Sent, response: cs1Response, link: linkEksekusi }
     });
 
   } catch (err) {
-    console.error('ERROR:', err);
-    return res.status(500).json({ error: err.message, stack: err.stack });
+    return res.status(500).json({ error: err.message });
   }
-                      }
+  }
