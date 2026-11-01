@@ -3,26 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-CELL PRO - Yogya 24 Jam</title>
+<title>E-CELL PRO - Yogyakarta 24 Jam - WARJAYA</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}</style>
 </head>
 <body class="bg-[#0b0b0b] text-white antialiased">
-<header class="sticky top-0 z-40 bg-black/90 backdrop-blur-xl border-b border-zinc-800">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-40 bg-black/95 backdrop-blur-xl border-b border-zinc-800">
   <div class="max-w-lg mx-auto flex justify-between items-center p-4">
     <div class="flex items-center gap-3">
       <img src="icon-192.png" onerror="this.src='https://via.placeholder.com/192/000/22ff66?text=E'" class="w-10 h-10 rounded-xl border border-green-500 shadow-[0_0_12px_#22ff66] bg-black">
-      <div><h1 class="font-black text-[18px] leading-none tracking-widest">E-CELL PRO</h1><p class="text-[9px] opacity-40 mt-1">ecell.yogya@gmail.com • WARJAYA</p></div>
+      <div><h1 class="font-black text-[18px] leading-none tracking-widest">E-CELL PRO</h1><p class="text-[9px] opacity-40 mt-1">WARJAYA • ecell.yogya@gmail.com</p></div>
     </div>
-    <div id="saldoBox" class="px-3 py-1.5 rounded-full bg-zinc-800 text-[11px] font-bold border border-zinc-700">● LIVE ...</div>
+    <div class="flex items-center gap-2">
+      <button onclick="openModal('riwayat')" class="px-3 py-1.5 rounded-full bg-zinc-800 text-[10px] font-bold border border-zinc-700">📜 RIWAYAT</button>
+      <div id="saldoBox" class="px-3 py-1.5 rounded-full bg-zinc-800 text-[11px] font-bold border border-zinc-700">● LIVE ...</div>
+    </div>
   </div>
 </header>
 
-<main class="max-w-lg mx-auto p-4">
+<!-- CARA KERJA WEB - STEP BY STEP UNTUK PELANGGAN BARU -->
+<div class="max-w-lg mx-auto p-4">
+  <div class="bg-gradient-to-br from-[#141414] to-[#0f0f0f] border border-zinc-800 rounded-[20px] p-4">
+    <h2 class="font-black text-[12px] tracking-widest">🔥 CARA KERJA WEB - 3 LANGKAH MUDAH</h2>
+    <div class="grid grid-cols-3 gap-2 mt-3 text-[10px] text-center">
+      <div class="bg-black border border-zinc-800 rounded-xl p-3"><div class="text-[20px]">1️⃣</div><div class="font-bold mt-1">PILIH PRODUK</div><div class="opacity-50 mt-1">Pilih Pulsa/Data/Game/E-Wallet. Filter dropdown game & e-wallet</div></div>
+      <div class="bg-black border border-zinc-800 rounded-xl p-3"><div class="text-[20px]">2️⃣</div><div class="font-bold mt-1">BAYAR</div><div class="opacity-50 mt-1">Scan QRIS DANA / Transfer Neo 5859... / Superbank 0300... / Mandiri 13700... A/N WARJAYA</div></div>
+      <div class="bg-black border border-zinc-800 rounded-xl p-3"><div class="text-[20px]">3️⃣</div><div class="font-bold mt-1">OTOMATIS MASUK</div><div class="opacity-50 mt-1">Klik Saya Sudah Bayar. Proses 1-5 menit. Garansi refund. Cek riwayat</div></div>
+    </div>
+  </div>
+</div>
+
+<main class="max-w-lg mx-auto p-4 pt-0">
   <div class="bg-[#141414] border border-zinc-800 rounded-[20px] p-4">
-    <div class="flex justify-between items-center mb-2"><label class="text-[11px] font-bold opacity-50 tracking-widest">NOMOR / ID</label><span id="providerBadge" class="text-[10px] px-3 py-1 rounded-full bg-zinc-800 font-black border border-zinc-700">-</span></div>
+    <div class="flex justify-between items-center mb-2"><label class="text-[11px] font-bold opacity-50 tracking-widest">NOMOR / ID PELANGGAN</label><span id="providerBadge" class="text-[10px] px-3 py-1 rounded-full bg-zinc-800 font-black border border-zinc-700">-</span></div>
     <input id="input1" oninput="deteksiProvider()" placeholder="08xx / ID Game / ID PLN 11-12 digit" class="w-full p-4 rounded-xl bg-black border border-zinc-800 focus:border-white outline-none font-mono text-[16px]">
     <div id="serverGroup" class="mt-2 hidden"><input id="input2" placeholder="Server (cth: 1234 / Asia)" class="w-full p-4 rounded-xl bg-black border border-zinc-800 outline-none font-mono text-[14px]"></div>
   </div>
@@ -46,36 +63,71 @@
   </div>
 
   <div id="step2" class="hidden mt-5 bg-[#141414] p-5 rounded-[24px] border border-zinc-800">
-    <p class="text-[11px] opacity-50 tracking-widest font-black">KONFIRMASI & METODE BAYAR</p>
+    <p class="text-[11px] opacity-50 tracking-widest font-black">KONFIRMASI & METODE BAYAR A/N WARJAYA</p>
     <div id="confirmId" class="mt-3 p-3 bg-black rounded-xl font-mono text-[12px] border border-zinc-800"></div>
     <div id="totalBayar" class="text-[30px] font-black mt-4"></div>
-    <label class="text-[11px] opacity-60 mt-5 block tracking-widest">PILIH PEMBAYARAN A/N WARJAYA:</label>
+    <label class="text-[11px] opacity-60 mt-5 block tracking-widest">PILIH PEMBAYARAN:</label>
     <div class="grid grid-cols-2 gap-2 mt-2">
       <button onclick="setPay('qris')" id="pay-qris" class="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]">📷 QRIS DANA</button>
-      <button onclick="setPay('neo')" id="pay-neo" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏦 NEO BANK</button>
+      <button onclick="setPay('neo')" id="pay-neo" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏦 NEO</button>
       <button onclick="setPay('superbank')" id="pay-superbank" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">💳 SUPERBANK</button>
       <button onclick="setPay('mandiri')" id="pay-mandiri" class="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold">🏧 MANDIRI</button>
     </div>
     <div id="payDetail" class="mt-4 p-4 bg-black rounded-[16px] border border-zinc-800">
-      <div id="pay-qris-detail"><p class="text-[12px] font-black">SCAN QRIS DANA - E-CELL PRO</p><img src="qris-ecell.jpg" onerror="this.src='https://via.placeholder.com/300/fff/000?text=QRIS+E-CELL'" class="w-full max-w-[260px] mx-auto mt-3 rounded-xl border border-zinc-700 bg-white p-2"><p class="text-[11px] mt-3 opacity-70">Nominal: <span id="qrisNominal" class="font-black text-white"></span></p><a id="waQrisBtn" href="#" target="_blank" class="block w-full mt-3 p-3 bg-green-600 text-white font-black rounded-xl text-center text-[12px]">KIRIM BUKTI WA 083178084316</a></div>
-      <div id="pay-neo-detail" class="hidden"><p class="text-[12px] font-black">BANK NEO COMMERCE</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="text-[11px] opacity-50">No. Rekening:</p><p class="font-black text-[20px] tracking-widest select-all">5859459406987262</p><p class="mt-2">A/N: <b>WARJAYA</b></p><p class="text-[11px] opacity-60">Bank Neo Commerce (BNC) - 014</p><button onclick="copyRek('5859459406987262')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY NO REK NEO</button></div></div>
-      <div id="pay-superbank-detail" class="hidden"><p class="text-[12px] font-black">SUPERBANK</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="text-[11px] opacity-50">No. Rekening:</p><p class="font-black text-[20px] tracking-widest select-all">030018699543</p><p class="mt-2">A/N: <b>WARJAYA</b></p><p class="text-[11px] opacity-60">Superbank (SUPER) - 562</p><button onclick="copyRek('030018699543')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY NO REK SUPERBANK</button></div></div>
-      <div id="pay-mandiri-detail" class="hidden"><p class="text-[12px] font-black">BANK MANDIRI</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="text-[11px] opacity-50">No. Rekening:</p><p class="font-black text-[20px] tracking-widest select-all">1370022647966</p><p class="mt-2">A/N: <b>WARJAYA</b></p><p class="text-[11px] opacity-60">Bank Mandiri - 008</p><button onclick="copyRek('1370022647966')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY NO REK MANDIRI</button></div></div>
+      <div id="pay-qris-detail"><p class="text-[12px] font-black">SCAN QRIS DANA - E-CELL PRO</p><img src="qris-ecell.jpg" onerror="this.src='https://via.placeholder.com/300/fff/000?text=QRIS+E-CELL'" class="w-full max-w-[260px] mx-auto mt-3 rounded-xl border border-zinc-700 bg-white p-2"><p class="text-[11px] mt-3 opacity-70">Nominal: <span id="qrisNominal" class="font-black text-white"></span></p><a id="waQrisBtn" href="#" target="_blank" class="block w-full mt-3 p-3 bg-green-600 text-white font-black rounded-xl text-center text-[12px]">KIRIM BUKTI WA CS</a></div>
+      <div id="pay-neo-detail" class="hidden"><p class="text-[12px] font-black">BANK NEO COMMERCE A/N WARJAYA</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="font-black text-[20px] select-all">5859459406987262</p><p>A/N WARJAYA - BNC 014</p><button onclick="copyRek('5859459406987262')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY</button></div></div>
+      <div id="pay-superbank-detail" class="hidden"><p class="text-[12px] font-black">SUPERBANK A/N WARJAYA</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="font-black text-[20px] select-all">030018699543</p><p>A/N WARJAYA - SUPER 562</p><button onclick="copyRek('030018699543')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY</button></div></div>
+      <div id="pay-mandiri-detail" class="hidden"><p class="text-[12px] font-black">BANK MANDIRI A/N WARJAYA</p><div class="mt-3 p-3 bg-zinc-900 rounded-xl font-mono text-[13px]"><p class="font-black text-[20px] select-all">1370022647966</p><p>A/N WARJAYA - MANDIRI 008</p><button onclick="copyRek('1370022647966')" class="mt-3 w-full p-2.5 bg-zinc-800 rounded-lg text-[11px] font-bold">📋 COPY</button></div></div>
     </div>
-    <button onclick="bayar()" class="w-full mt-4 p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH BAYAR - PROSES</button>
+    <button onclick="bayar()" class="w-full mt-4 p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH BAYAR - PROSES OTOMATIS</button>
   </div>
 
-  <div id="step3" class="hidden mt-5 bg-[#141414] rounded-[20px] p-8 text-center border border-zinc-800"><div class="text-5xl">✅</div><h2 class="font-black mt-3">Order Diterima Bos WARJAYA!</h2><p id="refIdShow" class="font-mono text-[11px] mt-3 bg-black p-3 rounded-xl border border-zinc-800"></p><p class="text-[11px] mt-3 opacity-60">Admin cek mutasi A/N WARJAYA. Proses 1-5 menit.</p></div>
+  <div id="step3" class="hidden mt-5 bg-[#141414] rounded-[20px] p-8 text-center border border-zinc-800"><div class="text-5xl">✅</div><h2 class="font-black mt-3">Order Diterima Bos!</h2><p id="refIdShow" class="font-mono text-[11px] mt-3 bg-black p-3 rounded-xl border border-zinc-800"></p><div class="mt-4 grid grid-cols-2 gap-2"><button onclick="openModal('riwayat')" class="p-3 bg-zinc-800 rounded-xl text-[11px] font-bold">📜 LIHAT RIWAYAT</button><button onclick="location.reload()" class="p-3 bg-white text-black rounded-xl text-[11px] font-bold">BARU</button></div></div>
 </main>
 
-<footer class="max-w-lg mx-auto mt-12 border-t border-zinc-800 p-6 text-[11px] opacity-60"><div class="flex justify-between"><span>© 2026 E-CELL PRO WARJAYA - All Rights Reserved</span><span>ecell.yogya@gmail.com</span></div><div class="mt-2">Mandiri 1370022647966 • Superbank 030018699543 • Neo 5859459406987262 • A/N WARJAYA</div></footer>
-<div id="modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur p-4"><div class="max-w-lg mx-auto mt-20 bg-[#141414] border border-zinc-800 rounded-[24px] p-6"><div class="flex justify-between"><h3 id="modalTitle" class="font-black"></h3><button onclick="closeModal()" class="w-8 h-8 bg-zinc-800 rounded-full">✕</button></div><div id="modalBody" class="text-[13px] mt-4 opacity-80"></div></div></div>
+<!-- FOOTER INTERAKTIF LENGKAP -->
+<footer class="max-w-lg mx-auto mt-12 border-t border-zinc-800 bg-[#0a0a0a]">
+  <div class="p-6 grid grid-cols-2 gap-6 text-[12px]">
+    <div>
+      <h4 class="font-black tracking-widest text-[11px] mb-3">E-CELL PRO - WARJAYA</h4>
+      <p class="opacity-60 leading-relaxed">Jl. Segoroyoso No.1<br>Pleret, Bantul, DIY<br>Buka 24 Jam<br><br><b class="text-white">ecell.yogya@gmail.com</b><br>WA CS: 083178084316<br>Owner: WARJAYA</p>
+      <button onclick="openModal('cara')" class="mt-4 w-full p-2.5 bg-white text-black rounded-xl font-black text-[11px]">❓ CARA ORDER LENGKAP</button>
+    </div>
+    <div>
+      <h4 class="font-black tracking-widest text-[11px] mb-3">MENU PELANGGAN</h4>
+      <div class="space-y-2.5 opacity-70">
+        <button onclick="openModal('riwayat')" class="block text-left hover:text-white underline">📜 Riwayat Transaksi Saya</button>
+        <button onclick="openModal('sk')" class="block text-left hover:text-white underline">📄 Syarat & Ketentuan</button>
+        <button onclick="openModal('guide')" class="block text-left hover:text-white underline">🎮 Panduan ID Game & Server</button>
+        <button onclick="openModal('faq')" class="block text-left hover:text-white underline">❓ FAQ, Garansi & Refund</button>
+        <button onclick="openModal('privacy')" class="block text-left hover:text-white underline">🔒 Kebijakan Privasi</button>
+        <button onclick="openModal('cek')" class="block text-left hover:text-white underline">🔍 Cek Status Transaksi</button>
+        <button onclick="openModal('bank')" class="block text-left hover:text-white underline">🏦 Daftar Rekening A/N WARJAYA</button>
+        <button onclick="openModal('about')" class="block text-left hover:text-white underline">🏪 Tentang E-CELL PRO</button>
+      </div>
+    </div>
+  </div>
+  <div class="px-6 py-4 border-t border-zinc-900 flex justify-between items-center text-[10px] opacity-30"><span>© 2026 E-CELL PRO WARJAYA. All Rights Reserved.</span><span>ecell.yogya@gmail.com</span></div>
+  <div class="px-6 pb-20 text-[10px] opacity-20 leading-relaxed text-center">Pulsa All Operator Telkomsel Indosat XL Axis Tri Smartfren by.U, Data, Game ML FF PUBG Genshin, E-Wallet DANA OVO GoPay ShopeePay LinkAja, PLN, Netflix Spotify • Legal Aman Terpercaya Yogyakarta • Copyright Protected • A/N WARJAYA Mandiri 1370022647966 Superbank 030018699543 Neo 5859459406987262</div>
+</footer>
+
+<!-- FLOATING WA CS BUTTON -->
+<a id="waFloating" href="https://wa.me/6283178084316?text=Halo%20Admin%20E-CELL%20PRO%20(WARJAYA)%20%2C%20saya%20butuh%20bantuan%20order%20di%20web%20ecell.yogya@gmail.com" target="_blank" class="fixed bottom-5 right-5 z-40 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_#22c55e] font-black text-[24px]">💬</a>
+
+<!-- MODAL SUPER LENGKAP -->
+<div id="modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
+  <div class="max-w-lg mx-auto mt-10 mb-20 bg-[#141414] border border-zinc-800 rounded-[24px] p-6 shadow-2xl">
+    <div class="flex justify-between items-center"><h3 id="modalTitle" class="font-black text-[16px]"></h3><button onclick="closeModal()" class="w-8 h-8 bg-zinc-800 rounded-full font-bold">✕</button></div>
+    <div id="modalBody" class="text-[13px] leading-relaxed mt-4 opacity-90 max-h-[70vh] overflow-y-auto pr-2"></div>
+  </div>
+</div>
 
 <script>
 const API_BASE="https://ecell-theta-ten.vercel.app";
 let selected=null, currentCat='pulsa', providerCode=null, filterGame='all', filterEwallet='all', filterDigital='all', payMethod='qris';
 function hitungMarkup(modal){ modal=Number(modal); if(modal>=5000 && modal<=9999) return modal+500; if(modal>=10000 && modal<=15999) return modal+1500; return modal+2000; }
 function copyRek(no){ navigator.clipboard.writeText(no); alert('No Rek '+no+' A/N WARJAYA berhasil di copy Bos!'); }
+
 const allProduk={
   pulsa:[
     {sku:"tsel5",base:5000,name:"5rb",provider:"tsel",game:"telkomsel",detail:"• TSEL 5rb"},
@@ -115,17 +167,54 @@ const allProduk={
     {sku:"pln50",base:50000,name:"PLN 50rb",game:"pln",provider:"pln",detail:"• ID 11-12 digit",need:"pln"},
   ]
 };
+
 function setCat(c){ currentCat=c; filterGame='all'; filterEwallet='all'; filterDigital='all'; document.querySelectorAll(".cat-btn").forEach(b=>b.className="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-[#1a1a1a] text-[12px] font-bold border border-zinc-800"); document.getElementById(`cat-${c}`).className="cat-btn whitespace-nowrap px-5 py-2.5 rounded-full bg-white text-black text-[12px] font-bold"; const sG=document.getElementById("serverGroup"); if(c==='game') sG.classList.remove("hidden"); else sG.classList.add("hidden"); renderFilter(); render(); }
 function renderFilter(){ const box=document.getElementById("filterBox"); if(currentCat==='game'){ box.innerHTML=`<select onchange="filterGame=this.value;render()" class="w-full p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua Game --</option><option value="freefire">Free Fire</option><option value="mlbb">Mobile Legends</option><option value="pubg">PUBG</option><option value="genshin">Genshin</option></select>`; } else if(currentCat==='ewallet'){ box.innerHTML=`<select onchange="filterEwallet=this.value;render()" class="w-full p-3.5 rounded-xl bg-[#141414] border border-zinc-800 text-[14px] font-bold"><option value="all">-- Semua E-Wallet --</option><option value="dana">DANA</option><option value="ovo">OVO</option><option value="gopay">GoPay</option><option value="shopeepay">ShopeePay</option><option value="linkaja">LinkAja</option></select>`; } else { box.innerHTML=""; } }
 function deteksiProvider(){ const raw=document.getElementById("input1").value; const num=raw.replace(/\D/g,""); let p="-", code=null, col="bg-zinc-800 border-zinc-700"; if(/^08(11|12|13|21|22|23|51|52|53|28)/.test(num)){ p="TELKOMSEL"; code="tsel"; col="bg-red-600 border-red-500"; } else if(/^08(14|15|16|55|56|57|58)/.test(num)){ p="INDOSAT"; code="isat"; col="bg-yellow-500 border-yellow-400 text-black"; } else if(/^08(17|18|19|59|77|78)/.test(num)){ p="XL"; code="xl"; col="bg-blue-600 border-blue-500"; } else if(/^08(31|32|33|38)/.test(num)){ p="AXIS"; code="axis"; col="bg-purple-600 border-purple-500"; } else if(/^0895|^0896|^0897|^0898|^0899/.test(num)){ p="TRI"; code="tri"; col="bg-white border-white text-black"; } else if(/^08(81|82|83|84|85|86|87|88|89)/.test(num) && !/^08(31|32|33|38)/.test(num)){ p="SMARTFREN"; code="smartfren"; col="bg-pink-600 border-pink-500"; } else if(num.length>=10){ p="VALID"; code="all"; col="bg-green-600 border-green-500"; } providerCode=code; const badge=document.getElementById("providerBadge"); badge.innerText=p; badge.className=`text-[10px] px-3 py-1 rounded-full font-black border ${col} text-white`; render(); }
 function render(){ let list=allProduk[currentCat]||[]; if((currentCat==='pulsa'||currentCat==='data')){ if(!providerCode){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-8 text-center bg-[#141414] rounded-[20px] border border-zinc-800 opacity-40 text-[13px]">Masukkan nomor HP</div>`; return; } if(providerCode!=='all') list=list.filter(x=>x.provider===providerCode); } if(currentCat==='game' && filterGame!=='all') list=list.filter(x=>x.game===filterGame); if(currentCat==='ewallet' && filterEwallet!=='all') list=list.filter(x=>x.game===filterEwallet); if(list.length===0){ document.getElementById("produkList").innerHTML=`<div class="col-span-2 p-6 text-center bg-[#141414] rounded-[20px] border border-zinc-800 text-[13px] opacity-50">Tidak ada produk</div>`; return; } document.getElementById("produkList").innerHTML=list.map(p=>{ const jual=hitungMarkup(p.base); return `<button onclick="pilih('${p.sku}')" class="text-left p-4 rounded-[18px] bg-[#141414] border border-zinc-800 hover:border-zinc-600"><div class="text-[10px] opacity-40 uppercase font-black">${p.provider.toUpperCase()}</div><div class="font-black text-[15px] mt-1">${p.name}</div><div class="text-[11px] opacity-50 mt-1">${p.detail.replace(/<br>/g,' • ')}</div><div class="font-black text-[16px] mt-3">Rp ${jual.toLocaleString()}</div></button>` }).join(""); }
 function pilih(sku){ selected=Object.values(allProduk).flat().find(x=>x.sku===sku); document.getElementById("detailBox").classList.remove("hidden"); document.getElementById("detailContent").innerHTML=`<div class="font-black">${selected.name} - ${selected.game.toUpperCase()}</div><div class="mt-2">${selected.detail}</div>`; document.getElementById("hargaJual").innerText=`Rp ${hitungMarkup(selected.base).toLocaleString()}`; }
 function setPay(method){ payMethod=method; document.querySelectorAll(".pay-btn").forEach(b=>b.className="pay-btn p-3 rounded-xl bg-[#1a1a1a] border border-zinc-800 text-[12px] font-bold"); document.getElementById(`pay-${method}`).className="pay-btn p-3 rounded-xl bg-white text-black font-black border-2 border-green-500 text-[12px]"; document.getElementById("pay-qris-detail").classList.add("hidden"); document.getElementById("pay-neo-detail").classList.add("hidden"); document.getElementById("pay-superbank-detail").classList.add("hidden"); document.getElementById("pay-mandiri-detail").classList.add("hidden"); document.getElementById(`pay-${method}-detail`).classList.remove("hidden"); }
-function goStep2(){ const id1=document.getElementById("input1").value.trim(), id2=document.getElementById("input2").value.trim(); if(!id1) return alert("Wajib ID/Nomor!"); if(selected.need==='pln' && !/^\d{11,12}$/.test(id1.replace(/\D/g,""))) return alert("ID PLN 11-12 digit!"); const total=hitungMarkup(selected.base); document.getElementById("step2").classList.remove("hidden"); document.getElementById("confirmId").innerText=`${selected.game.toUpperCase()} | ID: ${id1} ${id2?`| SERVER: ${id2}`:''} | ${selected.name}`; document.getElementById("totalBayar").innerText=`Rp ${total.toLocaleString()}`; document.getElementById("qrisNominal").innerText=`Rp ${total.toLocaleString()}`; const waText=`Halo Admin E-CELL PRO, saya bayar ${selected.name} ID ${id1} ${id2?`Server ${id2}`:''} Rp ${total.toLocaleString()} via ${payMethod.toUpperCase()} A/N WARJAYA. Bukti terlampir.`; document.getElementById("waQrisBtn").href=`https://wa.me/6283178084316?text=${encodeURIComponent(waText)}`; setPay('qris'); }
-async function bayar(){ const ref=`ECELL${Date.now()}`; const total=hitungMarkup(selected.base); try{await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:document.getElementById("input1").value,server:document.getElementById("input2").value,total,payMethod,an:'WARJAYA'})})}catch{} document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=`${ref} | ${payMethod.toUpperCase()} | Rp ${total.toLocaleString()} | A/N WARJAYA`; }
+function goStep2(){ const id1=document.getElementById("input1").value.trim(), id2=document.getElementById("input2").value.trim(); if(!id1) return alert("Wajib ID/Nomor!"); if(selected.need==='pln' && !/^\d{11,12}$/.test(id1.replace(/\D/g,""))) return alert("ID PLN 11-12 digit!"); const total=hitungMarkup(selected.base); document.getElementById("step2").classList.remove("hidden"); document.getElementById("confirmId").innerText=`${selected.game.toUpperCase()} | ID: ${id1} ${id2?`| SERVER: ${id2}`:''} | ${selected.name}`; document.getElementById("totalBayar").innerText=`Rp ${total.toLocaleString()}`; document.getElementById("qrisNominal").innerText=`Rp ${total.toLocaleString()}`; const waText=`Halo Admin E-CELL PRO (WARJAYA), saya bayar ${selected.name} ID ${id1} ${id2?`Server ${id2}`:''} Rp ${total.toLocaleString()} via ${payMethod.toUpperCase()} A/N WARJAYA. Email: ecell.yogya@gmail.com`; document.getElementById("waQrisBtn").href=`https://wa.me/6283178084316?text=${encodeURIComponent(waText)}`; setPay('qris'); }
+
+function getRiwayat(){ try{ return JSON.parse(localStorage.getItem('ecell_riwayat')||'[]'); }catch{ return []; } }
+function saveRiwayat(item){ const list=getRiwayat(); list.unshift(item); localStorage.setItem('ecell_riwayat', JSON.stringify(list.slice(0,50))); }
+
+async function bayar(){ 
+  const ref=`ECELL${Date.now()}`; const total=hitungMarkup(selected.base); const id1=document.getElementById("input1").value; const id2=document.getElementById("input2").value;
+  const dataRiwayat={ ref, produk:selected.name, game:selected.game, tujuan:id1, server:id2, total, payMethod, an:'WARJAYA', waktu:new Date().toLocaleString('id-ID'), status:'Menunggu Cek Admin' };
+  saveRiwayat(dataRiwayat);
+  try{ await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:id1,server:id2,total,payMethod})}); }catch{}
+  document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=`${ref} | ${payMethod.toUpperCase()} | Rp ${total.toLocaleString()} | A/N WARJAYA`;
+}
+
+function openModal(type){
+  const m=document.getElementById("modal"), t=document.getElementById("modalTitle"), b=document.getElementById("modalBody"); m.classList.remove("hidden");
+  const riwayat=getRiwayat();
+  const riwayatHtml=riwayat.length? riwayat.map(r=>`<div class="p-3 bg-black border border-zinc-800 rounded-xl mb-2 text-[11px]"><div class="flex justify-between"><b>${r.produk} - ${r.game.toUpperCase()}</b><span class="opacity-50">${r.waktu}</span></div><div class="font-mono mt-1">Ref: ${r.ref}</div><div>ID: ${r.tujuan} ${r.server?`| Server: ${r.server}`:''}</div><div>Total: Rp ${Number(r.total).toLocaleString()} via ${r.payMethod.toUpperCase()} A/N WARJAYA</div><div class="mt-1 px-2 py-1 bg-yellow-600 rounded-full inline-block text-[10px]">${r.status}</div><div class="mt-2 flex gap-2"><a href="https://wa.me/6283178084316?text=Halo%20Admin%20cek%20Ref%20${r.ref}" target="_blank" class="px-3 py-1 bg-green-600 rounded-full text-white font-bold">WA CS Cek</a><button onclick="copyRek('${r.ref}')" class="px-3 py-1 bg-zinc-800 rounded-full">Copy Ref</button></div></div>`).join("") : `<div class="p-8 text-center opacity-50">Belum ada transaksi Bos. Order pertama akan muncul di sini otomatis.</div><button onclick="closeModal(); setCat('pulsa')" class="w-full mt-4 p-3 bg-white text-black font-black rounded-xl">MULAI ORDER</button>`;
+  
+  const data={
+    riwayat:{t:"📜 Riwayat Transaksi (Lokal)",b:`Riwayat tersimpan di HP ini (localStorage) - max 50 transaksi terbaru.<br><br>${riwayatHtml}<br><br><button onclick="if(confirm('Hapus semua riwayat?')){localStorage.removeItem('ecell_riwayat'); openModal('riwayat')}" class="w-full p-2 bg-red-900/50 border border-red-800 rounded-xl text-[11px]">🗑️ Hapus Riwayat</button>`},
+    cara:{t:"❓ Cara Order Lengkap",b:`<b>LANGKAH 1: PILIH PRODUK</b><br>1. Masukkan Nomor HP / ID Game / ID PLN 11-12 digit di atas<br>2. Pilih kategori: PULSA, DATA, GAME, E-WALLET, DIGITAL<br>3. Untuk GAME, pilih dropdown game (Free Fire, ML, PUBG, Genshin) - grid akan filter sesuai pilihan<br>4. Untuk E-WALLET, pilih dropdown DANA/OVO/GoPay/ShopeePay/LinkAja<br>5. Untuk PULSA/DATA, ketik nomor HP, badge provider akan muncul (TELKOMSEL, INDOSAT, XL, AXIS 0831, TRI, SMARTFREN, by.U) - produk filter otomatis sesuai provider<br><br><b>LANGKAH 2: BAYAR</b><br>6. Klik produk, cek detail & benefit, klik Lanjutkan<br>7. Pilih metode bayar A/N WARJAYA:<br>• QRIS DANA: Scan gambar qris-ecell.jpg pakai DANA/OVO/GoPay/ShopeePay/MBanking. Nominal sesuai total<br>• NEO: 5859459406987262 A/N WARJAYA (BNC 014)<br>• SUPERBANK: 030018699543 A/N WARJAYA (562)<br>• MANDIRI: 1370022647966 A/N WARJAYA (008)<br>8. Copy no rek, transfer sesuai nominal, screenshot bukti<br><br><b>LANGKAH 3: KONFIRMASI</b><br>9. Klik Saya Sudah Bayar - order masuk riwayat lokal + server<br>10. Kirim bukti via WA CS 083178084316 (tombol otomatis)<br>11. Admin cek mutasi A/N WARJAYA, proses 1-5 menit<br>12. Cek riwayat transaksi di menu 📜 Riwayat<br><br><b>TIPS:</b><br>• Saldo LIVE di header adalah saldo Digiflazz admin real-time<br>• Markup: 5rb-9,999 +500, 10rb-15,999 +1500, 20rb+ +2000 (hidden, hanya harga jual tampil)<br>• Game butuh ID+Server (ML: ID+Server dalam kurung, Genshin: UID+Server Asia)<br>• PLN butuh ID 11-12 digit angka di meteran`},
+    sk:{t:"📄 Syarat & Ketentuan",b:`1. ID/Nomor wajib benar, kesalahan input bukan tanggung jawab kami.<br>2. Produk digital tidak dapat di-refund setelah status SUKSES di server Digiflazz.<br>3. Garansi 100% uang kembali jika tidak masuk dalam 30 menit dengan bukti ID benar & bukti transfer valid A/N WARJAYA.<br>4. Harga dapat berubah sewaktu-waktu mengikuti harga Digiflazz.<br>5. QRIS DANA & Transfer Bank A/N WARJAYA - pastikan transfer ke rekening resmi di web ini saja.<br>6. Wajib screenshot bukti bayar & kirim ke WA CS 083178084316.<br>7. Dengan order, Anda menyetujui S&K ini.<br><br>Owner: WARJAYA<br>Email: ecell.yogya@gmail.com<br>Alamat: Segoroyoso, Pleret, Bantul, DIY`},
+    guide:{t:"🎮 Panduan ID & Server",b:`<b>PULSA/DATA:</b><br>Masukkan nomor HP 08xx, sistem deteksi semua provider Indonesia:<br>• Telkomsel 0811,0812,0813,0821,0822,0823,0851,0852,0853,0828<br>• Indosat 0814,0815,0816,0855,0856,0857,0858<br>• XL 0817,0818,0819,0859,0877,0878<br>• AXIS 0831,0832,0833,0838 (0831 adalah AXIS Bos!)<br>• Tri 0895,0896,0897,0898,0899<br>• Smartfren 0881-0889<br>• by.U 0828<br>Badge provider muncul otomatis, hanya nama provider saja, tanpa hints berisik.<br><br><b>GAME WAJIB ID+SERVER:</b><br>• <b>ML:</b> Buka profil ML > ID 12345678 (1234) - angka dalam kurung adalah SERVER, wajib isi<br>• <b>FF:</b> ID angka di profil kiri atas, hanya ID saja<br>• <b>PUBG:</b> ID angka di profil<br>• <b>Genshin:</b> UID kanan bawah + pilih Server Asia/America/Europe/TW,HK,MO<br><br><b>PLN:</b><br>ID Pelanggan 11-12 digit angka, cek di meteran listrik / struk. Contoh: 51234567890. Tanpa spasi.<br><br><b>E-WALLET:</b><br>Nomor HP terdaftar DANA/OVO/GoPay 10-13 digit, tanpa awalan +62.`},
+    faq:{t:"❓ FAQ & Garansi",b:`<b>Q: Berapa lama proses?</b><br>A: Pulsa <1 menit, Data <2 menit, Game 1-3 menit, PLN instant, E-Wallet instant setelah admin cek mutasi A/N WARJAYA.<br><br><b>Q: Salah ID gimana?</b><br>A: Jika status SUKSES di Digiflazz, tidak bisa refund. Pastikan ID benar sebelum bayar. Gunakan fitur Riwayat untuk cek ulang ID.<br><br><b>Q: Garansi?</b><br>A: 100% refund jika tidak masuk 30 menit dengan bukti screenshot ID benar + bukti transfer valid ke rekening A/N WARJAYA. Hubungi WA CS 083178084316 atau email ecell.yogya@gmail.com<br><br><b>Q: Saldo LIVE apa?</b><br>A: Saldo deposit Digiflazz admin real-time dari akun Digiflazz. Jika <50rb merah kedip, admin harus top up.<br><br><b>Q: QRIS tidak bisa scan?</b><br>A: Pastikan file qris-ecell.jpg sudah upload ke GitHub. Alternatif transfer manual ke Neo/Superbank/Mandiri A/N WARJAYA.<br><br><b>Q: Riwayat hilang ganti HP?</b><br>A: Riwayat lokal di HP saja (localStorage). Simpan Ref ID untuk cek via WA CS.`},
+    privacy:{t:"🔒 Kebijakan Privasi",b:`Kami hanya menyimpan ID/Nomor pelanggan untuk proses transaksi via Digiflazz. Tidak menjual data ke pihak ketiga. Riwayat transaksi disimpan lokal di HP Anda (localStorage) dan di server Vercel 90 hari untuk cek status. Data pembayaran (bukti transfer) hanya via WA CS, tidak disimpan di web. Untuk penghapusan data, hubungi ecell.yogya@gmail.com A/N WARJAYA.<br><br>© 2026 E-CELL PRO WARJAYA - All Rights Reserved.`},
+    cek:{t:"🔍 Cek Status Transaksi",b:`<b>Cara Cek:</b><br>1. Buka menu 📜 Riwayat Transaksi, copy Ref ID (ECELL...)<br>2. Atau masukkan Ref ID manual di bawah:<br><br><input id="cekRefInput" placeholder="ECELL..." class="w-full p-3 rounded-xl bg-black border border-zinc-700 text-[13px]"><br><br><button onclick="window.open('https://wa.me/6283178084316?text=Halo%20Admin%20E-CELL%20PRO%20WARJAYA,%20cek%20transaksi%20Ref%20'+document.getElementById('cekRefInput').value+'%20Email:%20ecell.yogya@gmail.com','_blank')" class="w-full p-3 bg-green-600 text-white font-black rounded-xl">CEK VIA WA CS OTOMATIS</button><br><br><b>Jam Operasional:</b> 24 Jam Nonstop<br><b>Respon WA CS:</b> 1-10 menit<br><b>Email:</b> ecell.yogya@gmail.com`},
+    bank:{t:"🏦 Rekening Resmi A/N WARJAYA",b:`<b>Semua pembayaran A/N WARJAYA - Hati-hati penipuan!</b><br><br><div class="space-y-3"><div class="p-3 bg-black border border-zinc-800 rounded-xl"><p class="font-black">BANK MANDIRI</p><p class="font-mono text-[18px]">1370022647966</p><p>A/N WARJAYA - Kode 008</p><button onclick="copyRek('1370022647966')" class="mt-2 w-full p-2 bg-zinc-800 rounded-lg text-[11px]">COPY</button></div><div class="p-3 bg-black border border-zinc-800 rounded-xl"><p class="font-black">SUPERBANK</p><p class="font-mono text-[18px]">030018699543</p><p>A/N WARJAYA - Kode 562</p><button onclick="copyRek('030018699543')" class="mt-2 w-full p-2 bg-zinc-800 rounded-lg text-[11px]">COPY</button></div><div class="p-3 bg-black border border-zinc-800 rounded-xl"><p class="font-black">BANK NEO COMMERCE</p><p class="font-mono text-[18px]">5859459406987262</p><p>A/N WARJAYA - Kode 014</p><button onclick="copyRek('5859459406987262')" class="mt-2 w-full p-2 bg-zinc-800 rounded-lg text-[11px]">COPY</button></div><div class="p-3 bg-white text-black rounded-xl"><p class="font-black">QRIS DANA</p><p class="text-[11px]">Scan qris-ecell.jpg di web. DANA/OVO/GoPay/ShopeePay/MBanking</p><img src="qris-ecell.jpg" class="w-full max-w-[200px] mx-auto mt-2 rounded-lg"></div></div><br><a href="https://wa.me/6283178084316" target="_blank" class="block w-full p-3 bg-green-600 text-white font-black rounded-xl text-center">WA CS 083178084316 - ecell.yogya@gmail.com</a>`},
+    about:{t:"🏪 Tentang E-CELL PRO",b:`<b>E-CELL PRO - Yogyakarta 24 Jam</b><br>Owner: WARJAYA<br>Email: ecell.yogya@gmail.com<br>WA CS: 083178084316<br>Alamat: Segoroyoso, Pleret, Bantul, DIY 55797<br>Buka: 24 Jam Nonstop<br><br><b>Produk:</b><br>• Pulsa All Operator Indonesia (Telkomsel, Indosat, XL, Axis, Tri, Smartfren, by.U) - deteksi otomatis semua provider, tampil nama provider saja tanpa hints<br>• Paket Data<br>• Game: Free Fire, Mobile Legends (ID+Server), PUBG, Genshin Impact (UID+Server)<br>• E-Wallet: DANA, OVO, GoPay, ShopeePay, LinkAja - dropdown filter<br>• Digital: PLN Token (Wajib ID 11-12 digit), Netflix, Spotify<br><br><b>Metode Bayar Resmi A/N WARJAYA:</b><br>• QRIS DANA (qris-ecell.jpg)<br>• Neo 5859459406987262<br>• Superbank 030018699543<br>• Mandiri 1370022647966<br><br><b>Fitur Web:</b><br>• Filter provider otomatis (0831=AXIS)<br>• Filter game & e-wallet dropdown<br>• Harga jual final, markup hidden (5rb-9,999 +500, 10rb-15,999 +1500, 20rb+ +2000)<br>• Saldo LIVE Digiflazz real-time<br>• Riwayat transaksi lokal + WA CS otomatis<br>• Cara kerja 3 langkah, S&K, Panduan ID, FAQ, Privacy, Cek Status<br>• Floating WA CS<br>• Icon 192/512, manifest PWA bisa install di HP<br><br>© 2026 E-CELL PRO WARJAYA - All Rights Reserved. ecell.yogya@gmail.com - Copyright Protected.`},
+  };
+  t.innerText=data[type]?.t||type; b.innerHTML=data[type]?.b||"Menu belum tersedia";
+}
+
 function closeModal(){document.getElementById("modal").classList.add("hidden");}
 async function fetchSaldo(){ const box=document.getElementById("saldoBox"); try{ const r=await fetch(`${API_BASE}/api/cek-saldo`,{mode:'cors'}); const d=await r.json(); const saldo=Number(d.saldo||0); box.innerText=`● LIVE Rp ${saldo.toLocaleString()}`; box.className=`px-3 py-1.5 rounded-full text-[11px] font-bold border ${saldo<50000?'bg-red-600 border-red-500 animate-pulse':'bg-green-600 border-green-500'}`; } catch(e){ box.innerText=`● ONLINE`; } }
 setCat('pulsa'); renderFilter(); fetchSaldo(); setInterval(fetchSaldo,30000); render();
+
+// Update WA floating link sesuai produk terakhir
+setInterval(()=>{
+  const waBtn=document.getElementById("waFloating");
+  if(selected){ const total=hitungMarkup(selected.base); waBtn.href=`https://wa.me/6283178084316?text=Halo%20Admin%20E-CELL%20PRO%20WARJAYA%2C%20saya%20mau%20order%20${selected.name}%20${selected.game}%20Total%20Rp%20${total.toLocaleString()}%20Email%3A%20ecell.yogya@gmail.com`; }
+}, 2000);
 </script>
 </body>
-  </html>
+                                                                                                                                                                                                                                                                                                                                                    </html>
