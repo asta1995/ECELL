@@ -1,4 +1,5 @@
-// E-CELL - DROPDOWN PILIH GAME + GRID PRODUK TETAP + SENSOR REKENING
+// E-CELL - FINAL - REKENING a/n WARJAYA, QRIS a/n E CELL
+// Dropdown Game + Grid Produk Tetap + Sensor Rekening
 
 const products = [
   { game: 'MLBB', name: '12 Diamond', modal: 5000 },
@@ -19,9 +20,9 @@ const products = [
 ];
 
 const banks = [
-  { name: 'Neo Bank', no: '5859459406987262' },
-  { name: 'Mandiri', no: '1370022647966' },
-  { name: 'Superbank', no: '030018699543' },
+  { name: 'Neo Bank', no: '5859459406987262', owner: 'WARJAYA' },
+  { name: 'Mandiri', no: '1370022647966', owner: 'WARJAYA' },
+  { name: 'Superbank', no: '030018699543', owner: 'WARJAYA' },
 ];
 
 function sensorRek(no) { return '•••• ' + no.slice(-5); }
@@ -36,7 +37,6 @@ function renderGame(filter = 'ALL') {
     const jual = hitungJual(p.modal);
     grid.innerHTML += `<div class='card'><div style='font-size:10px;color:#0D3B8C;opacity:.7;font-weight:800'>${p.game}</div><b>${p.name}</b><div class='price'>Rp ${jual.toLocaleString('id-ID')}</div></div>`;
   });
-  if (list.length === 0) grid.innerHTML = `<div style="grid-column:span 2;text-align:center;opacity:.5;padding:20px">Produk ${filter} belum tersedia</div>`;
 }
 
 function filterGame() {
@@ -55,9 +55,9 @@ function showTab(id) {
 function renderBank() {
   const c = document.getElementById('bankList');
   if (!c) return;
-  c.innerHTML = banks.map(b => `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f2f5"><div><b>${b.name}</b><div style="font-size:11px;opacity:.6">${sensorRek(b.no)}</div></div><button onclick="copyNum('${b.no}')" style="padding:6px 12px;border-radius:8px;border:1px solid #0D3B8C;background:white;color:#0D3B8C;font-weight:700;font-size:11px">Salin</button></div>`).join('');
+  c.innerHTML = banks.map(b => `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f2f5"><div><b>${b.name} a/n ${b.owner}</b><div style="font-size:11px;opacity:.6">${sensorRek(b.no)}</div></div><button onclick="copyNum('${b.no}')" style="padding:6px 12px;border-radius:8px;border:1px solid #0D3B8C;background:white;color:#0D3B8C;font-weight:700;font-size:11px">Salin</button></div>`).join('');
 }
 
-function copyNum(num) { navigator.clipboard.writeText(num); alert('✅ Nomor ' + num + ' disalin!'); }
+function copyNum(num) { navigator.clipboard.writeText(num); alert('✅ Nomor ' + num + ' a/n WARJAYA disalin!'); }
 
 document.addEventListener('DOMContentLoaded', () => { renderGame('ALL'); renderBank(); });
