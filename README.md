@@ -4,8 +4,8 @@
 ![Status](https://img.shields.io/badge/Status-Online-brightgreen)
 ![QRIS](https://img.shields.io/badge/QRIS-2%20Aktif-blue)
 
-Website topup game & PPOB 7 metode bayar
-Live: `https://username.github.io/nama-repo/`
+Website topup game & PPOB 5 metode bayar
+Live: `https://asta1995.github.io/ECELL/`
 
 ## Pembayaran 7 Metode
 1. QRIS DANA Bisnis - ID1026610661583
