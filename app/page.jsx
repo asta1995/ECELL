@@ -1,6 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+// di dalam return, setelah <Analytics />
+<SpeedInsights />
 
 const produkList = [
   { id: "ax10", name: "AXIS 10rb", price: 11000, sku: "ax10" },
