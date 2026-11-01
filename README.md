@@ -7,7 +7,7 @@
 Website topup game & PPOB 5 metode bayar
 Live: `https://asta1995.github.io/ECELL/`
 
-## Pembayaran 7 Metode
+## Pembayaran 5 Metode
 1. QRIS DANA Bisnis - ID1026610661583
 2. QRIS GoPay Merchant - ID1026629373568
 3. Neo Bank - Sensor •••• 87262
