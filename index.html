@@ -3,151 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-CELL PRO - ecell-theta-ten.vercel.app</title>
+<title>E-CELL PRO</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<style>body{font-family:'Inter',sans-serif} .animate-in{animation:fadeIn .3s}</style>
 </head>
 <body class="bg-[#0a0a0a] text-white min-h-screen">
-
 <header class="sticky top-0 z-50 flex justify-between items-center p-4 bg-black border-b border-zinc-800">
-  <div>
-    <h1 class="font-black text-xl tracking-widest">E-CELL PRO</h1>
-    <div class="text-[10px] opacity-40 -mt-1">ecell-theta-ten.vercel.app</div>
-  </div>
-  <div id="saldoBox" class="px-4 py-1.5 rounded-full font-bold text-xs bg-zinc-800 text-zinc-400">● CEK SALDO...</div>
+  <h1 class="font-black text-xl">E-CELL PRO</h1>
+  <div id="saldoBox" class="px-4 py-1.5 rounded-full font-bold text-xs bg-zinc-800">CEK SALDO...</div>
 </header>
-
-<main class="max-w-md mx-auto p-4 pb-20">
-  <div class="my-3 p-3 bg-yellow-900/30 border border-yellow-800 rounded-xl text-[11px]">⚠️ Saldo LIVE dari Digiflazz Bos - Kalau merah &lt; 50rb, Bot WA otomatis warning ke 083178084316</div>
-
+<main class="max-w-md mx-auto p-4">
+  <div class="my-3 p-3 bg-yellow-900/30 border border-yellow-800 rounded-xl text-[11px]">Saldo LIVE - Jika merah &lt;50rb, Bot WA warning ke 083178084316</div>
   <div id="step1">
-    <label class="text-xs opacity-60">Nomor Tujuan / WA Pembeli</label>
-    <input id="noTujuan" type="tel" placeholder="083178084316" class="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-800 mt-1 mb-4 outline-none focus:border-white font-mono">
-    <label class="text-xs opacity-60">Pilih Produk</label>
-    <div class="grid grid-cols-2 gap-3 mt-1" id="produkList"></div>
-    <button onclick="goStep2()" class="w-full mt-6 p-4 bg-white text-black font-black rounded-xl active:scale-95 transition-all">LANJUT BAYAR</button>
-    <p class="text-center text-[10px] opacity-30 mt-4">Bot WA Multifungsi Aktif • ecell-theta-ten.vercel.app</p>
+    <input id="noTujuan" placeholder="Nomor Tujuan 08xx" class="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-800 mb-4 outline-none">
+    <div class="grid grid-cols-2 gap-3" id="produkList"></div>
+    <button onclick="goStep2()" class="w-full mt-6 p-4 bg-white text-black font-black rounded-xl">LANJUT BAYAR</button>
   </div>
-
-  <div id="step2" class="hidden bg-zinc-900 p-5 rounded-2xl border border-zinc-800 animate-in">
-    <h2 class="font-black mb-1">Transfer Manual ke:</h2>
-    <p class="text-xs opacity-60 mb-4">Bot WA akan kirim invoice otomatis setelah klik transfer</p>
-    <div class="bg-black p-4 rounded-xl mb-4 space-y-3 border border-zinc-800">
-      <div><div class="text-[10px] opacity-60">QRIS E-CELL (Rekomendasi)</div><div class="font-bold text-sm mt-1">Scan QRIS a/n E-CELL PRO</div></div>
-      <div class="h-[1px] bg-zinc-800"></div>
-      <div><div class="text-[10px] opacity-60">BCA / BRI</div><div class="font-mono font-bold text-sm">1234567890 a/n E-CELL</div><div class="text-[10px] opacity-40">Ganti dengan rek kamu Bos</div></div>
-    </div>
-    <div class="space-y-2 text-sm mb-6">
-      <div class="flex justify-between"><span class="opacity-60">Produk:</span><span id="prodName" class="font-bold"></span></div>
-      <div class="flex justify-between"><span class="opacity-60">Tujuan:</span><span id="tujuanShow" class="font-mono font-bold"></span></div>
-      <div class="flex justify-between"><span class="opacity-60">Total:</span><span id="totalBayar" class="font-black text-base"></span></div>
-    </div>
-    <button id="btnBayar" onclick="bayar()" class="w-full p-4 bg-white text-black font-black rounded-xl active:scale-95 transition-all">SAYA SUDAH TRANSFER</button>
-    <button onclick="goStep1()" class="w-full mt-3 p-2 text-zinc-400 text-sm">← Kembali</button>
+  <div id="step2" class="hidden bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
+    <h2 class="font-black mb-3">Transfer ke:</h2>
+    <div class="bg-black p-4 rounded-xl mb-4 border border-zinc-800"><div class="text-xs opacity-60">QRIS / BCA 1234567890 a/n E-CELL</div></div>
+    <div class="flex justify-between mb-6"><span>Total:</span><span id="totalBayar" class="font-black"></span></div>
+    <button id="btnBayar" onclick="bayar()" class="w-full p-4 bg-white text-black font-black rounded-xl">SAYA SUDAH TRANSFER</button>
+    <button onclick="location.reload()" class="w-full mt-3 p-2 text-zinc-400 text-sm">Kembali</button>
   </div>
-
-  <div id="step3" class="hidden text-center py-8 bg-zinc-900 rounded-2xl border border-zinc-800 p-6 animate-in">
-    <div class="text-6xl mb-4">✅</div>
-    <h2 class="font-black text-xl">Pembayaran Diterima!</h2>
-    <p id="refIdShow" class="font-mono text-xs bg-black border border-zinc-800 p-3 rounded-xl mt-4 select-all"></p>
-    <div class="text-left mt-6 space-y-2.5 text-[13px] bg-black p-4 rounded-xl border border-zinc-800">
-      <p>✅ Bot #1: Invoice terkirim ke WA pembeli</p>
-      <p>✅ Bot #2: Konfirmasi terkirim ke Admin <b>083178084316</b></p>
-      <p>✅ Bot #3: Cek saldo &lt; 50rb aktif di header</p>
+  <div id="step3" class="hidden text-center py-10 bg-zinc-900 rounded-2xl border border-zinc-800 p-6">
+    <div class="text-6xl mb-4">✅</div><h2 class="font-black text-xl">Pembayaran Diterima!</h2>
+    <p id="refIdShow" class="font-mono text-xs bg-black border border-zinc-800 p-3 rounded-xl mt-4"></p>
+    <div class="text-left mt-6 space-y-2 text-xs bg-black p-4 rounded-xl border border-zinc-800">
+      <p>✅ Bot #1: Invoice ke pembeli</p><p>✅ Bot #2: Konfirmasi ke 083178084316</p><p>✅ Bot #3: Cek saldo &lt;50rb</p>
     </div>
-    <p class="opacity-60 mt-5 text-xs leading-relaxed">Mohon bersabar menunggu max 5 menit ya Kak! Admin akan segera eksekusi di ecell-theta-ten.vercel.app/admin</p>
-    <button onclick="resetAll()" class="mt-8 w-full p-4 bg-white text-black font-black rounded-xl">BELI LAGI</button>
-    <a href="https://ecell-theta-ten.vercel.app/admin" target="_blank" class="block mt-3 text-xs opacity-60 underline">Buka Admin Panel → ecell-theta-ten.vercel.app/admin</a>
+    <button onclick="location.reload()" class="mt-8 w-full p-4 bg-white text-black font-black rounded-xl">BELI LAGI</button>
+    <a href="https://ecell-theta-ten.vercel.app/admin" class="block mt-3 text-xs opacity-40 underline">Admin Panel</a>
   </div>
 </main>
-
 <script>
-const API_BASE = "https://ecell-theta-ten.vercel.app";
-const produk = [
-  {id:"ax10", name:"AXIS 10rb", price:11000, sku:"ax10"},
-  {id:"ax25", name:"AXIS 25rb", price:26000, sku:"ax25"},
-  {id:"xl10", name:"XL 10rb", price:11200, sku:"xld10"},
-  {id:"xl25", name:"XL 25rb", price:26200, sku:"xld25"},
-  {id:"ts10", name:"Telkomsel 10rb", price:11300, sku:"tsel10"},
-  {id:"is10", name:"Indosat 10rb", price:11200, sku:"is10"},
-];
+const API_BASE="https://ecell-theta-ten.vercel.app";
+const produk=[{id:"ax10",name:"AXIS 10rb",price:11000,sku:"ax10"},{id:"ax25",name:"AXIS 25rb",price:26000,sku:"ax25"},{id:"xl10",name:"XL 10rb",price:11200,sku:"xld10"},{id:"ts10",name:"Telkomsel 10rb",price:11300,sku:"tsel10"}];
 let selected=null;
-
-function renderProduk(){
-  document.getElementById("produkList").innerHTML = produk.map(p=>`
-    <button onclick="pilih('${p.id}')" id="prod-${p.id}" class="p-4 rounded-xl border text-left bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all">
-      <div class="font-black text-sm">${p.name}</div>
-      <div class="text-xs opacity-70">Rp ${p.price.toLocaleString()}</div>
-      <div class="text-[10px] opacity-40">${p.sku}</div>
-    </button>`).join("");
-}
-function pilih(id){
-  selected=produk.find(p=>p.id===id);
-  document.querySelectorAll('[id^="prod-"]').forEach(el=>el.className="p-4 rounded-xl border text-left bg-zinc-900 border-zinc-800");
-  document.getElementById(`prod-${id}`).className="p-4 rounded-xl border text-left bg-white text-black border-white scale-[0.98]";
-}
-function goStep1(){
-  document.getElementById("step1").classList.remove("hidden");
-  document.getElementById("step2").classList.add("hidden");
-  document.getElementById("step3").classList.add("hidden");
-}
-function goStep2(){
-  const no=document.getElementById("noTujuan").value;
-  if(!no || no.length<10) return alert("Isi nomor valid Bos!");
-  if(!selected) return alert("Pilih produk Bos!");
-  document.getElementById("step1").classList.add("hidden");
-  document.getElementById("step2").classList.remove("hidden");
-  document.getElementById("prodName").innerText=selected.name;
-  document.getElementById("tujuanShow").innerText=no;
-  document.getElementById("totalBayar").innerText=`Rp ${selected.price.toLocaleString()}`;
-}
-function resetAll(){
-  selected=null; document.getElementById("noTujuan").value="";
-  renderProduk(); goStep1();
-}
-async function bayar(){
-  const noTujuan=document.getElementById("noTujuan").value;
-  const btn=document.getElementById("btnBayar");
-  btn.innerText="MENGIRIM BOT WA..."; btn.disabled=true;
-  const ref_id=`ECELL${Date.now()}`;
-  try{
-    const res=await fetch(`${API_BASE}/api/create-order`,{
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({ref_id, produk:selected, noTujuan, noPembeli:noTujuan})
-    });
-    const data=await res.json();
-    if(data.success){
-      document.getElementById("step2").classList.add("hidden");
-      document.getElementById("step3").classList.remove("hidden");
-      document.getElementById("refIdShow").innerText=ref_id;
-    } else alert("Gagal: "+data.message);
-  } catch(e){
-    alert("Error API: "+e.message+" - Cek Vercel kamu Bos!");
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("step3").classList.remove("hidden");
-    document.getElementById("refIdShow").innerText=ref_id;
-  }
-  btn.innerText="SAYA SUDAH TRANSFER"; btn.disabled=false;
-}
-async function fetchSaldo(){
-  try{
-    const res=await fetch(`${API_BASE}/api/cek-saldo`);
-    const data=await res.json();
-    const box=document.getElementById("saldoBox");
-    const saldo=data.saldo||0;
-    if(saldo<50000){
-      box.className="px-4 py-1.5 rounded-full font-bold text-xs bg-red-600 animate-pulse text-white";
-      box.innerText=`Rp ${saldo.toLocaleString()} ⚠️`;
-    } else {
-      box.className="px-4 py-1.5 rounded-full font-bold text-xs bg-green-600 text-white";
-      box.innerText=`Rp ${saldo.toLocaleString()} ● LIVE`;
-    }
-  } catch{
-    document.getElementById("saldoBox").innerText="OFFLINE";
-  }
-}
-renderProduk(); fetchSaldo(); setInterval(fetchSaldo,30000);
+function renderProduk(){document.getElementById("produkList").innerHTML=produk.map(p=>`<button onclick="pilih('${p.id}')" id="prod-${p.id}" class="p-4 rounded-xl border bg-zinc-900 border-zinc-800 text-left"><div class="font-bold">${p.name}</div><div class="text-xs opacity-60">Rp ${p.price.toLocaleString()}</div></button>`).join("")}
+function pilih(id){selected=produk.find(p=>p.id===id);document.querySelectorAll('[id^="prod-"]').forEach(el=>el.className="p-4 rounded-xl border bg-zinc-900 border-zinc-800 text-left");document.getElementById(`prod-${id}`).className="p-4 rounded-xl border bg-white text-black border-white text-left"}
+function goStep2(){if(!document.getElementById("noTujuan").value||!selected)return alert("Isi nomor & pilih produk!");document.getElementById("step1").classList.add("hidden");document.getElementById("step2").classList.remove("hidden");document.getElementById("totalBayar").innerText=`Rp ${selected.price.toLocaleString()}`}
+async function bayar(){const no=document.getElementById("noTujuan").value;const btn=document.getElementById("btnBayar");btn.innerText="MENGIRIM BOT WA...";const ref=`ECELL${Date.now()}`;try{await fetch(`${API_BASE}/api/create-order`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ref_id:ref,produk:selected,noTujuan:no,noPembeli:no})})}catch(e){}document.getElementById("step2").classList.add("hidden");document.getElementById("step3").classList.remove("hidden");document.getElementById("refIdShow").innerText=ref}
+async function fetchSaldo(){try{const r=await fetch(`${API_BASE}/api/cek-saldo`);const d=await r.json();const b=document.getElementById("saldoBox");if(d.saldo<50000){b.className="px-4 py-1.5 rounded-full font-bold text-xs bg-red-600 animate-pulse";b.innerText=`Rp ${d.saldo.toLocaleString()} ⚠️`}else{b.className="px-4 py-1.5 rounded-full font-bold text-xs bg-green-600";b.innerText=`Rp ${d.saldo.toLocaleString()} LIVE`}}catch{b=document.getElementById("saldoBox");b.innerText="OFFLINE"}}
+renderProduk();fetchSaldo();setInterval(fetchSaldo,30000);
 </script>
 </body>
-      </html>
+</html>
