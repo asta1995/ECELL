@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-CELL - Topup Game & PPOB</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-CELL - Topup Otomatis Digiflazz</title>
 <style>
 :root{--blue:#0D3B8C;--orange:#FF6A00;--bg:#F4F7FF}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
@@ -17,44 +16,21 @@ body{background:var(--bg);padding-bottom:20px}
 .card{background:white;border-radius:16px;padding:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #eef2ff}
 .price{font-weight:900;color:var(--blue);font-size:15px;margin-top:4px}
 .paybox{background:white;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
-.badge{font-size:10px;padding:3px 8px;border-radius:99px;font-weight:800}
-.badge-qris{background:#E8F5E9;color:#1B8B2A}
-select{width:100%;padding:12px;border-radius:12px;border:2px solid var(--blue);font-weight:800;background:white}
+.inp{width:100%;padding:10px;border-radius:10px;border:1.5px solid #ddd;margin-top:6px}
+.btn{width:100%;margin-top:8px;background:var(--orange);color:white;border:0;padding:10px;border-radius:10px;font-weight:900;cursor:pointer}
+.badge{font-size:10px;padding:3px 8px;border-radius:99px;font-weight:800;background:#E8F5E9;color:#1B8B2A}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo">E</div><div><b>E-CELL</b><div style="font-size:10px;opacity:.8">Topup Game & PPOB • 7 Metode Bayar</div></div><div style="margin-left:auto;background:#00E676;color:#003d12;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:900">ONLINE</div></div>
-
-<div class="tabs">
-<div class="tab active" id="t-game" onclick="showTab('game')">🎮 Game</div>
-<div class="tab" id="t-ppob" onclick="showTab('ppob')">📱 PPOB</div>
-<div class="tab" id="t-bayar" onclick="showTab('bayar')">💳 Bayar (7)</div>
-</div>
-
-<div id="game">
-<div style="padding:0 12px 10px">
-<select id="gameDropdown" onchange="filterGame()">
-<option value="ALL">🎮 Semua Game</option>
-<option value="MLBB">Mobile Legends</option>
-<option value="FF">Free Fire</option>
-<option value="PUBG">PUBG Mobile</option>
-<option value="Valorant">Valorant</option>
-<option value="Roblox">Roblox</option>
-<option value="HOK">Honor of Kings</option>
-</select>
-</div>
-<div style="padding:0 14px 10px;font-size:11px;opacity:.6">Harga = Modal +1000 (5k-15k) & +2000 (>20k)</div>
-<div class="grid" id="gameGrid"></div>
-</div>
-
-<div id="ppob" style="display:none"><div class="grid"><div class="card">📱<b>Pulsa</b><div class="price">Mulai Rp6.000</div></div><div class="card">🌐<b>Data</b><div class="price">Mulai Rp11.000</div></div><div class="card">⚡<b>PLN</b><div class="price">Mulai Rp21.000</div></div><div class="card">💧<b>PDAM</b><div class="price">Mulai Rp2.000</div></div></div></div>
-
+<div class="header"><div class="logo">E</div><div><b>E-CELL</b><div style="font-size:10px;opacity:.8">Otomatis Digiflazz + Notif WA/Tele</div></div><div style="margin-left:auto;background:#00E676;color:#003d12;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:900">AUTO ON</div></div>
+<div class="tabs"><div class="tab active" id="t-game" onclick="showTab('game')">🎮 Game</div><div class="tab" id="t-ppob" onclick="showTab('ppob')">📱 PPOB</div><div class="tab" id="t-bayar" onclick="showTab('bayar')">💳 Bayar</div></div>
+<div id="game"><div style="padding:0 12px 10px"><select id="gameDropdown" onchange="filterGame()" style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--blue);font-weight:800"><option value="ALL">🎮 Semua Game</option><option value="MLBB">Mobile Legends</option><option value="FF">Free Fire</option><option value="PUBG">PUBG Mobile</option></select></div><div class="grid" id="gameGrid"></div></div>
+<div id="ppob" style="display:none"><div class="grid"><div class="card">📱<b>Pulsa</b><div class="price">Auto Digiflazz</div></div><div class="card">🌐<b>Data</b><div class="price">Auto Digiflazz</div></div><div class="card">⚡<b>PLN</b><div class="price">Auto Digiflazz</div></div></div></div>
 <div id="bayar" style="display:none">
-<div class="paybox" style="border-left:5px solid #00BFA5"><div style="display:flex;justify-content:space-between"><h3>QRIS DANA Bisnis</h3><span class="badge badge-qris">QRIS 1</span></div><p style="font-size:12px;opacity:.7">a/n E CELL • NMID: ID1026610661583</p><img src="qris-ecell.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"></div>
-<div class="paybox" style="border-left:5px solid #00AED6"><div style="display:flex;justify-content:space-between"><h3>QRIS GoPay Merchant</h3><span class="badge badge-qris">QRIS 2</span></div><p style="font-size:12px;opacity:.7">a/n E CELL • NMID: ID1026629373568</p><img src="qris-warjaya.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"></div>
-<div class="paybox"><h3>🏦 Transfer Bank a/n WARJAYA (Sensor)</h3><div id="bankList"></div><p style="font-size:10px;opacity:.5;margin-top:8px">* Semua rekening a/n WARJAYA • Tampilan disensor anti bot</p></div>
+<div class="paybox" style="border-left:5px solid #00BFA5"><div style="display:flex;justify-content:space-between"><h3>QRIS DANA Bisnis</h3><span class="badge">a/n E CELL</span></div><p style="font-size:12px;opacity:.7">NMID ID1026610661583 - A002666101</p><img src="qris-ecell.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"></div>
+<div class="paybox" style="border-left:5px solid #00AED6"><div style="display:flex;justify-content:space-between"><h3>QRIS GoPay Merchant</h3><span class="badge">a/n E CELL</span></div><p style="font-size:12px;opacity:.7">NMID ID1026629373568 - Baru nanti diganti</p><img src="qris-warjaya.jpg" style="width:100%;max-width:320px;display:block;margin:12px auto;border-radius:14px"></div>
+<div class="paybox"><h3>🏦 Transfer Bank a/n WARJAYA</h3><div id="bankList"></div></div>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
