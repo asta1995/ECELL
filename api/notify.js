@@ -4,7 +4,7 @@ async function kirimWA(nomor, pesan) {
     method: 'POST',
     headers: { Authorization: 'TOKEN_FONNTE_KAMU' },
     body: new URLSearchParams({
-      target: nomor, // 087711651388 -> format 6287711651388
+      target: nomor, // 6283178084316 -> format 6283178084316
       message: pesan,
     })
   })
@@ -29,7 +29,7 @@ async function botKonfirmasiAdmin(ref_id, produk, noTujuan, buktiUrl) {
               `Tujuan: ${noTujuan}\n` +
               `Bukti: ${buktiUrl}\n\n` +
               `Ketik: ECELL KIRIM ${ref_id} untuk eksekusi ke Digiflazz`;
-  await kirimWA('6287711651388', pesan) // Nomor admin kamu
+  await kirimWA('6283178084316', pesan) // Nomor admin kamu
 }
 
 // BOT 3: Warning Saldo < 50rb
@@ -39,6 +39,6 @@ async function botWarningSaldo(saldo) {
                 `Saldo tinggal: Rp ${saldo}\n` +
                 `Segera top-up Bos, di bawah 50rb!\n` +
                 `Link: https://member.digiflazz.com/deposit`;
-    await kirimWA('6287711651388', pesan)
+    await kirimWA('6283178084316', pesan)
   }
 }
